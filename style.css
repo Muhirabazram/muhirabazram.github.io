@@ -1,0 +1,161 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+section {
+  padding: 60px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Header/Navbar */
+header {
+  background-color: #064420; /* dark green */
+  color: #fff;
+  padding: 20px 0;
+}
+
+header h1 {
+  margin: 0;
+  text-align: center;
+}
+
+/* Banner Section */
+#banner {
+  text-align: center;
+  background-color: #e8f5e9; /* light green */
+  color: #064420;
+  padding: 80px 20px;
+}
+
+#banner h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+#dynamic-text {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+/* Alternating Backgrounds */
+.white-bg {
+  background-color: #ffffff;
+}
+
+.lightgreen-bg {
+  background-color: #e8f5e9;
+}
+
+/* About Section */
+#about img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Skills Section */
+.skill {
+  background: #c8e6c9;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+/* Portfolio */
+#portfolio .filters {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#portfolio .filters button {
+  margin: 5px;
+  padding: 10px 20px;
+  background: #064420;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.portfolio-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.portfolio-item {
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.portfolio-item p {
+  padding: 10px;
+}
+
+/* Contact Section */
+#contact ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+#contact li {
+  margin: 10px 0;
+}
+
+#contact i {
+  margin-right: 10px;
+  color: #064420;
+}
+
+/* Footer */
+footer {
+  background-color: #064420;
+  color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .portfolio-item {
+    width: 100%;
+    max-width: 300px;
+  }
+}
