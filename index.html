@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Irfan Abdul Aziz Ramdani</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header style="background-color: #064420; color: white; padding: 20px; text-align: center;">
+    <h1>Welcome to My Portfolio</h1>
+    <h2>I am a <span id="typewriter"></span></h2>
+  </header>
+
+  <section style="background-color: white; padding: 40px;">
+    <h2>About Me</h2>
+    <p>Hi, I'm Muhammad Irfan Abdul Aziz Ramdani, passionate about technology and creativity. I work on software development, design, photography, and more.</p>
+    <img src="placeholder.jpg" alt="Profile Image" style="width:200px; height:auto;" />
+  </section>
+
+  <section style="background-color: #d4fcdc; padding: 40px;">
+    <h2>Skills</h2>
+    <ul>
+      <li>Design: Photoshop, Illustrator, Figma</li>
+      <li>Programming: HTML, CSS, JavaScript, Python</li>
+      <li>Video Editing: Premiere Pro, After Effects</li>
+      <li>Photography: Lightroom, Snapseed</li>
+      <li>Other: WordPress, Canva</li>
+    </ul>
+  </section>
+
+  <section style="background-color: white; padding: 40px;">
+    <h2>Portfolio</h2>
+    <div>
+      <button>All</button>
+      <button>Design</button>
+      <button>Video</button>
+      <button>Website</button>
+      <button>Photography</button>
+      <button onclick="location.href='more.html'">More</button>
+    </div>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+      <img src="placeholder1.jpg" alt="Portfolio 1" width="200" />
+      <img src="placeholder2.jpg" alt="Portfolio 2" width="200" />
+      <img src="placeholder3.jpg" alt="Portfolio 3" width="200" />
+      <img src="placeholder4.jpg" alt="Portfolio 4" width="200" />
+    </div>
+  </section>
+
+  <section style="background-color: #d4fcdc; padding: 40px;">
+    <h2>Contact</h2>
+    <p>You can reach me via social media:</p>
+    <ul>
+      <li><img src="icon-fb.png" alt="Facebook" width="20" /> Facebook</li>
+      <li><img src="icon-ig.png" alt="Instagram" width="20" /> Instagram</li>
+      <li><img src="icon-wa.png" alt="WhatsApp" width="20" /> WhatsApp</li>
+      <li><img src="icon-yt.png" alt="YouTube" width="20" /> YouTube</li>
+    </ul>
+  </section>
+
+  <footer style="background-color: #064420; color: white; padding: 20px; text-align: center;">
+    <p>&copy; 2025 Muhammad Irfan Abdul Aziz Ramdani. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const roles = ["Designer", "Programmer", "Photographer", "Editor"];
+    let i = 0;
+    const typewriter = document.getElementById("typewriter");
+    setInterval(() => {
+      typewriter.textContent = roles[i];
+      i = (i + 1) % roles.length;
+    }, 2000);
+  </script>
+</body>
+</html>
