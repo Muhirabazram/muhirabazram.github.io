@@ -1,75 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Muhammad Irfan Abdul Aziz Ramdani</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-  <header style="background-color: #064420; color: white; padding: 20px; text-align: center;">
-    <h1>Welcome to My Portfolio</h1>
-    <h2>I am a <span id="typewriter"></span></h2>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark-green shadow">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-uppercase" href="#">Muhammad Irfan</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <header class="banner d-flex align-items-center justify-content-center text-center">
+    <div class="container">
+      <h1 class="text-white">Muhammad Irfan Abdul Aziz Ramdani</h1>
+      <h3 class="text-light"><span class="typed-text"></span></h3>
+    </div>
   </header>
 
-  <section style="background-color: white; padding: 40px;">
-    <h2>About Me</h2>
-    <p>Hi, I'm Muhammad Irfan Abdul Aziz Ramdani, passionate about technology and creativity. I work on software development, design, photography, and more.</p>
-    <img src="placeholder.jpg" alt="Profile Image" style="width:200px; height:auto;" />
-  </section>
-
-  <section style="background-color: #d4fcdc; padding: 40px;">
-    <h2>Skills</h2>
-    <ul>
-      <li>Design: Photoshop, Illustrator, Figma</li>
-      <li>Programming: HTML, CSS, JavaScript, Python</li>
-      <li>Video Editing: Premiere Pro, After Effects</li>
-      <li>Photography: Lightroom, Snapseed</li>
-      <li>Other: WordPress, Canva</li>
-    </ul>
-  </section>
-
-  <section style="background-color: white; padding: 40px;">
-    <h2>Portfolio</h2>
-    <div>
-      <button>All</button>
-      <button>Design</button>
-      <button>Video</button>
-      <button>Website</button>
-      <button>Photography</button>
-      <button onclick="location.href='more.html'">More</button>
-    </div>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-      <img src="placeholder1.jpg" alt="Portfolio 1" width="200" />
-      <img src="placeholder2.jpg" alt="Portfolio 2" width="200" />
-      <img src="placeholder3.jpg" alt="Portfolio 3" width="200" />
-      <img src="placeholder4.jpg" alt="Portfolio 4" width="200" />
+  <!-- About -->
+  <section id="about" class="bg-white py-5">
+    <div class="container text-center">
+      <h2 class="mb-4">About Me</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at dignissim nunc, id maximus ex.</p>
+      <img src="https://via.placeholder.com/300" alt="About Image" class="img-fluid rounded mt-3">
     </div>
   </section>
 
-  <section style="background-color: #d4fcdc; padding: 40px;">
-    <h2>Contact</h2>
-    <p>You can reach me via social media:</p>
-    <ul>
-      <li><img src="icon-fb.png" alt="Facebook" width="20" /> Facebook</li>
-      <li><img src="icon-ig.png" alt="Instagram" width="20" /> Instagram</li>
-      <li><img src="icon-wa.png" alt="WhatsApp" width="20" /> WhatsApp</li>
-      <li><img src="icon-yt.png" alt="YouTube" width="20" /> YouTube</li>
-    </ul>
+  <!-- Skills -->
+  <section id="skills" class="bg-light-green py-5">
+    <div class="container text-center">
+      <h2 class="mb-4">Skills</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <h5>Photoshop</h5>
+          <p>Editing and photo manipulation.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Adobe Premiere</h5>
+          <p>Video editing and effects.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>VS Code</h5>
+          <p>Programming and web development.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Figma</h5>
+          <p>UI/UX design and prototyping.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Canva</h5>
+          <p>Simple and fast design creation.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer style="background-color: #064420; color: white; padding: 20px; text-align: center;">
+  <!-- Portfolio -->
+  <section id="portfolio" class="bg-white py-5">
+    <div class="container text-center">
+      <h2 class="mb-4">Portfolio</h2>
+      <div class="mb-3">
+        <button class="btn btn-outline-dark btn-sm me-1">All</button>
+        <button class="btn btn-outline-dark btn-sm me-1">Design</button>
+        <button class="btn btn-outline-dark btn-sm me-1">Video</button>
+        <button class="btn btn-outline-dark btn-sm me-1">Website</button>
+        <button class="btn btn-outline-dark btn-sm me-1">Photography</button>
+        <a href="more.html" class="btn btn-outline-dark btn-sm">More</a>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <img src="https://via.placeholder.com/300" class="img-fluid" alt="Project">
+          <p class="mt-2">Project 1 Description</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <img src="https://via.placeholder.com/300" class="img-fluid" alt="Project">
+          <p class="mt-2">Project 2 Description</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <img src="https://via.placeholder.com/300" class="img-fluid" alt="Project">
+          <p class="mt-2">Project 3 Description</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-light-green py-5">
+    <div class="container text-center">
+      <h2 class="mb-4">Contact</h2>
+      <p>Email: example@example.com</p>
+      <p>Phone: +62 812 3456 7890</p>
+      <div class="mt-3">
+        <a href="#" class="text-dark me-3"><i class="fab fa-instagram fa-lg"></i> Instagram</a>
+        <a href="#" class="text-dark me-3"><i class="fab fa-youtube fa-lg"></i> YouTube</a>
+        <a href="#" class="text-dark"><i class="fab fa-github fa-lg"></i> GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark-green text-white text-center py-3">
     <p>&copy; 2025 Muhammad Irfan Abdul Aziz Ramdani. All rights reserved.</p>
   </footer>
 
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const roles = ["Designer", "Programmer", "Photographer", "Editor"];
-    let i = 0;
-    const typewriter = document.getElementById("typewriter");
-    setInterval(() => {
-      typewriter.textContent = roles[i];
-      i = (i + 1) % roles.length;
-    }, 2000);
+    const words = ["Designer", "Programmer", "Photographer", "Editor"];
+    let index = 0;
+    const typedText = document.querySelector(".typed-text");
+    function cycleWords() {
+      typedText.textContent = words[index];
+      index = (index + 1) % words.length;
+    }
+    setInterval(cycleWords, 2000);
+    cycleWords();
   </script>
 </body>
+
 </html>
