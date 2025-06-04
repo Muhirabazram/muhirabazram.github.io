@@ -71,11 +71,27 @@
     </nav>
 
     <!-- Fitur Multibahasa -->
+    <!-- Dropdown Bahasa yang Arahkan ke Halaman HTML -->
     <div class="language-switcher text-center mt-auto mb-4">
-      <a href="index-en.html" class="btn btn-outline-light btn-sm mx-1">English</a>
-      <a href="index-id.html" class="btn btn-outline-light btn-sm mx-1">Indonesia</a>
+      <select id="languageSwitcher" class="form-select form-select-sm w-75 mx-auto lang-select">
+        <option value="en" selected>English</option>
+        <option value="id">Indonesia</option>
+      </select>
     </div>
 
+    <script>
+      document.getElementById('languageSwitcher').addEventListener('change', function () {
+        const lang = this.value;
+    
+        // Ganti ke halaman sesuai bahasa
+        if (lang === 'en') {
+          window.location.href = 'index.html';
+        } else if (lang === 'id') {
+          window.location.href = 'index-id.html';
+        }
+      });
+    </script> <!-- Akhir dari fitur Multibahasa nya -->
+    
   </header>
 
   <main class="main">
