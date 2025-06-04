@@ -244,4 +244,12 @@
     switcher.addEventListener("change", (e) => {
       updateLanguage(e.target.value);
     });
+
+    //Untuk choices di fitur multibahasa
+    const element = document.getElementById('languageSwitcher');
+    const choices = new Choices(element, {
+      searchEnabled: false,
+      itemSelectText: '',
+    });
+  
 })();
