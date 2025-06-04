@@ -361,6 +361,24 @@ h6 {
   background-color: rgba(33, 37, 41, 0.03);
 }
 
+/* style fitur multibahasa */
+.lang-select {
+  background-color: var(--surface-color);
+  color: white; /* atau sesuaikan dengan tema kamu */
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.lang-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4); /* efek glow saat di-klik */
+}
+
+
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
