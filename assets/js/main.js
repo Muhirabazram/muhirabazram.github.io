@@ -228,22 +228,39 @@
 
 
   /* Fitur Multi Bahasa */
-  const switcher = document.getElementById("languageSwitcher");
-    const translatable = document.querySelectorAll("[data-lang-en]");
+  const translations = {
+    en: ["Designer", "Developer", "3D Designer", "Freelancer", "Photographer", "Editor"],
+    id: ["Desainer", "Pengembang", "Desainer 3D", "Freelancer", "Fotografer", "Editor"]
+  };
 
-    function updateLanguage(lang) {
-      translatable.forEach(el => {
-        el.textContent = el.getAttribute(`data-lang-${lang}`);
-      });
+  function switchLanguage(lang) {
+    // Ganti semua elemen yang punya data-lang
+    document.querySelectorAll("[data-lang-en]").forEach(el => {
+      el.textContent = el.getAttribute(`data-lang-${lang}`);
+    });
+
+    // Ganti Typed
+    if (window.typedInstance) {
+      window.typedInstance.destroy();
     }
 
-    // Inisialisasi default
-    updateLanguage("en");
-
-    // Saat user ganti bahasa
-    switcher.addEventListener("change", (e) => {
-      updateLanguage(e.target.value);
+    window.typedInstance = new Typed("#typedText", {
+      strings: translations[lang],
+      typeSpeed: 60,
+      backSpeed: 40,
+      loop: true
     });
+  }
+
+  // Ganti bahasa saat dropdown dipilih
+  document.getElementById("languageSwitcher").addEventListener("change", function () {
+    switchLanguage(this.value);
+  });
+
+  // Jalankan pertama kali (default English)
+  window.addEventListener("DOMContentLoaded", () => {
+    switchLanguage("en");
+  });
 
     //Untuk choices di fitur multibahasa
     const element = document.getElementById('languageSwitcher');
