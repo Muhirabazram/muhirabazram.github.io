@@ -225,7 +225,8 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
-
+  
+})();
 
   /* Fitur Multi Bahasa */
   const translations = {
@@ -268,5 +269,3 @@
       searchEnabled: false,
       itemSelectText: '',
     });
-  
-})();
