@@ -226,4 +226,22 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+
+  /* Fitur Multi Bahasa */
+  const switcher = document.getElementById("languageSwitcher");
+    const translatable = document.querySelectorAll("[data-lang-en]");
+
+    function updateLanguage(lang) {
+      translatable.forEach(el => {
+        el.textContent = el.getAttribute(`data-lang-${lang}`);
+      });
+    }
+
+    // Inisialisasi default
+    updateLanguage("en");
+
+    // Saat user ganti bahasa
+    switcher.addEventListener("change", (e) => {
+      updateLanguage(e.target.value);
+    });
 })();
