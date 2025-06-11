@@ -1106,7 +1106,6 @@ section,
 
 .contact .info-item:hover a {
   color: var(--contrast-color);
-  text-decoration: underline;
   transition: 0.2s;
 }
 
