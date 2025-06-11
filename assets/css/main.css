@@ -1104,6 +1104,12 @@ section,
   font-size: 14px;
 }
 
+.contact .info-item:hover a {
+  color: var(--contrast-color);
+  text-decoration: underline;
+  transition: 0.2s;
+}
+
 .contact .info-item:hover i {
   background: var(--accent-color);
   color: var(--contrast-color);
