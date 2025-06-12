@@ -867,7 +867,7 @@ section,
 }
 
 .portfolio .portfolio-content .portfolio-info p {
-  position: relative;
+  position: absolute;
   bottom: 10px;
   text-align: center;
   display: inline-block;
@@ -876,6 +876,16 @@ section,
   font-size: 16px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
+}
+
+.portfolio .portfolio-content .portfolio-info .info-caption {
+  position: relative; /* Bukan absolute agar tidak tumpang tindih */
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5px;
 }
 
 .portfolio .portfolio-content .portfolio-info .preview-link,
