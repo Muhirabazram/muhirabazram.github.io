@@ -878,15 +878,18 @@ section,
   color: rgba(255, 255, 255, 0.8);
 }
 
-.portfolio .portfolio-content .portfolio-info .info-caption {
-  position: relative; /* Bukan absolute agar tidak tumpang tindih */
+.portfolio .portfolio-content .portfolio-info .portfolio-caption {
+  position: relative; /* Ubah dari absolute */
+  margin-top: 10px;
   text-align: center;
-  display: inline-block;
   font-size: 16px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
-  margin-top: 5px;
+  background: rgba(0,0,0,0.5); /* opsional, biar teks tetap kebaca */
+  padding: 5px;
+  z-index: 2;
 }
+
 
 .portfolio .portfolio-content .portfolio-info .preview-link,
 .portfolio .portfolio-content .portfolio-info .details-link {
