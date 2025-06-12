@@ -867,7 +867,7 @@ section,
 }
 
 .portfolio .portfolio-content .portfolio-info p {
-  position: absolute;
+  position: relative;
   bottom: 10px;
   text-align: center;
   display: inline-block;
