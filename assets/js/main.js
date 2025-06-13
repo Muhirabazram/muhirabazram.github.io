@@ -135,6 +135,32 @@
   });
 
   /**
+  *modal bootstrap untuk video dari drive
+  */
+  const videoModal = document.getElementById('videoModal');
+  const videoIframe = document.getElementById('videoModalIframe');
+  const videoTitle = document.getElementById('videoModalTitle');
+  const videoDesc = document.getElementById('videoModalDesc');
+
+  // Saat modal akan dibuka
+  videoModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const src = button.getAttribute('data-video-src');
+    const title = button.getAttribute('data-video-title');
+    const desc = button.getAttribute('data-video-desc');
+
+    videoIframe.src = src;
+    videoTitle.textContent = title;
+    videoDesc.textContent = desc;
+  });
+
+  // Saat modal ditutup → reset video
+  videoModal.addEventListener('hidden.bs.modal', function () {
+    videoIframe.src = "";
+  });
+
+  
+  /**
    * Init isotope layout and filters
    */
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
