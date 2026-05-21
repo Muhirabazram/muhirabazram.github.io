@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Admin Dashboard - Portfolio Manager</title>
+  <meta content="Dynamic database manager for Muhirabazram Portfolio" name="description">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon2.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #030712;
+      --panel-dark: #0f172a;
+      --border-dark: #1e293b;
+      --accent: #12da34;
+      --accent-hover: #0fb92a;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding-bottom: 60px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+
+    .navbar {
+      background-color: var(--panel-dark);
+      border-bottom: 1px solid var(--border-dark);
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: var(--text-main) !important;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar-brand span {
+      color: var(--accent);
+    }
+
+    .glass-card {
+      background-color: var(--panel-dark);
+      border: 1px solid var(--border-dark);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+    }
+
+    .form-label {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .form-control, .form-select {
+      background-color: rgba(3, 7, 18, 0.5);
+      border: 1px solid var(--border-dark);
+      border-radius: 10px;
+      color: var(--text-main);
+      padding: 12px 16px;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+      background-color: rgba(3, 7, 18, 0.8);
+      border-color: var(--accent);
+      color: var(--text-main);
+      box-shadow: 0 0 0 3px rgba(18, 218, 52, 0.15);
+    }
+
+    .form-check-input {
+      background-color: rgba(3, 7, 18, 0.5);
+      border: 1px solid var(--border-dark);
+    }
+
+    .form-check-input:checked {
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: #030712;
+      font-weight: 700;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .btn-accent:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(18, 218, 52, 0.3);
+      color: #030712;
+    }
+
+    .btn-outline-custom {
+      border: 1px solid var(--border-dark);
+      color: var(--text-main);
+      background-color: transparent;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-outline-custom:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: rgba(18, 218, 52, 0.05);
+    }
+
+    .nav-tabs {
+      border-bottom: 2px solid var(--border-dark);
+      margin-bottom: 30px;
+    }
+
+    .nav-tabs .nav-link {
+      color: var(--text-muted);
+      border: none;
+      font-weight: 600;
+      padding: 12px 20px;
+      background: transparent;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .nav-tabs .nav-link:hover {
+      color: var(--text-main);
+      border-bottom-color: var(--border-dark);
+    }
+
+    .nav-tabs .nav-link.active {
+      color: var(--accent) !important;
+      background: transparent;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .badge-category {
+      background-color: rgba(18, 218, 52, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(18, 218, 52, 0.2);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 30px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-right: 5px;
+    }
+
+    .badge-tool {
+      background-color: rgba(148, 163, 184, 0.1);
+      color: var(--text-muted);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-weight: 600;
+      margin-right: 5px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border-dark);
+      background-color: rgba(15, 23, 42, 0.4);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      background-color: rgba(15, 23, 42, 0.8);
+    }
+
+    pre {
+      background-color: #030712;
+      border: 1px solid var(--border-dark);
+      border-radius: 10px;
+      padding: 20px;
+      color: #38bdf8;
+      font-size: 13px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .alert-info-custom {
+      background-color: rgba(56, 189, 248, 0.1);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 10px;
+    }
+
+    .tooltip-icon {
+      cursor: help;
+      color: var(--text-muted);
+    }
+
+    .input-group-text {
+      background-color: rgba(3, 7, 18, 0.5);
+      border-color: var(--border-dark);
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg mb-5">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-database-fill-gear text-success"></i> Muhirabazram <span>Dashboard</span>
+      </a>
+      <span class="badge bg-success-subtle text-success py-2 px-3 rounded-pill border border-success-subtle">
+        <i class="bi bi-shield-check"></i> Local Admin Console
+      </span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      
+      <!-- Instructions & Load panel -->
+      <div class="col-lg-12">
+        <div class="glass-card">
+          <h4><i class="bi bi-folder2-open text-warning"></i> Load Current Portfolio Database</h4>
+          <p class="text-muted small">
+            To add, edit, or delete items, upload your current <code>portfolio-data.json</code> file located in the <code>data/</code> folder. 
+            If you don't load one, you will start with the live default items fetched from your repository.
+          </p>
+          <div class="row align-items-center gy-3 mt-2">
+            <div class="col-md-6">
+              <label for="jsonFileInput" class="form-label"><i class="bi bi-file-earmark-code"></i> Upload portfolio-data.json</label>
+              <input type="file" id="jsonFileInput" class="form-control" accept=".json">
+            </div>
+            <div class="col-md-6 text-md-end">
+              <button id="btnFetchLive" class="btn btn-outline-custom me-2">
+                <i class="bi bi-cloud-arrow-down"></i> Load Live From Repository
+              </button>
+              <button id="btnReset" class="btn btn-outline-danger btn-sm text-white border-0 bg-transparent">
+                <i class="bi bi-arrow-counterclockwise"></i> Reset Database
+              </button>
+            </div>
+          </div>
+          <div id="dbStatusAlert" class="alert alert-info-custom mt-3 mb-0 d-flex align-items-center gap-2">
+            <i class="bi bi-info-circle-fill"></i>
+            <span>No custom database loaded. Currently displaying template items (19 projects).</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="col-lg-12">
+        <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="form-tab" data-bs-toggle="tab" data-bs-target="#form-pane" type="button" role="tab" aria-selected="true">
+              <i class="bi bi-plus-circle-fill"></i> Add / Edit Portfolio Item
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="manage-tab" data-bs-toggle="tab" data-bs-target="#manage-pane" type="button" role="tab" aria-selected="false">
+              <i class="bi bi-layers-half"></i> Manage Existing Projects (<span id="projectCount">0</span>)
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="preview-tab" data-bs-toggle="tab" data-bs-target="#preview-pane" type="button" role="tab" aria-selected="false">
+              <i class="bi bi-code-square"></i> JSON Output & Download
+            </button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="adminTabsContent">
+          
+          <!-- Pane 1: Form Add/Edit -->
+          <div class="tab-pane fade show active" id="form-pane" role="tabpanel" tabindex="0">
+            <div class="glass-card">
+              <h3 id="formTitle" class="mb-4 text-success"><i class="bi bi-plus-lg"></i> Add New Portfolio Proyek</h3>
+              <form id="projectForm">
+                
+                <!-- Hidden Edit ID field -->
+                <input type="hidden" id="editIndex" value="-1">
+
+                <div class="row g-4">
+                  <!-- ID Slug -->
+                  <div class="col-md-6">
+                    <label for="itemId" class="form-label">
+                      Unique ID (Slug)
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Unique ID used internally. e.g. 'bem-poster' (No spaces, use hyphens)"></i>
+                    </label>
+                    <input type="text" id="itemId" class="form-control" placeholder="e.g. kartini-poster" required>
+                  </div>
+
+                  <!-- Date -->
+                  <div class="col-md-6">
+                    <label for="itemDate" class="form-label">
+                      Project Date
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Date of completion. e.g. '22 Februari 2025' or '10 October 2024'"></i>
+                    </label>
+                    <input type="text" id="itemDate" class="form-control" placeholder="e.g. 22 Februari 2025" required>
+                  </div>
+
+                  <!-- Title (Techs representation) -->
+                  <div class="col-md-6">
+                    <label for="itemTitle" class="form-label">
+                      Short Badge / Title Techs
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="This is displayed as the header badge in grid cards. e.g. 'Blender, Canva' or 'HTML, CSS'"></i>
+                    </label>
+                    <input type="text" id="itemTitle" class="form-control" placeholder="e.g. Blender, Mixamo" required>
+                  </div>
+
+                  <!-- Tools -->
+                  <div class="col-md-6">
+                    <label for="itemTools" class="form-label">
+                      Tools & Technologies (Comma Separated)
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="List of tags used in details modal. separated by commas. e.g. 'Blender, Photoshop, Capcut'"></i>
+                    </label>
+                    <input type="text" id="itemTools" class="form-control" placeholder="e.g. Blender, Mixamo" required>
+                  </div>
+
+                  <!-- Categories (Checkboxes) -->
+                  <div class="col-md-12">
+                    <label class="form-label"><i class="bi bi-tag-fill text-success"></i> Categories (Filter groups)</label>
+                    <div class="d-flex flex-wrap gap-4 border p-3 rounded bg-dark border-secondary-subtle">
+                      <div class="form-check">
+                        <input class="form-check-input cat-checkbox" type="checkbox" value="design" id="catDesign">
+                        <label class="form-check-label" for="catDesign">Graphic Design (design)</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input cat-checkbox" type="checkbox" value="3ddesign" id="cat3D">
+                        <label class="form-check-label" for="cat3D">3D Design (3ddesign)</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input cat-checkbox" type="checkbox" value="web" id="catWeb">
+                        <label class="form-check-label" for="catWeb">Web Development (web)</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input cat-checkbox" type="checkbox" value="video" id="catVideo">
+                        <label class="form-check-label" for="catVideo">Video & Animation (video)</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input cat-checkbox" type="checkbox" value="photo" id="catPhoto">
+                        <label class="form-check-label" for="catPhoto">Photography (photo)</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Short Description English -->
+                  <div class="col-md-6">
+                    <label for="itemDescEn" class="form-label">Short Description (English)</label>
+                    <input type="text" id="itemDescEn" class="form-control" placeholder="e.g. A 3D Isometric Gaming Room Design" required>
+                  </div>
+
+                  <!-- Short Description Indonesian -->
+                  <div class="col-md-6">
+                    <label for="itemDescId" class="form-label">Short Description (Indonesia)</label>
+                    <input type="text" id="itemDescId" class="form-control" placeholder="e.g. Desain Ruang Gaming Isometrik 3D" required>
+                  </div>
+
+                  <!-- Detailed Description English -->
+                  <div class="col-md-6">
+                    <label for="itemDetailedDescEn" class="form-label">Detailed Description (English)</label>
+                    <textarea id="itemDetailedDescEn" class="form-control" rows="4" placeholder="Detailed multi-line descriptions for modal popup..." required></textarea>
+                  </div>
+
+                  <!-- Detailed Description Indonesian -->
+                  <div class="col-md-6">
+                    <label for="itemDetailedDescId" class="form-label">Detailed Description (Indonesia)</label>
+                    <textarea id="itemDetailedDescId" class="form-control" rows="4" placeholder="Deskripsi lengkap beberapa baris untuk popup modal..." required></textarea>
+                  </div>
+
+                  <!-- Thumbnail Media Options -->
+                  <div class="col-md-6">
+                    <label class="form-label">
+                      Thumbnail Image Path/URL
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Thumbnail card image. Set local relative path or external link. Profile/common images should be local."></i>
+                    </label>
+                    <div class="input-group">
+                      <select id="itemThumbType" class="form-select bg-dark border-secondary-subtle" style="max-width: 130px;">
+                        <option value="local">Lokal (JSON)</option>
+                        <option value="external">Link URL</option>
+                      </select>
+                      <input type="text" id="itemThumbnail" class="form-control" placeholder="e.g. assets/img/portfolio/zombies.jpg or https://image-link.com" required>
+                    </div>
+                  </div>
+
+                  <!-- Project URL (External project links) -->
+                  <div class="col-md-6">
+                    <label for="itemProjectUrl" class="form-label">Project URL (GitHub, Behance, YouTube Link) - Optional</label>
+                    <input type="url" id="itemProjectUrl" class="form-control" placeholder="e.g. https://github.com/Muhirabazram/MyBioskop">
+                  </div>
+
+                  <!-- Media Display Type dropdown -->
+                  <div class="col-md-6">
+                    <label for="itemMediaType" class="form-label">
+                      Media Display Type (Zoom Popup Media)
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Select what kind of preview happens when clicking zoom search icon. Images, YouTube embeds, or direct Google Drive previews."></i>
+                    </label>
+                    <select id="itemMediaType" class="form-select" required>
+                      <option value="image">Standard Image (Local or URL)</option>
+                      <option value="video">Direct local .mp4 Video</option>
+                      <option value="youtube">YouTube Embed Iframe Link</option>
+                      <option value="drive_video">Google Drive Video Frame Preview</option>
+                    </select>
+                  </div>
+
+                  <!-- Preview Media Path/URL -->
+                  <div class="col-md-6">
+                    <label for="itemMediaUrl" class="form-label">
+                      Zoom Media URL/Path
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Provide direct URL or local path matching choice above. e.g. for Google Drive: change sharing link view?usp=sharing into file/d/FILE_ID/preview"></i>
+                    </label>
+                    <input type="text" id="itemMediaUrl" class="form-control" placeholder="e.g. assets/img/portfolio/kartini.jpg or https://drive.google.com/file/d/FILE_ID/preview" required>
+                  </div>
+
+                  <!-- Additional Slider Images -->
+                  <div class="col-lg-12">
+                    <div class="p-3 rounded bg-dark border border-secondary-subtle">
+                      <h5 class="text-success"><i class="bi bi-images"></i> Multi-Image Slider Carousel (Optional)</h5>
+                      <p class="text-muted small mb-3">
+                        If this project needs a swiper slider (like BEM STMIK), list image paths/links below (one path/link per line). Leave blank if you only want a single thumbnail display.
+                      </p>
+                      <textarea id="itemSliderImages" class="form-control" rows="3" placeholder="e.g.&#10;assets/img/portfolio/bem.jpeg&#10;assets/img/portfolio/bem1.jpeg&#10;assets/img/portfolio/bem2.jpeg"></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Submit button -->
+                  <div class="col-lg-12 text-end mt-4">
+                    <button type="button" id="btnCancelEdit" class="btn btn-outline-custom me-2" style="display:none;">
+                      <i class="bi bi-x-circle"></i> Cancel Edit
+                    </button>
+                    <button type="submit" class="btn btn-accent">
+                      <i class="bi bi-check-circle-fill"></i> <span id="btnSubmitText">Save Project Item</span>
+                    </button>
+                  </div>
+                  
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Pane 2: Manage List -->
+          <div class="tab-pane fade" id="manage-pane" role="tabpanel" tabindex="0">
+            <div class="glass-card">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3><i class="bi bi-layers-half text-success"></i> Existing Project Database</h3>
+                <input type="text" id="dbSearch" class="form-control w-25" placeholder="Filter locally...">
+              </div>
+              <div id="projectListContainer">
+                <!-- Project list items will render here dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane 3: JSON Output & Code -->
+          <div class="tab-pane fade" id="preview-pane" role="tabpanel" tabindex="0">
+            <div class="glass-card">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3><i class="bi bi-filetype-json text-success"></i> Compiled portfolio-data.json File</h3>
+                <div>
+                  <button id="btnCopyJson" class="btn btn-outline-custom btn-sm me-2">
+                    <i class="bi bi-copy"></i> Copy JSON Code
+                  </button>
+                  <button id="btnDownloadJson" class="btn btn-accent btn-sm">
+                    <i class="bi bi-download"></i> Generate & Download portfolio-data.json
+                  </button>
+                </div>
+              </div>
+              
+              <div class="alert alert-info-custom mb-3 small d-flex align-items-start gap-2">
+                <i class="bi bi-check2-all" style="font-size: 18px; margin-top:2px;"></i>
+                <div>
+                  <strong>How to deploy updates:</strong><br>
+                  1. Press the <strong>Generate & Download</strong> button to get the updated database file.<br>
+                  2. Put this file in your project directory at <strong><code>D:\Pribadi\web portofolio\muhirabazram2026\data\portfolio-data.json</code></strong> (replace the old file).<br>
+                  3. Refresh your portfolio page! The new projects will instantly render without any code adjustments.
+                </div>
+              </div>
+
+              <pre><code id="jsonCodeView">Loading compilation...</code></pre>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
+    <div id="adminToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMessage">
+          Action performed successfully!
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Initial Default Data (19 items matched with database)
+    let defaultProjects = [];
+
+    // Working copy in memory
+    let projects = [];
+
+    // Initialize Tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    // Toast show utility
+    function showToast(msg, bgClass = 'text-bg-success') {
+      const toastEl = document.getElementById('adminToast');
+      const toastMsg = document.getElementById('toastMessage');
+      toastEl.className = `toast align-items-center border-0 ${bgClass}`;
+      toastMsg.textContent = msg;
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
+    }
+
+    // Helper: slugify a string
+    function slugify(text) {
+      return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start
+        .replace(/-+$/, '');            // Trim - from end
+    }
+
+    // Fetch existing live database or fallback to loading template items
+    function loadInitialDatabase() {
+      fetch('data/portfolio-data.json')
+        .then(res => {
+          if (!res.ok) throw new Error('File not found');
+          return res.json();
+        })
+        .then(data => {
+          defaultProjects = data;
+          projects = JSON.parse(JSON.stringify(defaultProjects)); // Deep clone
+          updateUIState("Live default database successfully fetched and loaded!");
+        })
+        .catch(err => {
+          console.log("Could not find local portfolio-data.json directly. Loading fallback templates...", err);
+          // Load standard fallback
+          loadFallbackLive();
+        });
+    }
+
+    function loadFallbackLive() {
+      // Direct remote fallback to ensure the admin has fallback if opened stand-alone
+      fetch('https://muhirabazram.github.io/data/portfolio-data.json')
+        .then(res => res.json())
+        .then(data => {
+          defaultProjects = data;
+          projects = JSON.parse(JSON.stringify(defaultProjects));
+          updateUIState("Live database fetched from muhirabazram.github.io!");
+        })
+        .catch(error => {
+          console.error("Fatal: failed fallback.", error);
+          showToast("No database loaded. Ready to start from scratch.", "text-bg-warning");
+        });
+    }
+
+    // Update numbers, codes, previews, lists across tabs
+    function updateUIState(msg = null) {
+      document.getElementById('projectCount').textContent = projects.length;
+      
+      const jsonCode = JSON.stringify(projects, null, 2);
+      document.getElementById('jsonCodeView').textContent = jsonCode;
+
+      // Update dbStatusAlert
+      const alertEl = document.getElementById('dbStatusAlert');
+      if (msg) {
+        alertEl.innerHTML = `<i class="bi bi-check-circle-fill text-success"></i> <span>${msg} (${projects.length} items active).</span>`;
+        showToast(msg);
+      } else {
+        alertEl.innerHTML = `<i class="bi bi-info-circle-fill text-info"></i> <span>In-memory database is active: ${projects.length} projects. Export JSON when ready.</span>`;
+      }
+
+      renderManageList();
+    }
+
+    // Render projects list in Manage tab
+    function renderManageList() {
+      const container = document.getElementById('projectListContainer');
+      const searchQuery = document.getElementById('dbSearch').value.toLowerCase();
+      container.innerHTML = '';
+
+      if (projects.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-5 text-muted">
+            <i class="bi bi-inbox" style="font-size: 40px;"></i>
+            <p class="mt-2">No projects found. Add your first item in the form tab!</p>
+          </div>
+        `;
+        return;
+      }
+
+      projects.forEach((proj, idx) => {
+        // Search filters
+        const searchStr = `${proj.id} ${proj.title} ${proj.desc_en} ${proj.desc_id} ${proj.tools.join(' ')}`.toLowerCase();
+        if (searchQuery && !searchStr.includes(searchQuery)) return;
+
+        const cats = proj.categories.map(c => `<span class="badge-category">${c}</span>`).join('');
+        const tools = proj.tools.map(t => `<span class="badge-tool">${t}</span>`).join('');
+
+        const projDiv = document.createElement('div');
+        projDiv.className = 'project-card';
+        projDiv.innerHTML = `
+          <div class="d-flex align-items-center gap-3">
+            <img src="${proj.thumbnail}" alt="" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; border:1px solid var(--border-dark);">
+            <div>
+              <div class="d-flex align-items-center gap-2">
+                <h6 class="mb-0 text-white">${proj.title}</h6>
+                <small class="text-muted">(${proj.id})</small>
+              </div>
+              <p class="text-muted small mb-1 mt-1">${proj.desc_en} / ${proj.desc_id}</p>
+              <div class="d-flex align-items-center mt-1">
+                ${cats}
+                <div class="vr mx-2 bg-secondary" style="height:12px;"></div>
+                ${tools}
+              </div>
+            </div>
+          </div>
+          <div class="text-end">
+            <button class="btn btn-outline-primary btn-sm border-0 text-primary me-2 bg-transparent" onclick="editProject(${idx})">
+              <i class="bi bi-pencil-square" style="font-size: 16px;"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger btn-sm border-0 text-danger bg-transparent" onclick="deleteProject(${idx})">
+              <i class="bi bi-trash3-fill" style="font-size: 16px;"></i> Delete
+            </button>
+          </div>
+        `;
+        container.appendChild(projDiv);
+      });
+    }
+
+    // Handle Form Submit (Add or Edit)
+    document.getElementById('projectForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const editIdx = parseInt(document.getElementById('editIndex').value);
+      
+      // Grab category values
+      const categories = [];
+      document.querySelectorAll('.cat-checkbox:checked').forEach(cb => {
+        categories.push(cb.value);
+      });
+
+      if (categories.length === 0) {
+        showToast("Please check at least one category filter!", "text-bg-warning");
+        return;
+      }
+
+      // Grab slider images array
+      const sliderVal = document.getElementById('itemSliderImages').value.trim();
+      const slider_images = sliderVal ? sliderVal.split('\n').map(l => l.trim()).filter(l => l !== '') : [];
+
+      // Construct item object
+      const newItem = {
+        id: document.getElementById('itemId').value.trim(),
+        title: document.getElementById('itemTitle').value.trim(),
+        categories: categories,
+        desc_en: document.getElementById('itemDescEn').value.trim(),
+        desc_id: document.getElementById('itemDescId').value.trim(),
+        detailed_desc_en: document.getElementById('itemDetailedDescEn').value.trim(),
+        detailed_desc_id: document.getElementById('itemDetailedDescId').value.trim(),
+        thumbnail: document.getElementById('itemThumbnail').value.trim(),
+        media_type: document.getElementById('itemMediaType').value,
+        media_url: document.getElementById('itemMediaUrl').value.trim(),
+        project_url: document.getElementById('itemProjectUrl').value.trim(),
+        date: document.getElementById('itemDate').value.trim(),
+        tools: document.getElementById('itemTools').value.split(',').map(t => t.trim()).filter(t => t !== ''),
+        slider_images: slider_images
+      };
+
+      if (editIdx >= 0) {
+        // Edit existing
+        projects[editIdx] = newItem;
+        updateUIState(`Project '${newItem.id}' successfully updated!`);
+        cancelEditing();
+      } else {
+        // Add new
+        // Check duplicates
+        if (projects.some(p => p.id === newItem.id)) {
+          showToast(`Error: Unique ID '${newItem.id}' already exists!`, "text-bg-danger");
+          return;
+        }
+        projects.push(newItem);
+        updateUIState(`Project '${newItem.id}' successfully created and added!`);
+      }
+
+      // Go to manage tab
+      const manageTabTrigger = document.querySelector('#manage-tab');
+      bootstrap.Tab.getInstance(manageTabTrigger).show();
+      document.getElementById('projectForm').reset();
+    });
+
+    // Populate Form for Editing
+    window.editProject = function(index) {
+      const proj = projects[index];
+      
+      document.getElementById('editIndex').value = index;
+      document.getElementById('itemId').value = proj.id;
+      document.getElementById('itemId').disabled = true; // Block editing ID to ensure uniqueness
+      document.getElementById('itemTitle').value = proj.title;
+      document.getElementById('itemDate').value = proj.date;
+      document.getElementById('itemTools').value = proj.tools.join(', ');
+      document.getElementById('itemDescEn').value = proj.desc_en;
+      document.getElementById('itemDescId').value = proj.desc_id;
+      document.getElementById('itemDetailedDescEn').value = proj.detailed_desc_en;
+      document.getElementById('itemDetailedDescId').value = proj.detailed_desc_id;
+      document.getElementById('itemThumbnail').value = proj.thumbnail;
+      document.getElementById('itemMediaType').value = proj.media_type;
+      document.getElementById('itemMediaUrl').value = proj.media_url;
+      document.getElementById('itemProjectUrl').value = proj.project_url || '';
+
+      // Thumbnail type helper dropdown
+      document.getElementById('itemThumbType').value = proj.thumbnail.startsWith('http') ? 'external' : 'local';
+
+      // Pop categories checkboxes
+      document.querySelectorAll('.cat-checkbox').forEach(cb => {
+        cb.checked = proj.categories.includes(cb.value);
+      });
+
+      // Populate slider text area
+      document.getElementById('itemSliderImages').value = proj.slider_images ? proj.slider_images.join('\n') : '';
+
+      // Edit visual indicators
+      document.getElementById('formTitle').innerHTML = `<i class="bi bi-pencil-square"></i> Edit Project: <span class="text-white">${proj.id}</span>`;
+      document.getElementById('btnSubmitText').textContent = "Save Changes";
+      document.getElementById('btnCancelEdit').style.display = "inline-flex";
+
+      // Jump to Form Tab
+      const formTabTrigger = document.querySelector('#form-tab');
+      bootstrap.Tab.getInstance(formTabTrigger).show();
+    };
+
+    // Cancel Editing State
+    function cancelEditing() {
+      document.getElementById('projectForm').reset();
+      document.getElementById('editIndex').value = "-1";
+      document.getElementById('itemId').disabled = false;
+      
+      document.getElementById('formTitle').innerHTML = `<i class="bi bi-plus-lg"></i> Add New Portfolio Item`;
+      document.getElementById('btnSubmitText').textContent = "Save Project Item";
+      document.getElementById('btnCancelEdit').style.display = "none";
+    }
+
+    document.getElementById('btnCancelEdit').addEventListener('click', cancelEditing);
+
+    // Delete project
+    window.deleteProject = function(index) {
+      const projId = projects[index].id;
+      if (confirm(`Are you sure you want to permanently delete project '${projId}'?`)) {
+        projects.splice(index, 1);
+        updateUIState(`Project '${projId}' successfully removed.`);
+      }
+    };
+
+    // Auto id slug generation as typing titles
+    document.getElementById('itemTitle').addEventListener('input', function(e) {
+      const editIdx = parseInt(document.getElementById('editIndex').value);
+      // Only auto-generate if not in edit mode
+      if (editIdx < 0) {
+        document.getElementById('itemId').value = slugify(e.target.value);
+      }
+    });
+
+    // Upload JSON File Parser
+    document.getElementById('jsonFileInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          const parsed = JSON.parse(evt.target.result);
+          if (Array.isArray(parsed)) {
+            projects = parsed;
+            updateUIState("Loaded custom portfolio-data.json successfully!");
+          } else {
+            alert("File structure invalid! The portfolio-data.json must be a JSON array [].");
+          }
+        } catch (err) {
+          alert("Error parsing file. Ensure it is a valid JSON document.");
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    // Fetch Live remote trigger
+    document.getElementById('btnFetchLive').addEventListener('click', loadInitialDatabase);
+
+    // Reset Database to templates
+    document.getElementById('btnReset').addEventListener('click', function() {
+      if (confirm("Reset current edits back to template (19 items)? All unsaved dashboard changes will be lost.")) {
+        projects = JSON.parse(JSON.stringify(defaultProjects));
+        cancelEditing();
+        updateUIState("Database successfully reset back to template configuration.");
+      }
+    });
+
+    // Copy JSON to clipboard
+    document.getElementById('btnCopyJson').addEventListener('click', function() {
+      const jsonCode = JSON.stringify(projects, null, 2);
+      navigator.clipboard.writeText(jsonCode)
+        .then(() => showToast("JSON string copied to clipboard successfully!"))
+        .catch(err => alert("Copy failed. Please manually select and copy."));
+    });
+
+    // Download compiled JSON file
+    document.getElementById('btnDownloadJson').addEventListener('click', function() {
+      const jsonCode = JSON.stringify(projects, null, 2);
+      const blob = new Blob([jsonCode], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'portfolio-data.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      showToast("Download triggered! Save this as 'portfolio-data.json' inside 'data/' folder.");
+    });
+
+    // Real-time search inside database list
+    document.getElementById('dbSearch').addEventListener('input', renderManageList);
+
+    // Listen for tab focus changes to update manage view list
+    const manageTabTrigger = document.querySelector('#manage-tab');
+    manageTabTrigger.addEventListener('shown.bs.tab', renderManageList);
+
+    // Initial database triggers
+    loadInitialDatabase();
+
+  </script>
+</body>
+
+</html>

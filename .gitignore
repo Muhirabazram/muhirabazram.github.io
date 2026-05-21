@@ -1,0 +1,9 @@
+# Logs and dumps
+*.log
+*.stackdump
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
