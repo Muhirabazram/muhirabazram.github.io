@@ -857,10 +857,34 @@ section,
 .portfolio .portfolio-content {
   position: relative;
   overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  height: 100%;
+}
+
+body.dark-mode .portfolio .portfolio-content {
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
 }
 
 .portfolio .portfolio-content img {
-  transition: 0.3s;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: block;
+}
+
+.portfolio .portfolio-content:hover img {
+  transform: scale(1.08);
+}
+
+.portfolio .portfolio-content:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(18, 218, 52, 0.15);
 }
 
 .portfolio .portfolio-content .portfolio-info {
@@ -868,78 +892,111 @@ section,
   position: absolute;
   inset: 0;
   z-index: 3;
-  transition: all ease-in-out 0.3s;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 15px;
-}
-
-.portfolio .portfolio-content .portfolio-info h4 {
-  font-size: 14px;
-  padding: 5px 10px;
-  font-weight: 400;
-  color: #ffffff;
-  display: inline-block;
-  background-color: var(--accent-color);
-}
-
-.portfolio .portfolio-content .portfolio-info p {
-  position: absolute;
-  bottom: 10px;
-  text-align: center;
-  display: inline-block;
-  left: 0;
-  right: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/* untuk yg caption ini sebetulnya gak kepake sih */
-.portfolio .portfolio-content .portfolio-info .portfolio-caption {
-  position: relative; /* Ubah dari absolute */
-  margin-top: 10px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(0,0,0,0.5); /* opsional, biar teks tetap kebaca */
-  padding: 5px;
-  z-index: 2;
-}
-
-/* buat atur modal video */
-.portfolio .portfolio-content .modal-header .modal-title {
-  color: #fff; /* buat atur teks di modal video drive*/
-}
-
-.portfolio .portfolio-content .portfolio-info .preview-link,
-.portfolio .portfolio-content .portfolio-info .details-link {
-  position: absolute;
-  left: calc(50% - 40px);
-  font-size: 26px;
-  top: calc(50% - 14px);
-  color: #fff;
-  transition: 0.3s;
-  line-height: 1.2;
-}
-
-.portfolio .portfolio-content .portfolio-info .preview-link:hover,
-.portfolio .portfolio-content .portfolio-info .details-link:hover {
-  color: var(--accent-color);
-}
-
-.portfolio .portfolio-content .portfolio-info .details-link {
-  left: 50%;
-  font-size: 34px;
-  line-height: 0;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background: linear-gradient(to top, rgba(3, 7, 18, 0.95) 0%, rgba(3, 7, 18, 0.65) 60%, rgba(3, 7, 18, 0.15) 100%);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 15px;
 }
 
 .portfolio .portfolio-content:hover .portfolio-info {
   opacity: 1;
 }
 
-.portfolio .portfolio-content:hover img {
-  transform: scale(1.1);
+.portfolio .portfolio-content .portfolio-info .portfolio-info-content {
+  transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.portfolio .portfolio-content:hover .portfolio-info .portfolio-info-content {
+  transform: translateY(0);
+}
+
+.portfolio .portfolio-content .portfolio-info h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  background: none;
+  padding: 0;
+  display: block;
+}
+
+.portfolio .portfolio-content .portfolio-info p {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  position: static;
+  display: block;
+  text-align: left;
+  font-weight: 400;
+}
+
+.portfolio .portfolio-content .portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.portfolio .portfolio-content .tag-badge {
+  background-color: rgba(18, 218, 52, 0.18) !important;
+  color: var(--accent-color) !important;
+  border: 1px solid rgba(18, 218, 52, 0.3) !important;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-right: 0;
+}
+
+.portfolio .portfolio-content .portfolio-links {
+  display: flex;
+  gap: 12px;
+  transform: translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) 0.05s;
+}
+
+.portfolio .portfolio-content:hover .portfolio-links {
+  transform: translateY(0);
+}
+
+.portfolio .portfolio-content .portfolio-info .preview-link,
+.portfolio .portfolio-content .portfolio-info .details-link {
+  position: static;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin: 0;
+}
+
+.portfolio .portfolio-content .portfolio-info .details-link {
+  font-size: 22px;
+}
+
+.portfolio .portfolio-content .portfolio-info .preview-link:hover,
+.portfolio .portfolio-content .portfolio-info .details-link:hover {
+  background-color: var(--accent-color);
+  color: #030712 !important;
+  border-color: var(--accent-color);
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 4px 12px rgba(18, 218, 52, 0.3);
 }
 
 /*--------------------------------------------------------------
@@ -1434,45 +1491,67 @@ section,
 /*--------------------------------------------------------------
 # Premium Dynamic Details Modal
 --------------------------------------------------------------*/
-.project-details-modal .modal-content {
-  border-radius: 18px;
-  border: 1px solid var(--border-color);
-  background-color: var(--surface-color);
-  color: var(--default-color);
+.project-details-modal .modal-content,
+#videoModal .modal-content {
+  border-radius: 20px !important;
+  border: 1px solid var(--border-color) !important;
+  background-color: var(--surface-color) !important;
+  color: var(--default-color) !important;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(10px);
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
-.project-details-modal .modal-header {
-  border-bottom: 1px solid var(--border-color);
-  padding: 20px 24px;
+.project-details-modal .modal-header,
+#videoModal .modal-header {
+  background: color-mix(in srgb, var(--surface-color) 92%, var(--default-color) 8%);
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 20px 28px !important;
 }
 
-.project-details-modal .modal-title {
-  font-family: var(--heading-font);
+.project-details-modal .modal-header .modal-title,
+#videoModal .modal-header .modal-title {
+  font-size: 22px;
   font-weight: 700;
-  color: var(--heading-color);
+  color: var(--heading-color) !important;
+}
+
+.project-details-modal .btn-close,
+#videoModal .btn-close {
+  filter: var(--close-btn-filter, invert(0));
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.project-details-modal .btn-close:hover,
+#videoModal .btn-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+body.dark-mode {
+  --close-btn-filter: invert(1);
 }
 
 .project-details-modal .modal-body {
-  padding: 30px 24px;
+  padding: 30px 28px !important;
 }
 
 .modal-project-info {
-  background-color: var(--background-color);
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  margin-bottom: 25px;
+  background-color: color-mix(in srgb, var(--surface-color) 95%, var(--default-color) 5%) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 24px !important;
+  border-radius: 16px !important;
+  margin-bottom: 20px;
 }
 
 .modal-project-info h3 {
   font-size: 18px;
   font-weight: 700;
-  margin-bottom: 15px;
-  border-bottom: 2px solid var(--accent-color);
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--accent-color) !important;
   padding-bottom: 8px;
-  color: var(--heading-color);
+  color: var(--heading-color) !important;
 }
 
 .modal-project-info ul {
@@ -1482,33 +1561,52 @@ section,
 }
 
 .modal-project-info ul li {
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  font-size: 14px;
-}
-
-body.dark-mode .modal-project-info ul li {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 10px 0 !important;
+  font-size: 14px !important;
+  color: var(--default-color) !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color), transparent 60%) !important;
 }
 
 .modal-project-info ul li:last-child {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
-.modal-project-info ul strong {
-  color: var(--heading-color);
-}
-
-.tag-badge {
-  background-color: rgba(18, 218, 52, 0.12);
-  color: var(--accent-color);
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 11px;
+.modal-project-info ul li strong {
+  color: var(--heading-color) !important;
   font-weight: 600;
-  margin-right: 4px;
-  display: inline-block;
-  text-transform: uppercase;
+}
+
+.modal-project-info ul li span,
+.modal-project-info ul li a {
+  font-weight: 500;
+}
+
+.modal-project-info ul li a {
+  color: var(--accent-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.modal-project-info ul li a:hover {
+  color: color-mix(in srgb, var(--accent-color), #ffffff 15%);
+  text-decoration: underline;
+}
+
+.project-description h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--heading-color) !important;
+}
+
+.project-description #projectDetailsDesc {
+  font-size: 14.5px;
+  line-height: 1.7 !important;
+  color: color-mix(in srgb, var(--default-color), transparent 10%) !important;
 }
 
 .project-swiper-container {
@@ -1523,6 +1621,43 @@ body.dark-mode .modal-project-info ul li {
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+.init-swiper-modal .swiper-pagination-bullet {
+  background-color: var(--default-color) !important;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.init-swiper-modal .swiper-pagination-bullet-active {
+  background-color: var(--accent-color) !important;
+  width: 20px !important;
+  border-radius: 5px !important;
+  opacity: 1;
+}
+
+.init-swiper-modal .swiper-button-prev,
+.init-swiper-modal .swiper-button-next {
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.init-swiper-modal .swiper-button-prev::after,
+.init-swiper-modal .swiper-button-next::after {
+  font-size: 14px !important;
+  font-weight: bold;
+}
+
+.init-swiper-modal .swiper-button-prev:hover,
+.init-swiper-modal .swiper-button-next:hover {
+  background: var(--accent-color);
+  color: #030712 !important;
+  border-color: var(--accent-color);
 }
 
 /*--------------------------------------------------------------

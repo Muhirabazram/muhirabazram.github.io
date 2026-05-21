@@ -404,6 +404,32 @@
   }
 
   /**
+   * Real-time Visitor Counter powered by CounterAPI
+   */
+  function initVisitorCounter() {
+    const counterEl = document.getElementById('visitorCountNumber');
+    if (!counterEl) return;
+
+    fetch('https://api.counterapi.dev/v1/muhirabazram-portfolio/views/up')
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(data => {
+        if (data && typeof data.value !== 'undefined') {
+          // Format number with commas for a professional look (e.g. 1,234)
+          counterEl.textContent = data.value.toLocaleString();
+        } else {
+          counterEl.textContent = '—';
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching visitor count:', error);
+        counterEl.textContent = '—';
+      });
+  }
+
+  /**
    * Fetch JSON & Dynamically Build Portfolio Items
    */
   function fetchAndRenderPortfolio() {
@@ -461,15 +487,23 @@
             <a href="#" title="More Details" class="details-link" data-project-id="${item.id}"><i class="bi bi-link-45deg"></i></a>
           `;
 
-          // Put card HTML together
+          // Generate first three tool tags for quick visual recognition
+          const toolTags = item.tools.slice(0, 3).map(tool => `<span class="tag-badge">${tool}</span>`).join('');
+
+          // Put card HTML together with premium modular layout elements
           cardCol.innerHTML = `
             <div class="portfolio-content h-100">
-              <img src="${item.thumbnail}" class="img-fluid" alt="${item.title}" style="width:100%; height:250px; object-fit:cover;">
+              <img src="${item.thumbnail}" class="img-fluid" alt="${item.title}">
               <div class="portfolio-info">
-                <h4>${item.title}</h4>
-                <p>${translatedDesc}</p>
-                ${previewAnchor}
-                ${detailsAnchor}
+                <div class="portfolio-info-content">
+                  <h4>${item.title}</h4>
+                  <p>${translatedDesc}</p>
+                  <div class="portfolio-tags">${toolTags}</div>
+                </div>
+                <div class="portfolio-links">
+                  ${previewAnchor}
+                  ${detailsAnchor}
+                </div>
               </div>
             </div>
           `;
@@ -547,8 +581,11 @@
       });
   }
 
-  // Fetch and populate portfolio once window load
-  window.addEventListener('load', fetchAndRenderPortfolio);
+  // Fetch and populate portfolio and counter once window load
+  window.addEventListener('load', () => {
+    fetchAndRenderPortfolio();
+    initVisitorCounter();
+  });
 
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
