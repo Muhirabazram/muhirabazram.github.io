@@ -1588,3 +1588,115 @@ body.dark-mode .modal-project-info ul li {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/*--------------------------------------------------------------
+# Custom Professional Styles for Services & Contact Sections
+--------------------------------------------------------------*/
+
+/* Contact Section Theme-aware Colors */
+.contact-info-card,
+.contact-form-wrapper {
+  background-color: #f4fafd !important; /* light mode services background */
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+  color: var(--default-color) !important;
+  transition: all 0.3s ease !important;
+}
+
+.contact-info-card .info-item h3 a {
+  color: var(--heading-color) !important;
+}
+
+.contact-info-card .info-item h3 a:hover {
+  color: var(--accent-color) !important;
+}
+
+body.dark-mode .contact-info-card,
+body.dark-mode .contact-form-wrapper {
+  background-color: #0b1329 !important; /* dark mode services background */
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Premium Services Cards */
+.services .service-card {
+  position: relative;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  padding: 40px 30px;
+  border-radius: 16px;
+  height: 100%;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+body.dark-mode .services .service-card {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.services .service-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-color);
+  box-shadow: 0 12px 30px rgba(18, 218, 52, 0.15);
+}
+
+.services .service-card .icon-box {
+  background: color-mix(in srgb, var(--accent-color), transparent 90%);
+  color: var(--accent-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  transition: 0.3s;
+  font-size: 28px;
+}
+
+.services .service-card:hover .icon-box {
+  background: var(--accent-color);
+  color: #030712;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(18, 218, 52, 0.3);
+}
+
+.services .service-card .title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--heading-color);
+  transition: 0.3s;
+}
+
+.services .service-card:hover .title {
+  color: var(--accent-color);
+}
+
+.services .service-card .description {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  margin-bottom: 0;
+}
+
+/* Elegant glowing accent top border on hover */
+.services .service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--accent-color);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  transform-origin: left;
+}
+
+.services .service-card:hover::before {
+  transform: scaleX(1);
+}
