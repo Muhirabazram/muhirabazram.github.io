@@ -337,7 +337,7 @@
 
     // Populate Project URL Row
     if (project.project_url) {
-      modalLinkRow.style.display = 'block';
+      modalLinkRow.style.display = 'grid';
       modalLink.href = project.project_url;
       modalLink.innerHTML = lang === 'id' ? 'Lihat Proyek <i class="bi bi-box-arrow-up-right"></i>' : 'View Project <i class="bi bi-box-arrow-up-right"></i>';
     } else {
@@ -453,31 +453,7 @@
     bsModal.show();
   }
 
-  /**
-   * Real-time Visitor Counter powered by CounterAPI
-   */
-  function initVisitorCounter() {
-    const counterEl = document.getElementById('visitorCountNumber');
-    if (!counterEl) return;
 
-    fetch('https://api.counterapi.dev/v1/muhirabazram-portfolio/views/up')
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-      })
-      .then(data => {
-        if (data && typeof data.value !== 'undefined') {
-          // Format number with commas for a professional look (e.g. 1,234)
-          counterEl.textContent = data.value.toLocaleString();
-        } else {
-          counterEl.textContent = '—';
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching visitor count:', error);
-        counterEl.textContent = '—';
-      });
-  }
 
   /**
    * Helper to parse dates in both English and Indonesian formats
@@ -703,10 +679,9 @@
       });
   }
 
-  // Fetch and populate portfolio and counter once window load
+  // Fetch and populate portfolio once window load
   window.addEventListener('load', () => {
     fetchAndRenderPortfolio();
-    initVisitorCounter();
   });
 
   /**

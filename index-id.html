@@ -49,12 +49,6 @@
       <a href="https://www.linkedin.com/in/muhammad-irfan-abdul-aziz-ramdani-657498261/" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
     </div>
 
-    <!-- Theme Switcher (Dark/Light) -->
-    <div class="text-center my-3">
-      <button id="themeToggle" class="dark-mode-toggle btn btn-sm">
-        <i class="bi bi-moon-stars-fill"></i> <span>Mode Gelap</span>
-      </button>
-    </div>
 
     <nav id="navmenu" class="navmenu">
       <ul>
@@ -75,13 +69,11 @@
       </select>
     </div>
 
-    <!-- Visitor Counter Badge -->
+    <!-- Theme Switcher (Dark/Light) -->
     <div class="visitor-badge-container mb-4">
-      <div class="visitor-badge">
-        <i class="bi bi-eye-fill"></i>
-        <span>Pengunjung:</span>
-        <span id="visitorCountNumber" class="visitor-count-number">Memuat...</span>
-      </div>
+      <button id="themeToggle" class="dark-mode-toggle btn btn-sm w-75 py-2">
+        <i class="bi bi-moon-stars-fill"></i> <span>Mode Gelap</span>
+      </button>
     </div>
     
   </header>
@@ -411,10 +403,10 @@
                   <div class="modal-project-info">
                     <h3>Detail Proyek</h3>
                     <ul>
-                      <li><strong>Kategori</strong>: <span id="projectDetailsCategory">-</span></li>
-                      <li><strong>Tanggal</strong>: <span id="projectDetailsDate">-</span></li>
-                      <li><strong>Teknologi</strong>: <span id="projectDetailsTools">-</span></li>
-                      <li id="projectDetailsLinkRow"><strong>Tautan Proyek</strong>: <a href="#" id="projectDetailsLink" target="_blank">Lihat Proyek <i class="bi bi-box-arrow-up-right"></i></a></li>
+                      <li><strong>Kategori</strong> <span class="colon">:</span> <span id="projectDetailsCategory" class="val">-</span></li>
+                      <li><strong>Tanggal</strong> <span class="colon">:</span> <span id="projectDetailsDate" class="val">-</span></li>
+                      <li><strong>Teknologi</strong> <span class="colon">:</span> <span id="projectDetailsTools" class="val">-</span></li>
+                      <li id="projectDetailsLinkRow"><strong>Tautan Proyek</strong> <span class="colon">:</span> <span class="val"><a href="#" id="projectDetailsLink" target="_blank">Lihat Proyek <i class="bi bi-box-arrow-up-right"></i></a></span></li>
                     </ul>
                   </div>
                   <div class="project-description mt-3">

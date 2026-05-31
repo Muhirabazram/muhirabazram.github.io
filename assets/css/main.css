@@ -1714,10 +1714,21 @@ body.dark-mode {
   padding: 10px 0 !important;
   font-size: 14px !important;
   color: var(--default-color) !important;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid color-mix(in srgb, var(--border-color), transparent 60%) !important;
+  display: grid !important;
+  grid-template-columns: 130px 20px 1fr !important;
+  align-items: center !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color), transparent 70%) !important;
+}
+
+.modal-project-info ul li .colon {
+  color: color-mix(in srgb, var(--default-color), transparent 40%) !important;
+  text-align: left !important;
+}
+
+.modal-project-info ul li .val {
+  color: var(--default-color) !important;
+  font-weight: 500 !important;
+  text-align: left !important;
 }
 
 .modal-project-info ul li:last-child {
@@ -1818,29 +1829,6 @@ body.dark-mode {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.visitor-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--surface-color);
-  border: 1px solid var(--border-color);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-}
-
-.visitor-badge i {
-  color: var(--accent-color);
-  font-size: 14px;
-}
-
-.visitor-count-number {
-  font-weight: 700;
-  color: var(--heading-color);
 }
 
 /*--------------------------------------------------------------
