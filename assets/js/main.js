@@ -342,7 +342,7 @@
       modalLinkRow.style.display = 'none';
     }
 
-    // Populate Image Slider or Single Image
+    // Populate Image Slider, Video, or Single Image
     mediaContainer.innerHTML = ''; // Reset container
     
     if (project.slider_images && project.slider_images.length > 1) {
@@ -387,6 +387,27 @@
           prevEl: '.swiper-button-prev',
         }
       });
+    } else if (project.media_type === 'video') {
+      // Render native video player
+      const videoEl = document.createElement('video');
+      videoEl.src = project.media_url;
+      videoEl.controls = true;
+      videoEl.className = 'img-fluid rounded shadow-sm w-100';
+      videoEl.style.maxHeight = '500px';
+      videoEl.style.objectFit = 'contain';
+      videoEl.style.backgroundColor = '#000';
+      videoEl.style.border = '1px solid var(--border-color)';
+      mediaContainer.appendChild(videoEl);
+    } else if (project.media_type === 'drive_video') {
+      // Render embedded Google Drive video player
+      const iframeEl = document.createElement('iframe');
+      iframeEl.src = project.media_url;
+      iframeEl.className = 'w-100 rounded shadow-sm';
+      iframeEl.style.height = '400px';
+      iframeEl.style.border = '1px solid var(--border-color)';
+      iframeEl.allow = 'autoplay; encrypted-media';
+      iframeEl.allowFullscreen = true;
+      mediaContainer.appendChild(iframeEl);
     } else {
       // Render standard single thumbnail image
       const singleImg = document.createElement('img');
@@ -397,6 +418,15 @@
       singleImg.style.border = '1px solid var(--border-color)';
       mediaContainer.appendChild(singleImg);
     }
+
+    // Append the floating magnifying glass zoom-in button inside media container
+    const zoomBtn = document.createElement('a');
+    zoomBtn.href = project.media_url;
+    zoomBtn.target = '_blank';
+    zoomBtn.className = 'modal-zoom-btn';
+    zoomBtn.title = lang === 'id' ? 'Buka Ukuran Penuh' : 'Open Fullscreen';
+    zoomBtn.innerHTML = '<i class="bi bi-zoom-in"></i>';
+    mediaContainer.appendChild(zoomBtn);
 
     // Open Bootstrap Modal programmatically
     const bsModal = new bootstrap.Modal(document.getElementById('projectDetailsModal'));
@@ -461,27 +491,6 @@
           cardCol.className = `col-lg-4 col-md-6 portfolio-item isotope-item ${filterClasses}`;
           cardCol.setAttribute('data-search-target', searchTarget);
 
-          // Build dynamic anchors for preview link
-          let previewAnchor = '';
-          if (item.media_type === 'drive_video') {
-            previewAnchor = `
-              <a href="#" 
-                 class="preview-link"
-                 data-bs-toggle="modal"
-                 data-bs-target="#videoModal"
-                 data-video-title="${item.title}"
-                 data-video-src="${item.media_url}"
-                 data-video-desc="${translatedDesc.replace(/"/g, '&quot;')}">
-                <i class="bi bi-zoom-in"></i>
-              </a>
-            `;
-          } else {
-            // standard images, direct mp4 videos, or YouTube frames
-            previewAnchor = `
-              <a href="${item.media_url}" title="${translatedDesc}" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-            `;
-          }
-
           // Build dynamic details anchor
           const detailsAnchor = `
             <a href="#" title="More Details" class="details-link" data-project-id="${item.id}"><i class="bi bi-link-45deg"></i></a>
@@ -501,7 +510,6 @@
                   <div class="portfolio-tags">${toolTags}</div>
                 </div>
                 <div class="portfolio-links">
-                  ${previewAnchor}
                   ${detailsAnchor}
                 </div>
               </div>

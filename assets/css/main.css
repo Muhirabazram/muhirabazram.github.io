@@ -2088,3 +2088,39 @@ body.dark-mode .services .service-card {
 .services .service-card:hover::before {
   transform: scaleX(1);
 }
+
+/* Modal media container and zoom button styling */
+#projectModalMediaContainer {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background-color: #000;
+}
+
+.modal-zoom-btn {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  background: var(--accent-color) !important;
+  color: #030712 !important;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 12px rgba(18, 218, 52, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-zoom-btn:hover {
+  background: #ffffff !important;
+  color: var(--accent-color) !important;
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 6px 18px rgba(18, 218, 52, 0.6);
+}
