@@ -569,6 +569,24 @@
         .replace(/-+$/, '');            // Trim - from end
     }
 
+    // Helper to parse Google Drive URLs into direct image render links
+    function getDirectImageUrl(url) {
+      if (!url) return '';
+      let cleanUrl = url.trim();
+      if (cleanUrl.includes('drive.google.com')) {
+        let fileId = '';
+        if (cleanUrl.includes('/file/d/')) {
+          fileId = cleanUrl.split('/file/d/')[1].split('/')[0].split('?')[0];
+        } else if (cleanUrl.includes('id=')) {
+          fileId = cleanUrl.split('id=')[1].split('&')[0];
+        }
+        if (fileId) {
+          return `https://drive.google.com/uc?export=view&id=${fileId}`;
+        }
+      }
+      return cleanUrl;
+    }
+
     // Fetch existing live database or fallback to loading template items
     function loadInitialDatabase() {
       fetch('data/portfolio-data.json')
@@ -650,7 +668,7 @@
         projDiv.className = 'project-card';
         projDiv.innerHTML = `
           <div class="d-flex align-items-center gap-3">
-            <img src="${proj.thumbnail}" alt="" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; border:1px solid var(--border-dark);">
+            <img src="${getDirectImageUrl(proj.thumbnail)}" alt="" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; border:1px solid var(--border-dark);">
             <div>
               <div class="d-flex align-items-center gap-2">
                 <h6 class="mb-0 text-white">${proj.title}</h6>

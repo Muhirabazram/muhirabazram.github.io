@@ -358,6 +358,29 @@
   }
 
   /**
+   * Helper to automatically parse and sanitize Google Drive image URLs into direct raw render links.
+   */
+  function getDirectImageUrl(url) {
+    if (!url) return '';
+    let cleanUrl = url.trim();
+
+    // Check if it's a Google Drive link
+    if (cleanUrl.includes('drive.google.com')) {
+      let fileId = '';
+      if (cleanUrl.includes('/file/d/')) {
+        fileId = cleanUrl.split('/file/d/')[1].split('/')[0].split('?')[0];
+      } else if (cleanUrl.includes('id=')) {
+        fileId = cleanUrl.split('id=')[1].split('&')[0];
+      }
+      if (fileId) {
+        return `https://drive.google.com/uc?export=view&id=${fileId}`;
+      }
+    }
+
+    return cleanUrl;
+  }
+
+  /**
    * Dynamic Project Details Modal Renderer
    */
   function openProjectDetailsModal(projectId) {
@@ -414,7 +437,7 @@
     
     if (project.slider_images && project.slider_images.length > 1) {
       // Set initial zoom link to the first slide image
-      zoomBtn.href = project.slider_images[0];
+      zoomBtn.href = getDirectImageUrl(project.slider_images[0]);
       
       // Build Swiper Carousel
       const swiperWrapper = document.createElement('div');
@@ -422,7 +445,7 @@
       
       const slidesHTML = project.slider_images.map(img => `
         <div class="swiper-slide text-center">
-          <img src="${img}" class="img-fluid rounded" alt="${project.title}">
+          <img src="${getDirectImageUrl(img)}" class="img-fluid rounded" alt="${project.title}">
         </div>
       `).join('');
 
@@ -508,7 +531,7 @@
       zoomBtn.href = project.media_url;
       // Render standard single thumbnail image
       const singleImg = document.createElement('img');
-      singleImg.src = project.thumbnail;
+      singleImg.src = getDirectImageUrl(project.thumbnail);
       singleImg.className = 'img-fluid rounded shadow-sm w-100';
       singleImg.style.maxHeight = '500px';
       singleImg.style.objectFit = 'contain';
@@ -620,7 +643,7 @@
 
       cardCol.innerHTML = `
         <div class="portfolio-content h-100">
-          <img src="${item.thumbnail}" class="img-fluid" alt="${item.title}">
+          <img src="${getDirectImageUrl(item.thumbnail)}" class="img-fluid" alt="${item.title}">
           <div class="portfolio-info">
             <div class="portfolio-info-content">
               <h4>${item.title}</h4>
