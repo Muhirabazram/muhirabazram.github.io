@@ -300,6 +300,64 @@
   }
 
   /**
+   * Helper to automatically parse and sanitize social media/video URLs into iframe-embeddable links.
+   */
+  function getEmbedUrl(url) {
+    if (!url) return '';
+    let cleanUrl = url.trim();
+
+    // YouTube handling (Shorts, watch, youtu.be, embed)
+    if (cleanUrl.includes('youtube.com') || cleanUrl.includes('youtu.be')) {
+      let videoId = '';
+      if (cleanUrl.includes('watch?v=')) {
+        videoId = cleanUrl.split('watch?v=')[1].split('&')[0];
+      } else if (cleanUrl.includes('youtu.be/')) {
+        videoId = cleanUrl.split('youtu.be/')[1].split('?')[0];
+      } else if (cleanUrl.includes('embed/')) {
+        return cleanUrl; // Already embed URL
+      } else if (cleanUrl.includes('/shorts/')) {
+        videoId = cleanUrl.split('/shorts/')[1].split('?')[0];
+      }
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`;
+      }
+    }
+
+    // Instagram Reels / Posts handling
+    if (cleanUrl.includes('instagram.com')) {
+      let baseUrl = cleanUrl.split('?')[0];
+      if (baseUrl.endsWith('/')) {
+        baseUrl = baseUrl.slice(0, -1);
+      }
+      return `${baseUrl}/embed/`;
+    }
+
+    // TikTok handling
+    if (cleanUrl.includes('tiktok.com')) {
+      if (cleanUrl.includes('/video/')) {
+        let videoId = cleanUrl.split('/video/')[1].split('?')[0];
+        return `https://www.tiktok.com/embed/v2/${videoId}`;
+      }
+    }
+
+    // Vimeo handling
+    if (cleanUrl.includes('vimeo.com')) {
+      let videoId = cleanUrl.split('vimeo.com/')[1].split('?')[0];
+      return `https://player.vimeo.com/video/${videoId}`;
+    }
+
+    // Google Drive video handling
+    if (cleanUrl.includes('drive.google.com')) {
+      if (cleanUrl.includes('/view')) {
+        return cleanUrl.replace('/view', '/preview');
+      }
+      return cleanUrl;
+    }
+
+    return cleanUrl;
+  }
+
+  /**
    * Dynamic Project Details Modal Renderer
    */
   function openProjectDetailsModal(projectId) {
@@ -422,11 +480,24 @@
       videoEl.style.backgroundColor = '#000';
       videoEl.style.border = '1px solid var(--border-color)';
       mediaContainer.appendChild(videoEl);
+    } else if (project.media_type === 'youtube') {
+      const embedUrl = getEmbedUrl(project.media_url);
+      zoomBtn.href = project.media_url;
+      // Render embedded YouTube / Instagram / TikTok / Social video
+      const iframeEl = document.createElement('iframe');
+      iframeEl.src = embedUrl;
+      iframeEl.className = 'w-100 rounded shadow-sm';
+      iframeEl.style.height = (project.media_url.includes('instagram.com') || project.media_url.includes('tiktok.com')) ? '480px' : '400px';
+      iframeEl.style.border = '1px solid var(--border-color)';
+      iframeEl.allow = 'autoplay; encrypted-media; picture-in-picture';
+      iframeEl.allowFullscreen = true;
+      mediaContainer.appendChild(iframeEl);
     } else if (project.media_type === 'drive_video') {
+      const embedUrl = getEmbedUrl(project.media_url);
       zoomBtn.href = project.media_url;
       // Render embedded Google Drive video player
       const iframeEl = document.createElement('iframe');
-      iframeEl.src = project.media_url;
+      iframeEl.src = embedUrl;
       iframeEl.className = 'w-100 rounded shadow-sm';
       iframeEl.style.height = '400px';
       iframeEl.style.border = '1px solid var(--border-color)';

@@ -428,12 +428,12 @@
                   <div class="col-md-6">
                     <label for="itemMediaType" class="form-label">
                       Media Display Type (Zoom Popup Media)
-                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Select what kind of preview happens when clicking zoom search icon. Images, YouTube embeds, or direct Google Drive previews."></i>
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Pilih tipe pratonton media di modal. Mendukung Gambar, Video Lokal, Video Sosial (YouTube, Instagram Reels, TikTok, Vimeo), atau Google Drive."></i>
                     </label>
                     <select id="itemMediaType" class="form-select" required>
                       <option value="image">Standard Image (Local or URL)</option>
                       <option value="video">Direct local .mp4 Video</option>
-                      <option value="youtube">YouTube Embed Iframe Link</option>
+                      <option value="youtube">YouTube / Instagram Reels / TikTok / Vimeo Link</option>
                       <option value="drive_video">Google Drive Video Frame Preview</option>
                     </select>
                   </div>
@@ -442,9 +442,9 @@
                   <div class="col-md-6">
                     <label for="itemMediaUrl" class="form-label">
                       Zoom Media URL/Path
-                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Provide direct URL or local path matching choice above. e.g. for Google Drive: change sharing link view?usp=sharing into file/d/FILE_ID/preview"></i>
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Tempel URL video sosial biasa, path gambar, atau embed link Google Drive. Sistem akan mendeteksinya secara otomatis."></i>
                     </label>
-                    <input type="text" id="itemMediaUrl" class="form-control" placeholder="e.g. assets/img/portfolio/kartini.jpg or https://drive.google.com/file/d/FILE_ID/preview" required>
+                    <input type="text" id="itemMediaUrl" class="form-control" placeholder="e.g. https://www.instagram.com/reel/DYJKCqrST8U/ or https://youtu.be/VIDEO_ID" required>
                   </div>
 
                   <!-- Additional Slider Images -->
@@ -807,6 +807,11 @@
       if (editIdx < 0) {
         document.getElementById('itemId').value = slugify(e.target.value);
       }
+    });
+
+    // Auto clean slug field as typing manually
+    document.getElementById('itemId').addEventListener('input', function(e) {
+      e.target.value = slugify(e.target.value);
     });
 
     // Upload JSON File Parser
