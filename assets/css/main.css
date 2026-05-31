@@ -1507,11 +1507,79 @@ body.dark-mode .portfolio .portfolio-content {
 /*--------------------------------------------------------------
 # Search & Advanced Filters
 --------------------------------------------------------------*/
-.search-container {
-  max-width: 550px;
+.portfolio-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 800px;
   margin: 0 auto 35px auto;
   position: relative;
   z-index: 10;
+}
+
+.portfolio-controls .search-container {
+  flex: 1.5;
+  min-width: 280px;
+  max-width: 500px;
+  margin: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.filter-select-container {
+  flex: 1;
+  min-width: 220px;
+  max-width: 280px;
+  position: relative;
+}
+
+.filter-select-input {
+  width: 100%;
+  padding: 14px 40px 14px 45px;
+  border-radius: 40px;
+  border: 1px solid var(--border-color);
+  background-color: var(--surface-color);
+  color: var(--default-color);
+  font-size: 14.5px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.filter-select-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 30px rgba(18, 218, 52, 0.15);
+  transform: translateY(-1px);
+}
+
+.filter-select-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-color);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+/* Custom chevron drop arrow for select using bootstrap icons font */
+.filter-select-container::after {
+  content: "\F2E2"; /* Bootstrap Icon bi-chevron-down */
+  font-family: "bootstrap-icons";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: color-mix(in srgb, var(--default-color), transparent 45%);
+  font-size: 12px;
+  pointer-events: none;
 }
 
 .search-input {

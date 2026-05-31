@@ -10,10 +10,12 @@
   "use strict";
 
   // Global variables to store data and components
+  let rawPortfolioData = [];
   let portfolioData = [];
   let initIsotope = null;
   let currentSearchQuery = "";
   let currentCategoryFilter = "*";
+  let currentSortFilter = "newest";
   const lang = document.documentElement.lang || 'en';
 
   /**
@@ -478,6 +480,143 @@
   }
 
   /**
+   * Helper to parse dates in both English and Indonesian formats
+   */
+  function parseDate(dateStr) {
+    if (!dateStr) return new Date(0);
+    const parts = dateStr.split(' ');
+    if (parts.length < 3) return new Date(0);
+    const day = parseInt(parts[0]);
+    const monthName = parts[1].toLowerCase();
+    const year = parseInt(parts[2]);
+    
+    const months = {
+      'januari': 0, 'january': 0,
+      'februari': 1, 'february': 1,
+      'maret': 2, 'march': 2,
+      'april': 3,
+      'mei': 4, 'may': 4,
+      'juni': 5, 'june': 5,
+      'juli': 6, 'july': 6,
+      'agustus': 7, 'august': 7,
+      'september': 8,
+      'oktober': 9, 'october': 9,
+      'november': 10,
+      'desember': 11, 'december': 11
+    };
+    
+    const month = months[monthName] !== undefined ? months[monthName] : 0;
+    return new Date(year, month, day);
+  }
+
+  /**
+   * Filter and Sort Portfolio Data, then Render Cards
+   */
+  function renderPortfolioFilteredAndSorted() {
+    const portfolioContainer = document.getElementById('portfolio-container');
+    if (!portfolioContainer) return;
+
+    // 1. Copy the raw database array
+    let items = [...rawPortfolioData];
+
+    // 2. Apply Year Filter if applicable
+    if (currentSortFilter.startsWith('year-')) {
+      const targetYear = currentSortFilter.replace('year-', '');
+      items = items.filter(item => {
+        if (!item.date) return false;
+        const itemYear = item.date.split(' ').pop();
+        return itemYear === targetYear;
+      });
+      // Sort filtered items by newest first
+      items.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    } else if (currentSortFilter === 'newest') {
+      // Sort newest first
+      items.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    } else if (currentSortFilter === 'oldest') {
+      // Sort oldest first
+      items.sort((a, b) => parseDate(a.date) - parseDate(b.date));
+    }
+
+    portfolioData = items;
+    portfolioContainer.innerHTML = '';
+
+    // If no items found matching the year
+    if (portfolioData.length === 0) {
+      portfolioContainer.innerHTML = `
+        <div class="text-center w-100 py-5">
+          <p class="text-muted"><i class="bi bi-info-circle-fill"></i> ${lang === 'id' ? 'Tidak ada portofolio di tahun ini.' : 'No portfolio items found in this year.'}</p>
+        </div>
+      `;
+      // Reflow Isotope
+      if (initIsotope) {
+        initIsotope.reloadItems();
+        initIsotope.layout();
+      }
+      return;
+    }
+
+    // 3. Render Cards
+    portfolioData.forEach(item => {
+      const filterClasses = item.categories.map(c => `filter-${c}`).join(' ');
+      const translatedDesc = lang === 'id' ? (item.desc_id || item.desc_en) : item.desc_en;
+      const searchTarget = `${item.title} ${translatedDesc} ${item.tools.join(' ')}`.toLowerCase();
+
+      const cardCol = document.createElement('div');
+      cardCol.className = `col-lg-4 col-md-6 portfolio-item isotope-item ${filterClasses}`;
+      cardCol.setAttribute('data-search-target', searchTarget);
+
+      const detailsAnchor = `
+        <a href="#" title="More Details" class="details-link" data-project-id="${item.id}"><i class="bi bi-link-45deg"></i></a>
+      `;
+
+      const toolTags = item.tools.slice(0, 3).map(tool => `<span class="tag-badge">${tool}</span>`).join('');
+
+      cardCol.innerHTML = `
+        <div class="portfolio-content h-100">
+          <img src="${item.thumbnail}" class="img-fluid" alt="${item.title}">
+          <div class="portfolio-info">
+            <div class="portfolio-info-content">
+              <h4>${item.title}</h4>
+              <p>${translatedDesc}</p>
+              <div class="portfolio-tags">${toolTags}</div>
+            </div>
+            <div class="portfolio-links">
+              ${detailsAnchor}
+            </div>
+          </div>
+        </div>
+      `;
+
+      portfolioContainer.appendChild(cardCol);
+    });
+
+    // 4. Initialize or update Isotope
+    const isotopeLayout = document.querySelector('.isotope-layout');
+    if (isotopeLayout) {
+      let layout = isotopeLayout.getAttribute('data-layout') ?? 'masonry';
+      let defaultFilter = isotopeLayout.getAttribute('data-default-filter') ?? '*';
+      let sort = isotopeLayout.getAttribute('data-sort') ?? 'original-order';
+
+      if (initIsotope) {
+        initIsotope.destroy();
+        initIsotope = null;
+      }
+
+      imagesLoaded(isotopeLayout.querySelector('.isotope-container'), function() {
+        initIsotope = new Isotope(isotopeLayout.querySelector('.isotope-container'), {
+          itemSelector: '.isotope-item',
+          layoutMode: layout,
+          filter: defaultFilter,
+          sortBy: sort
+        });
+        
+        filterIsotope();
+        aosInit();
+      });
+    }
+  }
+
+  /**
    * Fetch JSON & Dynamically Build Portfolio Items
    */
   function fetchAndRenderPortfolio() {
@@ -492,76 +631,22 @@
         return response.json();
       })
       .then(data => {
-        portfolioData = data;
+        rawPortfolioData = data;
 
         // Clear loading spinner
         if (loadingEl) loadingEl.remove();
-        portfolioContainer.innerHTML = '';
 
-        // Iterate and render each portfolio item
-        portfolioData.forEach(item => {
-          const filterClasses = item.categories.map(c => `filter-${c}`).join(' ');
-          const translatedDesc = lang === 'id' ? (item.desc_id || item.desc_en) : item.desc_en;
-          const searchTarget = `${item.title} ${translatedDesc} ${item.tools.join(' ')}`.toLowerCase();
+        // Perform initial render
+        renderPortfolioFilteredAndSorted();
 
-          // Create standard card columns
-          const cardCol = document.createElement('div');
-          cardCol.className = `col-lg-4 col-md-6 portfolio-item isotope-item ${filterClasses}`;
-          cardCol.setAttribute('data-search-target', searchTarget);
-
-          // Build dynamic details anchor
-          const detailsAnchor = `
-            <a href="#" title="More Details" class="details-link" data-project-id="${item.id}"><i class="bi bi-link-45deg"></i></a>
-          `;
-
-          // Generate first three tool tags for quick visual recognition
-          const toolTags = item.tools.slice(0, 3).map(tool => `<span class="tag-badge">${tool}</span>`).join('');
-
-          // Put card HTML together with premium modular layout elements
-          cardCol.innerHTML = `
-            <div class="portfolio-content h-100">
-              <img src="${item.thumbnail}" class="img-fluid" alt="${item.title}">
-              <div class="portfolio-info">
-                <div class="portfolio-info-content">
-                  <h4>${item.title}</h4>
-                  <p>${translatedDesc}</p>
-                  <div class="portfolio-tags">${toolTags}</div>
-                </div>
-                <div class="portfolio-links">
-                  ${detailsAnchor}
-                </div>
-              </div>
-            </div>
-          `;
-
-          portfolioContainer.appendChild(cardCol);
-        });
-
-        // Initialize glightbox for dynamic entries
+        // Initialize glightbox once
         GLightbox({
           selector: '.glightbox'
         });
 
-        // Initialize Isotope for dynamic entries
+        // Handle Isotope filters tabs clicks
         const isotopeLayout = document.querySelector('.isotope-layout');
         if (isotopeLayout) {
-          let layout = isotopeLayout.getAttribute('data-layout') ?? 'masonry';
-          let defaultFilter = isotopeLayout.getAttribute('data-default-filter') ?? '*';
-          let sort = isotopeLayout.getAttribute('data-sort') ?? 'original-order';
-
-          imagesLoaded(isotopeLayout.querySelector('.isotope-container'), function() {
-            initIsotope = new Isotope(isotopeLayout.querySelector('.isotope-container'), {
-              itemSelector: '.isotope-item',
-              layoutMode: layout,
-              filter: defaultFilter,
-              sortBy: sort
-            });
-            
-            // Re-trigger AOS to sync animations
-            aosInit();
-          });
-
-          // Handle Isotope filters tabs clicks
           isotopeLayout.querySelectorAll('.isotope-filters li').forEach(function(filterBtn) {
             filterBtn.addEventListener('click', function() {
               isotopeLayout.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
@@ -584,15 +669,26 @@
           });
         }
 
+        // Dropdown Sort/Filter Listener
+        const sortFilterSelect = document.getElementById('portfolio-sort-filter');
+        if (sortFilterSelect) {
+          sortFilterSelect.addEventListener('change', function(e) {
+            currentSortFilter = e.target.value;
+            renderPortfolioFilteredAndSorted();
+          });
+        }
+
         // Event listener delegation for Details links click
-        portfolioContainer.addEventListener('click', function(e) {
-          const detailAnchor = e.target.closest('.details-link');
-          if (detailAnchor) {
-            e.preventDefault();
-            const pId = detailAnchor.getAttribute('data-project-id');
-            openProjectDetailsModal(pId);
-          }
-        });
+        if (portfolioContainer) {
+          portfolioContainer.addEventListener('click', function(e) {
+            const detailAnchor = e.target.closest('.details-link');
+            if (detailAnchor) {
+              e.preventDefault();
+              const pId = detailAnchor.getAttribute('data-project-id');
+              openProjectDetailsModal(pId);
+            }
+          });
+        }
       })
       .catch(err => {
         console.error('Error loading portfolio:', err);
