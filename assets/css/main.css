@@ -12,30 +12,43 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
+  --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Poppins", sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #050d18; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #12da34; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
-  --border-color: #cbd5e1; /* Color for borders, inputs, and search bounds */
+:root {
+  --background-color: #ffffff;
+  /* Background color for the entire website, including individual sections */
+  --default-color: #272829;
+  /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #050d18;
+  /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #12da34;
+  /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #ffffff;
+  /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff;
+  /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --border-color: #cbd5e1;
+  /* Color for borders, inputs, and search bounds */
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #a8a9b4;  /* The default color of the main navmenu links */
-  --nav-hover-color: #ffffff; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #040b14; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #040b14; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #a8a9b4; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #ffffff; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #a8a9b4;
+  /* The default color of the main navmenu links */
+  --nav-hover-color: #ffffff;
+  /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #040b14;
+  /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #040b14;
+  /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #a8a9b4;
+  /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #ffffff;
+  /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -380,7 +393,8 @@ h6 {
 /* style fitur multibahasa */
 .lang-select {
   background-color: var(--surface-color);
-  color: white; /* atau sesuaikan dengan tema kamu */
+  color: white;
+  /* atau sesuaikan dengan tema kamu */
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
@@ -391,7 +405,8 @@ h6 {
 
 .lang-select:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4); /* efek glow saat di-klik */
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+  /* efek glow saat di-klik */
 }
 
 
@@ -718,38 +733,105 @@ section,
 /*--------------------------------------------------------------
 # Skills Section
 --------------------------------------------------------------*/
+.skills-category-card {
+  background-color: #f4fafd;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+body.dark-mode .skills-category-card {
+  background-color: #0b1329;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.skills-category-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(18, 218, 52, 0.1);
+}
+
+.skills-category-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color), transparent 40%);
+}
+
+.skills-category-icon {
+  width: 40px;
+  height: 40px;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  color: var(--accent-color);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.skills-category-card:hover .skills-category-icon {
+  background-color: var(--accent-color);
+  color: #030712;
+}
+
+.skills-category-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
 .skills .progress {
-  height: 60px;
+  height: 52px;
   display: block;
   background: none;
   border-radius: 0;
+  margin-bottom: 14px;
+}
+
+.skills .progress:last-child {
+  margin-bottom: 0;
 }
 
 .skills .progress .skill {
   color: var(--heading-color);
   padding: 0;
   margin: 0 0 6px 0;
-  text-transform: uppercase;
+  text-transform: none;
   display: block;
   font-weight: 600;
+  font-size: 13.5px;
   font-family: var(--heading-font);
 }
 
 .skills .progress .skill .val {
   float: right;
   font-style: normal;
+  font-size: 12px;
+  color: var(--accent-color);
 }
 
 .skills .progress-bar-wrap {
-  background: color-mix(in srgb, var(--default-color), transparent 90%);
-  height: 10px;
+  background: color-mix(in srgb, var(--default-color), transparent 88%);
+  height: 6px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .skills .progress-bar {
   width: 1px;
-  height: 10px;
-  transition: 0.9s;
-  background-color: var(--accent-color);
+  height: 6px;
+  transition: 0.9s ease;
+  background: linear-gradient(90deg, var(--accent-color) 0%, color-mix(in srgb, var(--accent-color), #ffffff 20%) 100%);
+  border-radius: 10px;
 }
 
 /*--------------------------------------------------------------
@@ -1612,7 +1694,7 @@ body.dark-mode {
 .project-swiper-container {
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
   background-color: var(--background-color);
 }
@@ -1680,7 +1762,7 @@ body.dark-mode {
   border-radius: 20px;
   font-size: 12px;
   font-weight: 500;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .visitor-badge i {
@@ -1720,8 +1802,15 @@ body.dark-mode {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1731,7 +1820,8 @@ body.dark-mode {
 /* Contact Section Theme-aware Colors & Layout */
 .contact-info-card,
 .contact-form-wrapper {
-  background-color: #f4fafd !important; /* light mode services background */
+  background-color: #f4fafd !important;
+  /* light mode services background */
   border: 1px solid var(--border-color) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
   color: var(--default-color) !important;
@@ -1742,9 +1832,18 @@ body.dark-mode {
 
 body.dark-mode .contact-info-card,
 body.dark-mode .contact-form-wrapper {
-  background-color: #0b1329 !important; /* dark mode services background */
+  background-color: #0b1329 !important;
+  /* dark mode services background */
   border: 1px solid var(--border-color) !important;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+body.dark-mode .contact-info-card .text-muted {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .contact-info-card .social-connect-block h4 {
+  color: #cbd5e1 !important;
 }
 
 .contact-info-card .info-header h3 {
