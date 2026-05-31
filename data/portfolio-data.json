@@ -2,7 +2,9 @@
   {
     "id": "kartini-poster",
     "title": "Canva",
-    "categories": ["design"],
+    "categories": [
+      "design"
+    ],
     "desc_en": "Kartini Day Poster Design Competition",
     "desc_id": "Lomba Desain Poster Hari Kartini",
     "detailed_desc_en": "A poster design created using Canva for the Kartini Day Poster Design Competition, aiming to celebrate the empowerment and achievements of women.",
@@ -12,13 +14,17 @@
     "media_url": "assets/img/portfolio/kartini.jpg",
     "project_url": "",
     "date": "21 April 2024",
-    "tools": ["Canva"],
+    "tools": [
+      "Canva"
+    ],
     "slider_images": []
   },
   {
     "id": "hu-tao-animation",
     "title": "Adobe Animate, Capcut, IbisPaint",
-    "categories": ["video"],
+    "categories": [
+      "video"
+    ],
     "desc_en": "Short 2D Animation - Hu Tao",
     "desc_id": "Animasi 2D Pendek - Hu Tao",
     "detailed_desc_en": "A short, expressive 2D animation showcasing the character Hu Tao from Genshin Impact. Created using Adobe Animate for character animation, IbisPaint for asset illustration, and Capcut for post-processing.",
@@ -28,13 +34,19 @@
     "media_url": "assets/img/portfolio/Short_Animation_Hu_Tao.mp4",
     "project_url": "",
     "date": "15 Agustus 2023",
-    "tools": ["Adobe Animate", "Capcut", "IbisPaint"],
+    "tools": [
+      "Adobe Animate",
+      "Capcut",
+      "IbisPaint"
+    ],
     "slider_images": []
   },
   {
     "id": "pocari-drawing",
     "title": "IbisPaint",
-    "categories": ["design"],
+    "categories": [
+      "design"
+    ],
     "desc_en": "Pocari Sweat Bintang SMA 2022 Drawing Competition",
     "desc_id": "Lomba Menggambar Pocari Sweat Bintang SMA 2022",
     "detailed_desc_en": "An illustration entry for the prestigious Pocari Sweat Bintang SMA 2022 national drawing competition, showcasing energetic youth spirit.",
@@ -44,13 +56,18 @@
     "media_url": "assets/img/portfolio/pocari.jpg",
     "project_url": "",
     "date": "10 Oktober 2022",
-    "tools": ["IbisPaint"],
+    "tools": [
+      "IbisPaint"
+    ],
     "slider_images": []
   },
   {
     "id": "zombies-3d-animation",
     "title": "Blender, Mixamo",
-    "categories": ["3ddesign", "video"],
+    "categories": [
+      "3ddesign",
+      "video"
+    ],
     "desc_en": "3D Animation - Zombies",
     "desc_id": "Animasi 3D - Zombi",
     "detailed_desc_en": "A short 3D animation about a zombie attack, featuring character animation, environment design, and dramatic lighting effects.",
@@ -60,13 +77,18 @@
     "media_url": "https://drive.google.com/file/d/10RMkEq5tgudvmxpK5pqfI-aoGWl3jWGn/preview",
     "project_url": "",
     "date": "05 Desember 2024",
-    "tools": ["Blender", "Mixamo"],
+    "tools": [
+      "Blender",
+      "Mixamo"
+    ],
     "slider_images": []
   },
   {
     "id": "hima-if-banner",
     "title": "Canva",
-    "categories": ["design"],
+    "categories": [
+      "design"
+    ],
     "desc_en": "Banner for the Gathering Night Event of the Informatics Student Association (HIMA IF)",
     "desc_id": "Spanduk untuk Acara Malam Keakraban Himpunan Mahasiswa Informatika (HIMA IF)",
     "detailed_desc_en": "Official promotional banner designed with Canva for the Informatics Student Association (HIMA IF) Gathering Night event.",
@@ -76,13 +98,17 @@
     "media_url": "assets/img/portfolio/hima2.jpeg",
     "project_url": "",
     "date": "18 November 2024",
-    "tools": ["Canva"],
+    "tools": [
+      "Canva"
+    ],
     "slider_images": []
   },
   {
     "id": "house-night-3d",
     "title": "Blender, IbisPaint",
-    "categories": ["3ddesign"],
+    "categories": [
+      "3ddesign"
+    ],
     "desc_en": "3D Render of a House at Night",
     "desc_id": "Render 3D Rumah di Malam Hari",
     "detailed_desc_en": "A highly detailed 3D environment modeling of a cozy house under night atmosphere. Textured and rendered in Blender, with color adjustment post-processing in IbisPaint.",
@@ -92,13 +118,18 @@
     "media_url": "assets/img/portfolio/house.png",
     "project_url": "",
     "date": "22 Juni 2024",
-    "tools": ["Blender", "IbisPaint"],
+    "tools": [
+      "Blender",
+      "IbisPaint"
+    ],
     "slider_images": []
   },
   {
     "id": "mybioskop-website",
     "title": "Website",
-    "categories": ["web"],
+    "categories": [
+      "web"
+    ],
     "desc_en": "MyBioskop Website",
     "desc_id": "Situs Web MyBioskop",
     "detailed_desc_en": "A fully responsive, elegant cinema web interface featuring schedules, trailers, and seating layout. Focuses on intuitive UI and smooth user experience.",
@@ -108,13 +139,19 @@
     "media_url": "assets/img/portfolio/beranda.jpg",
     "project_url": "https://github.com/Muhirabazram/MyBioskop/tree/main",
     "date": "14 Oktober 2024",
-    "tools": ["HTML", "CSS", "JavaScript"],
+    "tools": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
     "slider_images": []
   },
   {
     "id": "red-gaming-room",
     "title": "Blender",
-    "categories": ["3ddesign"],
+    "categories": [
+      "3ddesign"
+    ],
     "desc_en": "3D Isometric Gaming Room in Red Theme",
     "desc_id": "Ruang Gaming Isometrik 3D dengan Tema Merah",
     "detailed_desc_en": "A beautiful low-poly isometric room rendering of a gaming setup with neon red accent lighting, completed with detailed game rigs, consoles, and shelf displays.",
@@ -124,13 +161,17 @@
     "media_url": "assets/img/portfolio/red_gaming_room.jpg",
     "project_url": "",
     "date": "03 April 2024",
-    "tools": ["Blender"],
+    "tools": [
+      "Blender"
+    ],
     "slider_images": []
   },
   {
     "id": "bem-stmik-bandung",
     "title": "Canva",
-    "categories": ["design"],
+    "categories": [
+      "design"
+    ],
     "desc_en": "Poster and banner for the Student Executive Board (BEM) presidential and vice-presidential election at STMIK Bandung.",
     "desc_id": "Poster dan spanduk untuk pemilihan presiden dan wakil presiden Badan Eksekutif Mahasiswa (BEM) di STMIK Bandung.",
     "detailed_desc_en": "This project involved designing official posters and banners to support the presidential and vice-presidential election campaign for the Student Executive Board (BEM) at STMIK Bandung. The designs were focused on being visually appealing, informative, and reflective of the democratic spirit of the campus. These materials were used as promotional media throughout the campaign period, both in printed and digital formats, aiming to increase student engagement and participation in the internal election.",
@@ -140,7 +181,9 @@
     "media_url": "assets/img/portfolio/bem.jpeg",
     "project_url": "",
     "date": "22 Februari 2025",
-    "tools": ["Canva"],
+    "tools": [
+      "Canva"
+    ],
     "slider_images": [
       "assets/img/portfolio/bem.jpeg",
       "assets/img/portfolio/bem1.jpeg",
@@ -153,7 +196,9 @@
   {
     "id": "hu-tao-cosplay",
     "title": "Photography, IbisPaint",
-    "categories": ["photo"],
+    "categories": [
+      "photo"
+    ],
     "desc_en": "Hu Tao Cosplayer - @syalvlf",
     "desc_id": "Cosplayer Hu Tao - @syalvlf",
     "detailed_desc_en": "Cosplay photography project featuring Hu Tao from Genshin Impact, modeled by @syalvlf. Post-processed and color graded in IbisPaint for magical highlights.",
@@ -163,13 +208,18 @@
     "media_url": "assets/img/portfolio/HuTao.jpg",
     "project_url": "",
     "date": "12 September 2024",
-    "tools": ["Photography", "IbisPaint"],
+    "tools": [
+      "Photography",
+      "IbisPaint"
+    ],
     "slider_images": []
   },
   {
     "id": "isometric-room-3d",
     "title": "Blender",
-    "categories": ["3ddesign"],
+    "categories": [
+      "3ddesign"
+    ],
     "desc_en": "3D Isometric Room",
     "desc_id": "Ruang Isometrik 3D",
     "detailed_desc_en": "A 3D isometric room mockup built with Blender, focusing on interior design layout, warm ambient lighting, and high-fidelity furniture rendering.",
@@ -179,13 +229,17 @@
     "media_url": "assets/img/portfolio/isometric_room.jpg",
     "project_url": "",
     "date": "08 Januari 2024",
-    "tools": ["Blender"],
+    "tools": [
+      "Blender"
+    ],
     "slider_images": []
   },
   {
     "id": "violet-evergarden-cosplay",
     "title": "Photography, IbisPaint",
-    "categories": ["photo"],
+    "categories": [
+      "photo"
+    ],
     "desc_en": "Violet Evergarden Cosplayer - @ssafirapl",
     "desc_id": "Cosplayer Violet Evergarden - @ssafirapl",
     "detailed_desc_en": "A scenic cosplay portrait of Violet Evergarden modeled by @ssafirapl. Enhanced lighting, wind effects, and detailed color balance using IbisPaint.",
@@ -195,13 +249,19 @@
     "media_url": "assets/img/portfolio/Violet.jpg",
     "project_url": "",
     "date": "30 September 2024",
-    "tools": ["Photography", "IbisPaint"],
+    "tools": [
+      "Photography",
+      "IbisPaint"
+    ],
     "slider_images": []
   },
   {
     "id": "metaverse-smkn11",
     "title": "Blender",
-    "categories": ["3ddesign", "video"],
+    "categories": [
+      "3ddesign",
+      "video"
+    ],
     "desc_en": "3D Animation - Metaverse SMKN 11 Bandung",
     "desc_id": "Animasi 3D - Metaverse SMKN 11 Bandung",
     "detailed_desc_en": "A grand 3D animation project depicting the virtual rendering and futuristic visualization of SMKN 11 Bandung's campus in a Metaverse style.",
@@ -211,13 +271,17 @@
     "media_url": "https://www.youtube.com/embed/b8pfBO7tDIo?si=zd8PkkrleHqnLNML",
     "project_url": "https://youtu.be/b8pfBO7tDIo?si=trW_Fy8iFHsGBXp_",
     "date": "10 Oktober 2023",
-    "tools": ["Blender"],
+    "tools": [
+      "Blender"
+    ],
     "slider_images": []
   },
   {
     "id": "makima-cosplay",
     "title": "Photography, IbisPaint",
-    "categories": ["photo"],
+    "categories": [
+      "photo"
+    ],
     "desc_en": "Makima Cosplayer - @srniln",
     "desc_id": "Cosplayer Makima - @srniln",
     "detailed_desc_en": "A conceptual cosplay photography shoot of Makima from Chainsaw Man, featuring deep red cinematic grading and aesthetic photo manipulations in IbisPaint.",
@@ -227,13 +291,19 @@
     "media_url": "assets/img/portfolio/makima.png",
     "project_url": "",
     "date": "02 November 2024",
-    "tools": ["Photography", "IbisPaint"],
+    "tools": [
+      "Photography",
+      "IbisPaint"
+    ],
     "slider_images": []
   },
   {
     "id": "burger-ad-3d",
     "title": "Blender, Mixamo",
-    "categories": ["3ddesign", "video"],
+    "categories": [
+      "3ddesign",
+      "video"
+    ],
     "desc_en": "3D Animation - Burger Ad",
     "desc_id": "Animasi 3D - Iklan Burger",
     "detailed_desc_en": "A short 3D animation advertisement for a burger product. The video shows a man typing on his computer, suddenly feeling hungry. He then grabs a burger from a suitcase beside him and starts eating it. The animation ends with a promotional message.",
@@ -243,13 +313,18 @@
     "media_url": "https://drive.google.com/file/d/101TJ2JcZYB8jWMSI43qyPQa8FxLfsVgG/preview",
     "project_url": "",
     "date": "18 Desember 2024",
-    "tools": ["Blender", "Mixamo"],
+    "tools": [
+      "Blender",
+      "Mixamo"
+    ],
     "slider_images": []
   },
   {
     "id": "ichika-cosplay",
     "title": "Photography, IbisPaint",
-    "categories": ["photo"],
+    "categories": [
+      "photo"
+    ],
     "desc_en": "Ichika Cosplayer - @chaarell_",
     "desc_id": "Cosplayer Ichika - @chaarell_",
     "detailed_desc_en": "A bright, beautiful outdoor cosplay shoot of Ichika from The Quintessential Quintuplets. Post-processing done in IbisPaint for natural skin tones and vibrant atmosphere.",
@@ -259,13 +334,18 @@
     "media_url": "assets/img/portfolio/Ichika+WM.png",
     "project_url": "",
     "date": "05 Agustus 2024",
-    "tools": ["Photography", "IbisPaint"],
+    "tools": [
+      "Photography",
+      "IbisPaint"
+    ],
     "slider_images": []
   },
   {
     "id": "mental-health-poster",
     "title": "Canva",
-    "categories": ["design"],
+    "categories": [
+      "design"
+    ],
     "desc_en": "Mental Health Poster Design Competition",
     "desc_id": "Lomba Desain Poster Kesehatan Mental",
     "detailed_desc_en": "An educational poster design highlighting the importance of mental health and self-care, designed in Canva for a poster design competition.",
@@ -275,13 +355,17 @@
     "media_url": "assets/img/portfolio/poster_kesehatan_mental.jpeg",
     "project_url": "",
     "date": "10 Oktober 2023",
-    "tools": ["Canva"],
+    "tools": [
+      "Canva"
+    ],
     "slider_images": []
   },
   {
     "id": "itsuki-cosplay",
     "title": "Photography, IbisPaint",
-    "categories": ["photo"],
+    "categories": [
+      "photo"
+    ],
     "desc_en": "Itsuki Cosplayer - @viandayoooo",
     "desc_id": "Cosplayer Itsuki - @viandayoooo",
     "detailed_desc_en": "Portrayal of Itsuki Nakano from The Quintessential Quintuplets by cosplayer @viandayoooo. Processed with warm studio-lighting grades in IbisPaint.",
@@ -291,13 +375,18 @@
     "media_url": "assets/img/portfolio/Itsuki.png",
     "project_url": "",
     "date": "14 Oktober 2024",
-    "tools": ["Photography", "IbisPaint"],
+    "tools": [
+      "Photography",
+      "IbisPaint"
+    ],
     "slider_images": []
   },
   {
     "id": "baktikes-polda-jabar",
     "title": "Capcut",
-    "categories": ["video"],
+    "categories": [
+      "video"
+    ],
     "desc_en": "BAKTIKES DOKKES DAN RS BHAYANGKARA POLDA JAWA BARAT 2025",
     "desc_id": "BAKTIKES DOKKES DAN RS BHAYANGKARA POLDA JAWA BARAT 2025",
     "detailed_desc_en": "A summary report video documenting the healthcare community service (Bakti Kesehatan) activities executed by BHAYANGKARA POLDA JAWA BARAT 2025. Edited on Capcut.",
@@ -307,7 +396,29 @@
     "media_url": "https://drive.google.com/file/d/1so9v2n6jPgDquLAgxULtYBNyQVQORnhs/preview",
     "project_url": "",
     "date": "24 Januari 2025",
-    "tools": ["Capcut"],
+    "tools": [
+      "Capcut"
+    ],
+    "slider_images": []
+  },
+  {
+    "id": "donor-darah",
+    "title": "Donor Darah",
+    "categories": [
+      "video"
+    ],
+    "desc_en": "Blood donation activity at STMIK Bandung",
+    "desc_id": "Kegiatan donor darah di STMIK Bandung",
+    "detailed_desc_en": "This blood donation activity aims to encourage local people to help donate blood to people who may need it.",
+    "detailed_desc_id": "Kegiatan donor darah ini bertujuan untuk mendorong masyarakat setempat untuk membantu mendonorkan darah kepada orang-orang yang mungkin membutuhkannya.",
+    "thumbnail": "https://drive.google.com/file/d/1WFUrHilIXK5412MN_WDNuUBiSC6dc2b_/view?usp=drive_link",
+    "media_type": "youtube",
+    "media_url": "https://www.instagram.com/reel/DYJKCqrST8U/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "project_url": "https://www.instagram.com/reel/DYJKCqrST8U/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "date": "07 Mei 2026",
+    "tools": [
+      "Capcut"
+    ],
     "slider_images": []
   }
 ]
