@@ -345,7 +345,17 @@
     // Populate Image Slider, Video, or Single Image
     mediaContainer.innerHTML = ''; // Reset container
     
+    // Create the floating magnifying glass zoom-in button first
+    const zoomBtn = document.createElement('a');
+    zoomBtn.target = '_blank';
+    zoomBtn.className = 'modal-zoom-btn';
+    zoomBtn.title = lang === 'id' ? 'Buka Ukuran Penuh' : 'Open Fullscreen';
+    zoomBtn.innerHTML = '<i class="bi bi-zoom-in"></i>';
+    
     if (project.slider_images && project.slider_images.length > 1) {
+      // Set initial zoom link to the first slide image
+      zoomBtn.href = project.slider_images[0];
+      
       // Build Swiper Carousel
       const swiperWrapper = document.createElement('div');
       swiperWrapper.className = 'project-swiper-container swiper init-swiper-modal';
@@ -367,7 +377,7 @@
 
       mediaContainer.appendChild(swiperWrapper);
 
-      // Initialize Swiper specifically for Modal Carousel
+      // Initialize Swiper specifically for Modal Carousel with slideChange event listener
       new Swiper('.init-swiper-modal', {
         loop: true,
         speed: 600,
@@ -385,9 +395,21 @@
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
+        },
+        on: {
+          slideChange: function() {
+            const activeSlide = this.slides[this.activeIndex];
+            if (activeSlide) {
+              const activeImg = activeSlide.querySelector('img');
+              if (activeImg) {
+                zoomBtn.href = activeImg.getAttribute('src') || activeImg.src;
+              }
+            }
+          }
         }
       });
     } else if (project.media_type === 'video') {
+      zoomBtn.href = project.media_url;
       // Render native video player
       const videoEl = document.createElement('video');
       videoEl.src = project.media_url;
@@ -399,6 +421,7 @@
       videoEl.style.border = '1px solid var(--border-color)';
       mediaContainer.appendChild(videoEl);
     } else if (project.media_type === 'drive_video') {
+      zoomBtn.href = project.media_url;
       // Render embedded Google Drive video player
       const iframeEl = document.createElement('iframe');
       iframeEl.src = project.media_url;
@@ -409,6 +432,7 @@
       iframeEl.allowFullscreen = true;
       mediaContainer.appendChild(iframeEl);
     } else {
+      zoomBtn.href = project.media_url;
       // Render standard single thumbnail image
       const singleImg = document.createElement('img');
       singleImg.src = project.thumbnail;
@@ -420,12 +444,6 @@
     }
 
     // Append the floating magnifying glass zoom-in button inside media container
-    const zoomBtn = document.createElement('a');
-    zoomBtn.href = project.media_url;
-    zoomBtn.target = '_blank';
-    zoomBtn.className = 'modal-zoom-btn';
-    zoomBtn.title = lang === 'id' ? 'Buka Ukuran Penuh' : 'Open Fullscreen';
-    zoomBtn.innerHTML = '<i class="bi bi-zoom-in"></i>';
     mediaContainer.appendChild(zoomBtn);
 
     // Open Bootstrap Modal programmatically
