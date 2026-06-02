@@ -43,18 +43,18 @@
   },
   {
     "id": "pocari-drawing",
-    "title": "IbisPaint",
+    "title": "Pocari Sweat - Bintang SMA 2022",
     "categories": [
       "design"
     ],
     "desc_en": "Pocari Sweat Bintang SMA 2022 Drawing Competition",
     "desc_id": "Lomba Menggambar Pocari Sweat Bintang SMA 2022",
-    "detailed_desc_en": "An illustration entry for the prestigious Pocari Sweat Bintang SMA 2022 national drawing competition, showcasing energetic youth spirit.",
-    "detailed_desc_id": "Karya ilustrasi untuk ajang bergengsi kompetisi menggambar nasional Pocari Sweat Bintang SMA 2022, menggambarkan semangat pemuda yang penuh energi.",
+    "detailed_desc_en": "An illustration work used for the 2022 High School Star competition from Pocari Sweat.",
+    "detailed_desc_id": "Sebuah karya ilustrasi yang digunakan untuk kompetisi Bintang SMA 2022 dari Pocari Sweat.",
     "thumbnail": "assets/img/portfolio/pocari.jpg",
     "media_type": "image",
     "media_url": "assets/img/portfolio/pocari.jpg",
-    "project_url": "",
+    "project_url": "https://www.instagram.com/p/CjkmEwLJn8u/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     "date": "10 Oktober 2022",
     "tools": [
       "IbisPaint"
