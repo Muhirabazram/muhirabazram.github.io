@@ -409,16 +409,23 @@
     ],
     "desc_en": "Blood donation activity at STMIK Bandung",
     "desc_id": "Kegiatan donor darah di STMIK Bandung",
-    "detailed_desc_en": "This blood donation activity aims to encourage local people to help donate blood to people who may need it.",
-    "detailed_desc_id": "Kegiatan donor darah ini bertujuan untuk mendorong masyarakat setempat untuk membantu mendonorkan darah kepada orang-orang yang mungkin membutuhkannya.",
+    "detailed_desc_en": "Documentation of blood donation activities carried out by the STMIK Bandung Student Executive Board.",
+    "detailed_desc_id": "Dokumentasi kegiatan donor darah yang dilakukan oleh Badan Eksekutif Mahasiswa STMIK Bandung.",
     "thumbnail": "assets/img/portfolio/donordarah.png",
     "media_type": "youtube",
     "media_url": "https://www.instagram.com/reel/DYJKCqrST8U/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    "project_url": "",
+    "project_url": "https://www.instagram.com/reel/DYJKCqrST8U/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     "date": "07 Mei 2026",
     "tools": [
       "Capcut"
     ],
-    "slider_images": []
+    "slider_images": [
+      "https://www.instagram.com/reel/DYJKCqrST8U/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      "https://www.instagram.com/reel/DYJG70Hpbo8/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      "https://www.instagram.com/reel/DYJG4bVpoX_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      "https://www.instagram.com/reel/DYJGzguJGdv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      "https://www.instagram.com/reel/DYJGz3qpqVV/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      "https://www.instagram.com/reel/DYJG11EJ6Gt/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    ]
   }
 ]
