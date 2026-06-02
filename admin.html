@@ -328,19 +328,28 @@
                   <!-- Date -->
                   <div class="col-md-6">
                     <label for="itemDate" class="form-label">
-                      Project Date
-                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Date of completion. e.g. '22 Februari 2025' or '10 October 2024'"></i>
+                      Project Date & Time
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Tanggal dan waktu penyelesaian proyek. Cukup pilih melalui picker tanggal dan waktu."></i>
                     </label>
-                    <input type="text" id="itemDate" class="form-control" placeholder="e.g. 22 Februari 2025" required>
+                    <input type="datetime-local" id="itemDate" class="form-control" required>
                   </div>
 
-                  <!-- Title (Techs representation) -->
+                  <!-- Highlight Title (English) -->
                   <div class="col-md-6">
-                    <label for="itemTitle" class="form-label">
-                      Short Badge / Title Techs
-                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="This is displayed as the header badge in grid cards. e.g. 'Blender, Canva' or 'HTML, CSS'"></i>
+                    <label for="itemTitleEn" class="form-label">
+                      Highlight Title (English)
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Judul highlight utama proyek dalam bahasa Inggris. e.g. 'Short Hu Tao Animation'"></i>
                     </label>
-                    <input type="text" id="itemTitle" class="form-control" placeholder="e.g. Blender, Mixamo" required>
+                    <input type="text" id="itemTitleEn" class="form-control" placeholder="e.g. Short Hu Tao Animation" required>
+                  </div>
+
+                  <!-- Highlight Title (Indonesia) -->
+                  <div class="col-md-6">
+                    <label for="itemTitleId" class="form-label">
+                      Highlight Title (Indonesia)
+                      <i class="bi bi-question-circle-fill tooltip-icon" data-bs-toggle="tooltip" title="Judul highlight utama proyek dalam bahasa Indonesia. e.g. 'Animasi Pendek Hu Tao'"></i>
+                    </label>
+                    <input type="text" id="itemTitleId" class="form-control" placeholder="e.g. Animasi Pendek Hu Tao" required>
                   </div>
 
                   <!-- Tools -->
@@ -587,6 +596,52 @@
       return cleanUrl;
     }
 
+    // Helper to convert any date format into YYYY-MM-DDTHH:mm for datetime-local input
+    function convertToDateTimeLocalValue(dateStr) {
+      if (!dateStr) return '';
+      // If it's already in the ISO format, return it (e.g. 2023-03-15T14:30)
+      if (dateStr.includes('-') && dateStr.includes('T')) {
+        return dateStr.slice(0, 16);
+      }
+      
+      // Otherwise, parse the text date (e.g. "15 Maret 2023")
+      const parts = dateStr.trim().split(/\s+/);
+      if (parts.length >= 3) {
+        const day = String(parseInt(parts[0])).padStart(2, '0');
+        const monthName = parts[1].toLowerCase();
+        const year = parts[2];
+        
+        const months = {
+          'januari': '01', 'january': '01',
+          'februari': '02', 'february': '02',
+          'maret': '03', 'march': '03',
+          'april': '04',
+          'mei': '05', 'may': '05',
+          'juni': '06', 'june': '06',
+          'juli': '07', 'july': '07',
+          'agustus': '08', 'august': '08',
+          'september': '09',
+          'oktober': '10', 'october': '10',
+          'november': '11',
+          'desember': '12', 'december': '12'
+        };
+        
+        const month = months[monthName] || '01';
+        
+        // Check time info
+        let time = '12:00';
+        if (parts.length >= 4) {
+          const rawTime = parts[3].replace('.', ':');
+          if (rawTime.includes(':')) {
+            time = rawTime;
+          }
+        }
+        
+        return `${year}-${month}-${day}T${time}`;
+      }
+      return '';
+    }
+
     // Fetch existing live database or fallback to loading template items
     function loadInitialDatabase() {
       fetch('data/portfolio-data.json')
@@ -658,11 +713,13 @@
 
       projects.forEach((proj, idx) => {
         // Search filters
-        const searchStr = `${proj.id} ${proj.title} ${proj.desc_en} ${proj.desc_id} ${proj.tools.join(' ')}`.toLowerCase();
+        const searchStr = `${proj.id} ${proj.title || ''} ${proj.title_en || ''} ${proj.title_id || ''} ${proj.desc_en} ${proj.desc_id} ${proj.tools.join(' ')}`.toLowerCase();
         if (searchQuery && !searchStr.includes(searchQuery)) return;
 
         const cats = proj.categories.map(c => `<span class="badge-category">${c}</span>`).join('');
         const tools = proj.tools.map(t => `<span class="badge-tool">${t}</span>`).join('');
+
+        const displayTitle = proj.title_id && proj.title_en ? `${proj.title_en} / ${proj.title_id}` : (proj.title || proj.title_en || proj.title_id || '');
 
         const projDiv = document.createElement('div');
         projDiv.className = 'project-card';
@@ -671,7 +728,7 @@
             <img src="${getDirectImageUrl(proj.thumbnail)}" alt="" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; border:1px solid var(--border-dark);">
             <div>
               <div class="d-flex align-items-center gap-2">
-                <h6 class="mb-0 text-white">${proj.title}</h6>
+                <h6 class="mb-0 text-white">${displayTitle}</h6>
                 <small class="text-muted">(${proj.id})</small>
               </div>
               <p class="text-muted small mb-1 mt-1">${proj.desc_en} / ${proj.desc_id}</p>
@@ -719,7 +776,9 @@
       // Construct item object
       const newItem = {
         id: document.getElementById('itemId').value.trim(),
-        title: document.getElementById('itemTitle').value.trim(),
+        title: document.getElementById('itemTitleEn').value.trim(), // fallback
+        title_en: document.getElementById('itemTitleEn').value.trim(),
+        title_id: document.getElementById('itemTitleId').value.trim(),
         categories: categories,
         desc_en: document.getElementById('itemDescEn').value.trim(),
         desc_id: document.getElementById('itemDescId').value.trim(),
@@ -763,8 +822,9 @@
       document.getElementById('editIndex').value = index;
       document.getElementById('itemId').value = proj.id;
       document.getElementById('itemId').disabled = true; // Block editing ID to ensure uniqueness
-      document.getElementById('itemTitle').value = proj.title;
-      document.getElementById('itemDate').value = proj.date;
+      document.getElementById('itemTitleEn').value = proj.title_en || proj.title || '';
+      document.getElementById('itemTitleId').value = proj.title_id || proj.title || '';
+      document.getElementById('itemDate').value = convertToDateTimeLocalValue(proj.date);
       document.getElementById('itemTools').value = proj.tools.join(', ');
       document.getElementById('itemDescEn').value = proj.desc_en;
       document.getElementById('itemDescId').value = proj.desc_id;
@@ -819,7 +879,7 @@
     };
 
     // Auto id slug generation as typing titles
-    document.getElementById('itemTitle').addEventListener('input', function(e) {
+    document.getElementById('itemTitleEn').addEventListener('input', function(e) {
       const editIdx = parseInt(document.getElementById('editIndex').value);
       // Only auto-generate if not in edit mode
       if (editIdx < 0) {

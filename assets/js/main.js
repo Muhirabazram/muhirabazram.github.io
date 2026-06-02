@@ -381,6 +381,71 @@
   }
 
   /**
+   * Helper to format a date into a readable string in both English and Indonesian.
+   * Supports ISO string (YYYY-MM-DDTHH:mm) and older string dates ("15 Maret 2023").
+   */
+  function formatDate(dateStr, lang) {
+    if (!dateStr) return '';
+    
+    // If it's an ISO date string (has '-' and 'T')
+    if (dateStr.includes('-') && dateStr.includes('T')) {
+      try {
+        const dateObj = new Date(dateStr);
+        if (isNaN(dateObj.getTime())) return dateStr;
+        
+        const day = dateObj.getDate();
+        const year = dateObj.getFullYear();
+        const hours = String(dateObj.getHours()).padStart(2, '0');
+        const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+        
+        const monthsId = [
+          'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+          'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
+        
+        const monthsEn = [
+          'January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        
+        const monthName = lang === 'id' ? monthsId[dateObj.getMonth()] : monthsEn[dateObj.getMonth()];
+        return `${day} ${monthName} ${year}, ${hours}:${minutes}`;
+      } catch (e) {
+        return dateStr;
+      }
+    }
+
+    // Fallback for older text-based date formatting
+    if (lang === 'en') {
+      let translated = dateStr;
+      const monthTranslations = {
+        'januari': 'January', 'februari': 'February', 'maret': 'March',
+        'mei': 'May', 'juni': 'June', 'juli': 'July',
+        'agustus': 'August', 'oktober': 'October', 'desember': 'December'
+      };
+      
+      for (const [idMonth, enMonth] of Object.entries(monthTranslations)) {
+        const regex = new RegExp(`\\b${idMonth}\\b`, 'gi');
+        translated = translated.replace(regex, enMonth);
+      }
+      return translated;
+    } else {
+      let translated = dateStr;
+      const monthTranslations = {
+        'january': 'Januari', 'february': 'Februari', 'march': 'Maret',
+        'may': 'Mei', 'june': 'Juni', 'july': 'Juli',
+        'august': 'Agustus', 'october': 'Oktober', 'december': 'Desember'
+      };
+      
+      for (const [enMonth, idMonth] of Object.entries(monthTranslations)) {
+        const regex = new RegExp(`\\b${enMonth}\\b`, 'gi');
+        translated = translated.replace(regex, idMonth);
+      }
+      return translated;
+    }
+  }
+
+  /**
    * Dynamic Project Details Modal Renderer
    */
   function openProjectDetailsModal(projectId) {
@@ -397,6 +462,7 @@
     const mediaContainer = document.getElementById('projectModalMediaContainer');
 
     // Translate modal fields
+    const translatedTitle = lang === 'id' ? (project.title_id || project.title_en || project.title) : (project.title_en || project.title || project.title_id);
     const translatedDesc = lang === 'id' ? (project.detailed_desc_id || project.detailed_desc_en) : project.detailed_desc_en;
     const catLabels = project.categories.map(c => {
       const mappings = {
@@ -410,9 +476,9 @@
     });
 
     // Populate standard text contents
-    modalTitle.textContent = project.title;
+    modalTitle.textContent = translatedTitle;
     modalCategory.textContent = catLabels.join(', ');
-    modalDate.textContent = project.date;
+    modalDate.textContent = formatDate(project.date, lang);
     modalTools.textContent = project.tools.join(', ');
     modalDesc.innerHTML = translatedDesc.replace(/\n/g, '<br>');
 
@@ -445,7 +511,7 @@
       
       const slidesHTML = project.slider_images.map(img => `
         <div class="swiper-slide text-center">
-          <img src="${getDirectImageUrl(img)}" class="img-fluid rounded" alt="${project.title}">
+          <img src="${getDirectImageUrl(img)}" class="img-fluid rounded" alt="${translatedTitle}">
         </div>
       `).join('');
 
@@ -550,11 +616,20 @@
 
 
   /**
-   * Helper to parse dates in both English and Indonesian formats
+   * Helper to parse dates in both English, Indonesian formats, and ISO datetime format.
    */
   function parseDate(dateStr) {
     if (!dateStr) return new Date(0);
-    const parts = dateStr.split(' ');
+    
+    // If it's already an ISO string format (has '-' and 'T')
+    if (dateStr.includes('-') && dateStr.includes('T')) {
+      const parsed = new Date(dateStr);
+      if (!isNaN(parsed.getTime())) {
+        return parsed;
+      }
+    }
+    
+    const parts = dateStr.trim().split(/\s+/);
     if (parts.length < 3) return new Date(0);
     const day = parseInt(parts[0]);
     const monthName = parts[1].toLowerCase();
@@ -594,7 +669,8 @@
       const targetYear = currentSortFilter.replace('year-', '');
       items = items.filter(item => {
         if (!item.date) return false;
-        const itemYear = item.date.split(' ').pop();
+        const parsed = parseDate(item.date);
+        const itemYear = parsed.getFullYear().toString();
         return itemYear === targetYear;
       });
       // Sort filtered items by newest first
@@ -628,8 +704,9 @@
     // 3. Render Cards
     portfolioData.forEach(item => {
       const filterClasses = item.categories.map(c => `filter-${c}`).join(' ');
+      const translatedTitle = lang === 'id' ? (item.title_id || item.title_en || item.title) : (item.title_en || item.title || item.title_id);
       const translatedDesc = lang === 'id' ? (item.desc_id || item.desc_en) : item.desc_en;
-      const searchTarget = `${item.title} ${translatedDesc} ${item.tools.join(' ')}`.toLowerCase();
+      const searchTarget = `${translatedTitle} ${translatedDesc} ${item.tools.join(' ')}`.toLowerCase();
 
       const cardCol = document.createElement('div');
       cardCol.className = `col-lg-4 col-md-6 portfolio-item isotope-item ${filterClasses}`;
@@ -643,10 +720,10 @@
 
       cardCol.innerHTML = `
         <div class="portfolio-content h-100">
-          <img src="${getDirectImageUrl(item.thumbnail)}" class="img-fluid" alt="${item.title}">
+          <img src="${getDirectImageUrl(item.thumbnail)}" class="img-fluid" alt="${translatedTitle}">
           <div class="portfolio-info">
             <div class="portfolio-info-content">
-              <h4>${item.title}</h4>
+              <h4>${translatedTitle}</h4>
               <p>${translatedDesc}</p>
               <div class="portfolio-tags">${toolTags}</div>
             </div>
