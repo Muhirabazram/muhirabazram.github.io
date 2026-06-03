@@ -43,19 +43,21 @@
   },
   {
     "id": "pocari-drawing",
-    "title": "Pocari Sweat - Bintang SMA 2022",
+    "title": "Pocari Sweat: Bintang SMA 2022 Submission",
+    "title_en": "Pocari Sweat: Bintang SMA 2022 Submission",
+    "title_id": "Pocari Sweat: Bintang SMA 2022 Submission",
     "categories": [
       "design"
     ],
-    "desc_en": "Pocari Sweat Bintang SMA 2022 Drawing Competition",
-    "desc_id": "Lomba Menggambar Pocari Sweat Bintang SMA 2022",
-    "detailed_desc_en": "An illustration work used for the 2022 High School Star competition from Pocari Sweat.",
-    "detailed_desc_id": "Sebuah karya ilustrasi yang digunakan untuk kompetisi Bintang SMA 2022 dari Pocari Sweat.",
+    "desc_en": "Digital Illustration Asset for National Creative Talent Competition",
+    "desc_id": "Aset Ilustrasi Digital untuk Kompetisi Bakat Kreatif Nasional",
+    "detailed_desc_en": "This digital illustration was specifically designed to represent my visual talent in the prestigious Bintang SMA 2022—a nationwide annual talent competition held by Pocari Sweat to showcase the creativity of high school students across Indonesia.\n\nDeveloped using IbisPaint, the project focuses on exploring digital drawing techniques and color compositions that capture the fresh, signature identity of Pocari Sweat. Through this submission, I challenged my capabilities on a national scale, expressing a deep passion for visual arts while independently honing my skills in digital asset management.",
+    "detailed_desc_id": "Karya ilustrasi digital ini dirancang khusus sebagai representasi bakat visual saya dalam ajang bergengsi Bintang SMA 2022—sebuah kompetisi unjuk bakat tingkat nasional tahunan yang diselenggarakan oleh Pocari Sweat untuk mewadahi kreativitas siswa SMA/SMK sederajat di seluruh Indonesia.\n\nMenggunakan IbisPaint sebagai media eksekusi, proyek ini berfokus pada eksplorasi teknik digital drawing dan komposisi warna yang menangkap identitas segar khas Pocari Sweat. Melalui proyek ini, saya menantang kemampuan diri untuk berkompetisi di skala nasional, mengekspresikan minat mendalam di bidang seni visual, sekaligus mengasah kemampuan manajemen aset ilustrasi digital secara mandiri.",
     "thumbnail": "assets/img/portfolio/pocari.jpg",
     "media_type": "image",
     "media_url": "assets/img/portfolio/pocari.jpg",
     "project_url": "https://www.instagram.com/p/CjkmEwLJn8u/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    "date": "10 Oktober 2022",
+    "date": "2022-10-11T00:00",
     "tools": [
       "IbisPaint"
     ],
