@@ -216,7 +216,9 @@
   },
   {
     "id": "isometric-room-3d",
-    "title": "Blender",
+    "title": "3D Isometric Room",
+    "title_en": "3D Isometric Room",
+    "title_id": "3D Kamar Isometrik",
     "categories": [
       "3ddesign"
     ],
@@ -227,8 +229,8 @@
     "thumbnail": "assets/img/portfolio/isometric_room.jpg",
     "media_type": "image",
     "media_url": "assets/img/portfolio/isometric_room.jpg",
-    "project_url": "",
-    "date": "08 Januari 2024",
+    "project_url": "https://www.instagram.com/p/Cm5nAzFL_HN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "date": "2024-01-08T12:00",
     "tools": [
       "Blender"
     ],
@@ -257,20 +259,22 @@
   },
   {
     "id": "metaverse-smkn11",
-    "title": "Blender",
+    "title": "Virtual Campus SMKN 11 Bandung: The Metaverse Project",
+    "title_en": "Virtual Campus SMKN 11 Bandung: The Metaverse Project",
+    "title_id": "Virtual Campus SMKN 11 Bandung: The Metaverse Project",
     "categories": [
       "3ddesign",
       "video"
     ],
-    "desc_en": "3D Animation - Metaverse SMKN 11 Bandung",
-    "desc_id": "Animasi 3D - Metaverse SMKN 11 Bandung",
-    "detailed_desc_en": "A grand 3D animation project depicting the virtual rendering and futuristic visualization of SMKN 11 Bandung's campus in a Metaverse style.",
-    "detailed_desc_id": "Proyek animasi 3D besar yang menggambarkan render virtual dan visualisasi futuristik dari kampus SMKN 11 Bandung dalam gaya Metaverse.",
+    "desc_en": "3D-Based Interactive Simulation & Academic Environment Visualization",
+    "desc_id": "Simulasi Interaktif & Visualisasi Lingkungan Akademik Berbasis 3D",
+    "detailed_desc_en": "A large-scale collaborative project developed in partnership with the SMKN 11 Bandung Metaverse Team. This project aims to reconstruct and visualize the entire institutional area—including the main buildings, learning facilities, and classrooms—into an immersive and futuristic 3D virtual environment.\n\nUtilizing Blender as the core engine for object modeling and environment layout, this project successfully delivers a detailed digital representation of the campus assets. Through this initiative, the team and I explored the potential of implementing metaverse technology in education as an interactive virtual tour medium.",
+    "detailed_desc_id": "Proyek kolaboratif berskala besar yang dikembangkan bersama Tim Metaverse SMKN 11 Bandung. Proyek ini bertujuan untuk merekonstruksi dan memvisualisasikan seluruh area institusi—mencakup gedung utama, fasilitas belajar, hingga ruang kelas—ke dalam lingkungan virtual 3D yang imersif dan futuristik.\n\nMenggunakan Blender sebagai core engine untuk pemodelan objek dan penataan lingkungan, proyek ini berhasil menghadirkan representasi digital aset kampus secara detail. Melalui proyek ini, saya bersama tim mengeksplorasi potensi implementasi teknologi metaverse dalam dunia pendidikan sebagai media tur virtual interaktif.",
     "thumbnail": "assets/img/portfolio/metaverse.jpg",
     "media_type": "youtube",
     "media_url": "https://www.youtube.com/embed/b8pfBO7tDIo?si=zd8PkkrleHqnLNML",
     "project_url": "https://youtu.be/b8pfBO7tDIo?si=trW_Fy8iFHsGBXp_",
-    "date": "10 Oktober 2023",
+    "date": "2023-10-10T12:00",
     "tools": [
       "Blender"
     ],
