@@ -21,19 +21,21 @@
   },
   {
     "id": "hu-tao-animation",
-    "title": "Short Hu Tao Animation",
+    "title": "2D Character Animation: Short Hu Tao Project",
+    "title_en": "2D Character Animation: Short Hu Tao Project",
+    "title_id": "2D Character Animation: Short Hu Tao Project",
     "categories": [
       "video"
     ],
-    "desc_en": "Short 2D Animation - Hu Tao",
-    "desc_id": "Animasi 2D Pendek - Hu Tao",
-    "detailed_desc_en": "A short, expressive 2D animation showcasing the character Hu Tao from Genshin Impact. Created using Adobe Animate for character animation, IbisPaint for asset illustration, and Capcut for post-processing.",
-    "detailed_desc_id": "Animasi 2D pendek yang ekspresif menampilkan karakter Hu Tao dari Genshin Impact. Dibuat menggunakan Adobe Animate untuk animasi karakter, IbisPaint untuk ilustrasi aset, dan Capcut untuk pasca-pemrosesan.",
+    "desc_en": "Implementation of Tradigital Animation Theory and Visual Asset Management",
+    "desc_id": "Implementasi Teori Animasi Tradigital dan Manajemen Aset Visual",
+    "detailed_desc_en": "This short 2D animation project was developed as part of an academic assignment at SMKN 11 Bandung, focusing on mastering keyframe animation techniques and character movement. The character Hu Tao from Genshin Impact was chosen as the main subject to explore expressive and dynamic motions.\n\nThroughout the development process, I independently reconstructed and redrew the visual assets using IbisPaint to ensure they were optimized for animation. The rigging and core animation workflow were fully executed in Adobe Animate, followed by a post-processing phase using CapCut to refine the final visual effects.",
+    "detailed_desc_id": "Proyek animasi 2D pendek ini dikembangkan sebagai bagian dari pemenuhan tugas akademik di SMKN 11 Bandung yang berfokus pada penguasaan teknik animasi keyframe dan tata gerak karakter. Karakter Hu Tao dari Genshin Impact dipilih sebagai subjek utama untuk mengeksplorasi ekspresi dan kedinamisan gerak.\n\nDalam proses pengembangannya, saya melakukan rekonstruksi visual (redraw) secara mandiri untuk menghasilkan aset gambar yang siap dianimasikan menggunakan IbisPaint. Proses rigging dan pengerjaan animasi utama (main animation) sepenuhnya dieksekusi melalui Adobe Animate, diikuti dengan tahap pasca-pemrosesan (post-processing) menggunakan CapCut untuk penyelarasan efek visual akhir.",
     "thumbnail": "assets/img/portfolio/Short_Animation_Hu_Tao.jpg",
     "media_type": "video",
     "media_url": "assets/img/portfolio/Short_Animation_Hu_Tao.mp4",
     "project_url": "https://www.instagram.com/p/Cp0AzT2Jz0w/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    "date": "15 Maret 2023",
+    "date": "2023-03-15T12:00",
     "tools": [
       "Adobe Animate",
       "Capcut",
