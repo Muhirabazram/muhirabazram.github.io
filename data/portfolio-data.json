@@ -152,19 +152,21 @@
   },
   {
     "id": "red-gaming-room",
-    "title": "Blender",
+    "title": "3D Isometric Gaming Room: Red Neon Theme",
+    "title_en": "3D Isometric Gaming Room: Red Neon Theme",
+    "title_id": "3D Isometric Gaming Room: Red Neon Theme",
     "categories": [
       "3ddesign"
     ],
-    "desc_en": "3D Isometric Gaming Room in Red Theme",
-    "desc_id": "Ruang Gaming Isometrik 3D dengan Tema Merah",
-    "detailed_desc_en": "A beautiful low-poly isometric room rendering of a gaming setup with neon red accent lighting, completed with detailed game rigs, consoles, and shelf displays.",
-    "detailed_desc_id": "Render ruang isometrik low-poly yang indah dari ruangan gaming dengan pencahayaan aksen neon merah, dilengkapi dengan meja komputer, konsol game, dan pajangan rak.",
+    "desc_en": "Futuristic Isometric Interior Design Utilizing Emissive Lighting Techniques",
+    "desc_id": "Desain Interior Isometrik Futuristik Menggunakan Teknik Emissive Lighting",
+    "detailed_desc_en": "This 3D modeling project was developed as part of an academic assignment at SMKN 11 Bandung, exploring thematic interior design. The project focuses on visualizing a modern gaming room with a low-poly style approach and a futuristic aesthetic.\n\nAll interior components—ranging from the workstation setup with curved monitors, an ergonomic gaming chair, a unique geometric wardrobe, to the wall decorations—were independently modeled from scratch in Blender. The core emphasis of this project lies in the application of red neon emissive lighting techniques to create dynamic shadow contrasts and build an immersive, cyberpunk-inspired atmosphere.",
+    "detailed_desc_id": "Proyek model 3D ini merupakan bagian dari tugas akademik di SMKN 11 Bandung yang mengeksplorasi pembuatan ruang interior tematik. Proyek ini berfokus pada visualisasi sebuah kamar gaming modern dengan pendekatan gaya low-poly dan estetika futuristik.\n\nSeluruh komponen interior—mulai dari stasiun kerja (gaming setup) dengan monitor melengkung, kursi ergonomis, lemari penyimpanan geometris, hingga dekorasi dinding—dimodelkan secara mandiri menggunakan Blender. Fokus utama pada proyek ini adalah penerapan teknik emissive lighting berwarna merah neon untuk menciptakan kontras bayangan yang dinamis serta membangun atmosfer ruangan yang imersif khas sub-kultur cyberpunk.",
     "thumbnail": "assets/img/portfolio/red_gaming_room.jpg",
     "media_type": "image",
     "media_url": "assets/img/portfolio/red_gaming_room.jpg",
-    "project_url": "",
-    "date": "03 April 2024",
+    "project_url": "https://www.instagram.com/p/CnA2M8aPt9n/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "date": "2022-11-29T12:00",
     "tools": [
       "Blender"
     ],
