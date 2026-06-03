@@ -220,21 +220,21 @@
   },
   {
     "id": "isometric-room-3d",
-    "title": "3D Isometric Room",
-    "title_en": "3D Isometric Room",
-    "title_id": "3D Kamar Isometrik",
+    "title": "3D Isometric Room Design",
+    "title_en": "3D Isometric Room Design",
+    "title_id": "3D Isometric Room Design",
     "categories": [
       "3ddesign"
     ],
-    "desc_en": "3D Isometric Room",
-    "desc_id": "Ruang Isometrik 3D",
-    "detailed_desc_en": "A 3D isometric room mockup built with Blender, focusing on interior design layout, warm ambient lighting, and high-fidelity furniture rendering.",
-    "detailed_desc_id": "Mockup ruang isometrik 3D yang dibuat dengan Blender, berfokus pada tata letak desain interior, pencahayaan sekitar yang hangat, dan rendering furnitur berkualitas tinggi.",
+    "desc_en": "Low-Poly Isometric Interior Modeling and Ambient Lighting Exploration",
+    "desc_id": "Pemodelan Interior Isometrik Low-Poly dan Eksplorasi Tata Cahaya",
+    "detailed_desc_en": "This 3D interior design project was developed as an academic assignment at SMKN 11 Bandung. Utilizing an orthographic/isometric perspective, this project focuses on independently creating a modular bedroom mockup from the initial modeling stage to the final render.\n\nAll furniture assets—including the bed, workstation, wardrobe, and decorative elements—were manually modeled from scratch in Blender using a clean low-poly approach. The main core of this project lies in experimenting with efficient interior layouts and implementing warm ambient lighting techniques to achieve a cozy, high-fidelity atmosphere.",
+    "detailed_desc_id": "Proyek desain interior 3D ini dikembangkan sebagai pemenuhan tugas akademik di SMKN 11 Bandung. Menggunakan sudut pandang ortografis/isometrik, proyek ini berfokus pada pembuatan replika kamar tidur modular secara mandiri dari tahap awal pemodelan hingga hasil akhir render.\n\nSeluruh aset furnitur—termasuk tempat tidur, meja kerja, lemari pakaian, hingga elemen dekoratif—dibuat secara manual menggunakan Blender dengan pendekatan low-poly modeling yang rapi. Fokus utama proyek ini terletak pada eksperimen tata letak interior yang efisien serta penerapan teknik warm ambient lighting untuk menciptakan atmosfer ruangan yang nyaman dan realistis.",
     "thumbnail": "assets/img/portfolio/isometric_room.jpg",
     "media_type": "image",
     "media_url": "assets/img/portfolio/isometric_room.jpg",
     "project_url": "https://www.instagram.com/p/Cm5nAzFL_HN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    "date": "2024-01-08T12:00",
+    "date": "2022-10-16T12:00",
     "tools": [
       "Blender"
     ],
