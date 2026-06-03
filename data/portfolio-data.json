@@ -1,19 +1,21 @@
 [
   {
     "id": "kartini-poster",
-    "title": "Canva",
+    "title": "Hari Kartini National Poster Design",
+    "title_en": "Hari Kartini National Poster Design",
+    "title_id": "Hari Kartini National Poster Design",
     "categories": [
       "design"
     ],
-    "desc_en": "Kartini Day Poster Design Competition",
-    "desc_id": "Lomba Desain Poster Hari Kartini",
-    "detailed_desc_en": "A poster design created using Canva for the Kartini Day Poster Design Competition, aiming to celebrate the empowerment and achievements of women.",
-    "detailed_desc_id": "Desain poster yang dibuat menggunakan Canva untuk Lomba Desain Poster Hari Kartini, bertujuan merayakan pemberdayaan dan pencapaian kaum perempuan.",
+    "desc_en": "Digital Infographic Design and Women Empowerment Visualization",
+    "desc_id": "Perancangan Infografis Digital dan Visualisasi Pemberdayaan Perempuan",
+    "detailed_desc_en": "This digital poster design project was specifically crafted for a social media design competition celebrating Hari Kartini (Kartini Day). The artwork aims to honor emancipation, empowerment, and the impactful contributions of Indonesian women across different eras and professional fields.\n\nDeveloped utilizing Canva, the creative process focused on digital collage techniques, typographic harmony, and complex layout management. By combining aesthetic visual elements with informative summaries of inspiring national figures, this poster is engineered to effectively deliver educational messages while remaining highly engaging for digital audiences.",
+    "detailed_desc_id": "Proyek desain poster digital ini dirancang khusus untuk mengikuti kompetisi desain media sosial dalam rangka memperingati Hari Kartini. Karya ini bertujuan untuk merayakan emansipasi, pemberdayaan, serta kontribusi nyata kaum perempuan Indonesia dari berbagai era dan bidang profesi.\n\nMenggunakan Canva sebagai platform eksekusi utama, proses kreatif berfokus pada teknik kolase digital (digital collage), harmonisasi tipografi, serta manajemen layout yang kompleks. Dengan memadukan elemen visual yang estetik dan potongan teks informatif mengenai tokoh-tokoh inspiratif nasional, poster ini dirancang agar mampu menyampaikan pesan edukatif secara efektif dan menarik bagi audiens media sosial.",
     "thumbnail": "assets/img/portfolio/kartini.jpg",
     "media_type": "image",
     "media_url": "assets/img/portfolio/kartini.jpg",
     "project_url": "",
-    "date": "21 April 2024",
+    "date": "2024-04-21T12:00",
     "tools": [
       "Canva"
     ],
