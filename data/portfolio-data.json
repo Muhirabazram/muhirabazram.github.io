@@ -170,7 +170,15 @@
     "tools": [
       "Blender"
     ],
-    "slider_images": []
+    "slider_images": [
+      "assets/img/portfolio/red_gaming_room.jpg",
+      "assets/img/portfolio/red_gaming_room2.jpg",
+      "assets/img/portfolio/red_gaming_room3.jpg",
+      "assets/img/portfolio/red_gaming_room4.jpg",
+      "assets/img/portfolio/red_gaming_room5.jpg",
+      "assets/img/portfolio/red_gaming_room6.jpg",
+      "assets/img/portfolio/red_gaming_room7.jpg"
+    ]
   },
   {
     "id": "bem-stmik-bandung",
