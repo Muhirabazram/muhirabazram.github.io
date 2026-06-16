@@ -277,6 +277,19 @@
   }
 
   /**
+   * Stop video/audio playback when the project details modal is closed
+   */
+  const projectDetailsModalEl = document.getElementById('projectDetailsModal');
+  if (projectDetailsModalEl) {
+    projectDetailsModalEl.addEventListener('hidden.bs.modal', function() {
+      const mediaContainer = document.getElementById('projectModalMediaContainer');
+      if (mediaContainer) {
+        mediaContainer.innerHTML = '';
+      }
+    });
+  }
+
+  /**
    * Combined Isotope Search & Filter Handler
    */
   /**
