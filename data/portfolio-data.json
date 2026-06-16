@@ -70,6 +70,8 @@
   {
     "id": "zombies-3d-animation",
     "title": "Blender, Mixamo",
+    "title_en": "Blender, Mixamo",
+    "title_id": "Blender, Mixamo",
     "categories": [
       "3ddesign",
       "video"
@@ -81,8 +83,8 @@
     "thumbnail": "assets/img/portfolio/zombies.jpg",
     "media_type": "drive_video",
     "media_url": "https://drive.google.com/file/d/10RMkEq5tgudvmxpK5pqfI-aoGWl3jWGn/preview",
-    "project_url": "",
-    "date": "05 Desember 2024",
+    "project_url": "https://drive.google.com/file/d/10RMkEq5tgudvmxpK5pqfI-aoGWl3jWGn/preview",
+    "date": "2024-12-05T12:00",
     "tools": [
       "Blender",
       "Mixamo"
@@ -320,6 +322,8 @@
   {
     "id": "burger-ad-3d",
     "title": "Blender, Mixamo",
+    "title_en": "Blender, Mixamo",
+    "title_id": "Blender, Mixamo",
     "categories": [
       "3ddesign",
       "video"
@@ -331,8 +335,8 @@
     "thumbnail": "assets/img/portfolio/burger.jpg",
     "media_type": "drive_video",
     "media_url": "https://drive.google.com/file/d/101TJ2JcZYB8jWMSI43qyPQa8FxLfsVgG/preview",
-    "project_url": "",
-    "date": "18 Desember 2024",
+    "project_url": "https://drive.google.com/file/d/101TJ2JcZYB8jWMSI43qyPQa8FxLfsVgG/view?usp=drive_link",
+    "date": "2024-12-18T12:00",
     "tools": [
       "Blender",
       "Mixamo"
