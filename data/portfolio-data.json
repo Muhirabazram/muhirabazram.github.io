@@ -186,19 +186,21 @@
   },
   {
     "id": "bem-stmik-bandung",
-    "title": "Canva",
+    "title": "BEM STMIK Bandung Election Campaign Kit",
+    "title_en": "BEM STMIK Bandung Election Campaign Kit",
+    "title_id": "BEM STMIK Bandung Election Campaign Kit",
     "categories": [
       "design"
     ],
-    "desc_en": "Poster and banner for the Student Executive Board (BEM) presidential and vice-presidential election at STMIK Bandung.",
-    "desc_id": "Poster dan spanduk untuk pemilihan presiden dan wakil presiden Badan Eksekutif Mahasiswa (BEM) di STMIK Bandung.",
-    "detailed_desc_en": "This project involved designing official posters and banners to support the presidential and vice-presidential election campaign for the Student Executive Board (BEM) at STMIK Bandung. The designs were focused on being visually appealing, informative, and reflective of the democratic spirit of the campus. These materials were used as promotional media throughout the campaign period, both in printed and digital formats, aiming to increase student engagement and participation in the internal election.",
-    "detailed_desc_id": "Proyek ini melibatkan perancangan poster dan spanduk resmi untuk mendukung kampanye pemilihan presiden dan wakil presiden Badan Eksekutif Mahasiswa (BEM) di STMIK Bandung. Desain difokuskan agar menarik secara visual, informatif, dan mencerminkan semangat demokrasi kampus. Materi ini digunakan sebagai media promosi sepanjang masa kampanye, baik dalam format cetak maupun digital, dengan tujuan meningkatkan keterlibatan dan partisipasi mahasiswa dalam pemilu internal.",
+    "desc_en": "Visual Identity Design and Promotional Media for Campus Election 2025/2026",
+    "desc_id": "Perancangan Identitas Visual dan Media Promosi Pemilu Kampus 2025/2026",
+    "detailed_desc_en": "This project focuses on developing a comprehensive suite of official publication media and visual assets to support the Student Executive Board (BEM) presidential and vice-presidential election campaign at STMIK Bandung for the 2025/2026 period.\n\nDeveloped utilizing Canva, I designed a complete promotional ecosystem that includes informative posters, printed banners, and interactive campaign frames for social media use. The design approach emphasizes bold typography, high information readability, and a representative color palette to capture the spirit of campus democracy and professionalism, while effectively driving student engagement in the internal election.",
+    "detailed_desc_id": "Proyek ini berfokus pada penyusunan jajaran media publikasi dan aset visual resmi untuk mendukung rangkaian kampanye Pemilihan Ketua dan Wakil Ketua Badan Eksekutif Mahasiswa (BEM) STMIK Bandung periode 2025/2026.\n\nMenggunakan Canva sebagai platform eksekusi, saya merancang ekosistem media promosi yang komprehensif, mencakup poster informatif, spanduk cetak (banner), hingga bingkai foto kampanye (campaign frame/twibbon) untuk kebutuhan media sosial. Pendekatan desain ditekankan pada struktur tipografi yang tegas, keterbacaan informasi yang tinggi, serta pemilihan palet warna yang representatif guna mencerminkan semangat demokrasi, profesionalisme, sekaligus memicu partisipasi aktif mahasiswa dalam pemilu internal kampus.",
     "thumbnail": "assets/img/portfolio/bem.jpeg",
     "media_type": "image",
     "media_url": "assets/img/portfolio/bem.jpeg",
-    "project_url": "",
-    "date": "22 Februari 2025",
+    "project_url": "https://www.instagram.com/p/DGXcS7yyoLq/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "date": "2025-02-22T12:00",
     "tools": [
       "Canva"
     ],
