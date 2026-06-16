@@ -16,6 +16,7 @@
   let currentSearchQuery = "";
   let currentCategoryFilter = "*";
   let currentSortFilter = "newest";
+  let visibleLimit = 9;
   const lang = document.documentElement.lang || 'en';
 
   /**
@@ -278,25 +279,84 @@
   /**
    * Combined Isotope Search & Filter Handler
    */
-  function filterIsotope() {
+  /**
+   * Combined Isotope Search & Filter Handler with dynamic Load More/Show Less pagination.
+   */
+  function filterIsotope(resetLimit = false) {
     if (!initIsotope) return;
-    
-    initIsotope.arrange({
-      filter: function(itemElem) {
-        // 1. Check Category Match
-        const matchesCategory = currentCategoryFilter === "*" || itemElem.classList.contains(currentCategoryFilter.replace('.', ''));
-        
-        // 2. Check Text Search Match
-        if (!currentSearchQuery) {
-          return matchesCategory;
-        }
-        
+
+    if (resetLimit) {
+      visibleLimit = 9;
+    }
+
+    const container = document.querySelector('.isotope-container');
+    if (!container) return;
+
+    const items = Array.from(container.querySelectorAll('.isotope-item'));
+    const matchedElements = [];
+
+    items.forEach(itemElem => {
+      const matchesCategory = currentCategoryFilter === "*" || itemElem.classList.contains(currentCategoryFilter.replace('.', ''));
+
+      let matchesSearch = true;
+      if (currentSearchQuery) {
         const searchTarget = (itemElem.getAttribute('data-search-target') || "").toLowerCase();
-        const matchesSearch = searchTarget.includes(currentSearchQuery.toLowerCase());
-        
-        return matchesCategory && matchesSearch;
+        matchesSearch = searchTarget.includes(currentSearchQuery.toLowerCase());
+      }
+
+      if (matchesCategory && matchesSearch) {
+        matchedElements.push(itemElem);
       }
     });
+
+    const totalMatched = matchedElements.length;
+
+    initIsotope.arrange({
+      filter: function(itemElem) {
+        const matchesCategory = currentCategoryFilter === "*" || itemElem.classList.contains(currentCategoryFilter.replace('.', ''));
+
+        let matchesSearch = true;
+        if (currentSearchQuery) {
+          const searchTarget = (itemElem.getAttribute('data-search-target') || "").toLowerCase();
+          matchesSearch = searchTarget.includes(currentSearchQuery.toLowerCase());
+        }
+
+        const isMatched = matchesCategory && matchesSearch;
+        if (isMatched) {
+          const idx = matchedElements.indexOf(itemElem);
+          return idx !== -1 && idx < visibleLimit;
+        }
+        return false;
+      }
+    });
+
+    // Handle "View More" button visibility & text
+    const loadMoreBtn = document.getElementById('portfolioLoadMoreBtn');
+    if (loadMoreBtn) {
+      if (totalMatched <= 9) {
+        loadMoreBtn.style.display = 'none';
+      } else {
+        loadMoreBtn.style.display = 'inline-flex';
+        const btnText = loadMoreBtn.querySelector('span');
+        const btnIcon = loadMoreBtn.querySelector('i');
+
+        if (visibleLimit >= totalMatched) {
+          if (lang === 'id') {
+            btnText.textContent = 'Tutup semua';
+          } else {
+            btnText.textContent = 'Close all';
+          }
+          btnIcon.className = 'bi bi-chevron-up';
+        } else {
+          if (lang === 'id') {
+            btnText.textContent = 'Lihat lebih banyak';
+          } else {
+            btnText.textContent = 'View More';
+          }
+          btnIcon.className = 'bi bi-chevron-down';
+        }
+      }
+    }
   }
 
   /**
@@ -757,7 +817,7 @@
           sortBy: sort
         });
         
-        filterIsotope();
+        filterIsotope(true);
         aosInit();
       });
     }
@@ -800,7 +860,7 @@
               this.classList.add('filter-active');
               
               currentCategoryFilter = this.getAttribute('data-filter');
-              filterIsotope();
+              filterIsotope(true);
               
               aosInit();
             });
@@ -812,7 +872,7 @@
         if (searchInput) {
           searchInput.addEventListener('input', function(e) {
             currentSearchQuery = e.target.value;
-            filterIsotope();
+            filterIsotope(true);
           });
         }
 
@@ -822,6 +882,45 @@
           sortFilterSelect.addEventListener('change', function(e) {
             currentSortFilter = e.target.value;
             renderPortfolioFilteredAndSorted();
+          });
+        }
+
+        // Handle portfolio load more button click
+        const loadMoreBtn = document.getElementById('portfolioLoadMoreBtn');
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener('click', function() {
+            const container = document.querySelector('.isotope-container');
+            if (!container) return;
+
+            const items = Array.from(container.querySelectorAll('.isotope-item'));
+            let totalMatched = 0;
+            items.forEach(itemElem => {
+              const matchesCategory = currentCategoryFilter === "*" || itemElem.classList.contains(currentCategoryFilter.replace('.', ''));
+              let matchesSearch = true;
+              if (currentSearchQuery) {
+                const searchTarget = (itemElem.getAttribute('data-search-target') || "").toLowerCase();
+                matchesSearch = searchTarget.includes(currentSearchQuery.toLowerCase());
+              }
+              if (matchesCategory && matchesSearch) {
+                totalMatched++;
+              }
+            });
+
+            if (visibleLimit >= totalMatched) {
+              // Collapse back to 9
+              visibleLimit = 9;
+              filterIsotope(false);
+              
+              // Scroll smoothly to portfolio section
+              const portfolioSection = document.getElementById('portfolio');
+              if (portfolioSection) {
+                portfolioSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            } else {
+              // Show next 9
+              visibleLimit += 9;
+              filterIsotope(false);
+            }
           });
         }
 

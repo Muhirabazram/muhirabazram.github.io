@@ -2180,3 +2180,43 @@ body.dark-mode .services .service-card {
   transform: scale(1.1) translateY(-2px);
   box-shadow: 0 6px 18px rgba(18, 218, 52, 0.6);
 }
+
+/* Portfolio Load More Button Styling */
+.portfolio-load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.btn-portfolio-load-more {
+  background-color: var(--accent-color) !important;
+  color: #030712 !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  border: none !important;
+  padding: 14px 28px !important;
+  border-radius: 10px !important;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  box-shadow: 0 4px 15px rgba(18, 218, 52, 0.2) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.btn-portfolio-load-more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(18, 218, 52, 0.35) !important;
+  background-color: color-mix(in srgb, var(--accent-color), #ffffff 10%) !important;
+}
+
+.btn-portfolio-load-more i {
+  transition: transform 0.3s ease;
+}
+
+.btn-portfolio-load-more:hover i {
+  transform: scale(1.1);
+}
