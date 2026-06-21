@@ -448,5 +448,40 @@
       "Capcut"
     ],
     "slider_images": []
+  },
+  {
+    "id": "jobportal",
+    "title": "JobPortal: Full-Stack Job Seeker Web Application",
+    "title_en": "JobPortal: Full-Stack Job Seeker Web Application",
+    "title_id": "JobPortal: Full-Stack Job Seeker Web Application",
+    "categories": [
+      "web"
+    ],
+    "desc_en": "API-Driven Backend Architecture Development and Distributed System Integration",
+    "desc_id": "Pengembangan Arsitektur Backend Berbasis API dan Integrasi Sistem Terdistribusi",
+    "detailed_desc_en": "This web-based application project was developed as part of an advanced academic assignment aimed at delivering a functional and dynamic job-seeking platform. The project was executed collaboratively within a two-person team with well-structured role distributions.\n\nMy primary focus in this initiative was to engineer and architect the complete backend system, including database modeling, efficient API routing, and secure authentication workflows using the Laravel framework. Beyond backend development, I actively contributed to the system integration phase, optimizing and refining the frontend structure to seamlessly connect with the established business logic. The entire ecosystem—encompassing the database, backend, and frontend—has been successfully deployed for public access and is systematically managed via a GitHub repository.",
+    "detailed_desc_id": "Proyek aplikasi berbasis web ini dikembangkan sebagai pemenuhan tugas akademik tingkat lanjut untuk menghadirkan platform pencarian kerja (job seeker) yang fungsional dan dinamis. Proyek ini dieksekusi secara kolaboratif dalam tim yang terdiri dari dua orang dengan pembagian peran yang terstruktur.\n\nFokus utama saya dalam proyek ini adalah merancang dan membangun arsitektur backend secara menyeluruh, mencakup pemodelan database, pembuatan API routes yang efisien, dan penerapan sistem autentikasi menggunakan framework Laravel. Selain fokus pada backend, saya juga berkontribusi aktif dalam tahap integrasi sistem, melakukan optimasi serta perapihan pada sisi frontend agar selaras dengan logika bisnis yang telah dibangun. Seluruh sistem—baik database, backend, maupun frontend—telah berhasil dideploy secara publik dan dikelola secara terstruktur melalui repositori GitHub.",
+    "thumbnail": "assets/img/portfolio/jobportal.png",
+    "media_type": "image",
+    "media_url": "https://github.com/Muhirabazram/jobportal-backend",
+    "project_url": "https://github.com/Muhirabazram/jobportal-backend",
+    "date": "2026-05-14T12:00",
+    "tools": [
+      "Laravel",
+      "PHP",
+      "PostgreSQL",
+      "REST API",
+      "Git",
+      "GitHub",
+      "Frontend Integration"
+    ],
+    "slider_images": [
+      "assets/img/portfolio/Beranda.png",
+      "assets/img/portfolio/CariKerja.png",
+      "assets/img/portfolio/DaftarHRD.png",
+      "assets/img/portfolio/DaftarPencari.png",
+      "assets/img/portfolio/dasboardhrd.png",
+      "assets/img/portfolio/dashboardpencari.png"
+    ]
   }
 ]
