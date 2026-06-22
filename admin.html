@@ -1150,6 +1150,64 @@
     manageTabTrigger.addEventListener('shown.bs.tab', renderManageList);
 
     // --- Firebase Auth & Session Logic ---
+    // Session Timeout configuration: 1 Hour (3,600,000 milliseconds)
+    const SESSION_TIMEOUT_MS = 60 * 60 * 1000; 
+    let idleCheckInterval = null;
+    let activityListenersAdded = false;
+
+    // Update last activity timestamp in localStorage
+    function updateLastActivity() {
+      localStorage.setItem('adminLastActivity', Date.now().toString());
+    }
+
+    // Throttled function to update last activity (runs max once every 2 seconds to boost performance)
+    let lastUpdate = 0;
+    function updateLastActivityThrottled() {
+      const now = Date.now();
+      if (now - lastUpdate > 2000) {
+        updateLastActivity();
+        lastUpdate = now;
+      }
+    }
+
+    // Setup active listeners for rolling session
+    function setupActivityListeners() {
+      if (activityListenersAdded) return;
+      const events = ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'];
+      events.forEach(evt => {
+        window.addEventListener(evt, updateLastActivityThrottled, { passive: true });
+      });
+      activityListenersAdded = true;
+    }
+
+    // Tear down active listeners when logged out
+    function removeActivityListeners() {
+      if (!activityListenersAdded) return;
+      const events = ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'];
+      events.forEach(evt => {
+        window.removeEventListener(evt, updateLastActivityThrottled);
+      });
+      activityListenersAdded = false;
+    }
+
+    // Check if session has expired
+    function checkSessionTimeout() {
+      const lastActivity = localStorage.getItem('adminLastActivity');
+      if (!lastActivity) {
+        // No last activity recorded, set it now to prevent instant logout
+        updateLastActivity();
+        return;
+      }
+
+      const elapsed = Date.now() - parseInt(lastActivity, 10);
+      if (elapsed > SESSION_TIMEOUT_MS) {
+        console.log("Idle timeout reached. Logging out...");
+        firebase.auth().signOut().then(() => {
+          alert("Sesi Anda telah berakhir karena tidak ada aktivitas selama 1 jam. Silakan login kembali.");
+        });
+      }
+    }
+
     // Login form submit handler
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -1176,6 +1234,8 @@
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> Log In';
           document.getElementById('loginForm').reset();
+          // Initialize activity timestamp upon successful login
+          updateLastActivity();
         })
         .catch(err => {
           console.error("Login failed:", err);
@@ -1211,9 +1271,29 @@
         const adminContent = document.getElementById('admin-content');
         
         if (user) {
+          // Immediately check if existing session loaded is already expired
+          const lastActivity = localStorage.getItem('adminLastActivity');
+          if (lastActivity) {
+            const elapsed = Date.now() - parseInt(lastActivity, 10);
+            if (elapsed > SESSION_TIMEOUT_MS) {
+              console.log("Existing session expired on page load. Logging out...");
+              firebase.auth().signOut().then(() => {
+                alert("Sesi Anda telah kedaluwarsa. Silakan login kembali.");
+              });
+              return;
+            }
+          }
+
           // User is signed in. Show admin pane and hide login screen
           loginContainer.style.setProperty('display', 'none', 'important');
           adminContent.style.display = 'block';
+          
+          // Setup rolling session activity listeners and timers
+          updateLastActivity();
+          setupActivityListeners();
+          
+          if (idleCheckInterval) clearInterval(idleCheckInterval);
+          idleCheckInterval = setInterval(checkSessionTimeout, 10000); // Check every 10 seconds
           
           // Load database and logs
           loadInitialDatabase();
@@ -1227,6 +1307,14 @@
           // User is signed out. Hide admin pane and show login screen
           adminContent.style.display = 'none';
           loginContainer.style.setProperty('display', 'flex', 'important');
+          
+          // Clean up activity listeners and intervals
+          removeActivityListeners();
+          if (idleCheckInterval) {
+            clearInterval(idleCheckInterval);
+            idleCheckInterval = null;
+          }
+          localStorage.removeItem('adminLastActivity');
         }
       });
     } else {
