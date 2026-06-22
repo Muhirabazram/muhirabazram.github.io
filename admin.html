@@ -276,16 +276,23 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg mb-5">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <i class="bi bi-database-fill-gear text-success"></i> Muhirabazram <span>Dashboard</span>
-      </a>
-      <span class="badge bg-success-subtle text-success py-2 px-3 rounded-pill border border-success-subtle">
-        <i class="bi bi-shield-check"></i> Local Admin Console
-      </span>
-    </div>
-  </nav>
+  <!-- Admin Page Wrapper -->
+  <div id="admin-content" style="display: none;">
+    <nav class="navbar navbar-expand-lg mb-5">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-database-fill-gear text-success"></i> Muhirabazram <span>Dashboard</span>
+        </a>
+        <div class="d-flex align-items-center gap-3">
+          <span class="badge bg-success-subtle text-success py-2 px-3 rounded-pill border border-success-subtle d-none d-md-inline-block">
+            <i class="bi bi-shield-check"></i> Local Admin Console
+          </span>
+          <button id="btnLogout" class="btn btn-outline-danger btn-sm px-3 py-2 rounded-pill">
+            <i class="bi bi-box-arrow-left me-1"></i> Log Out
+          </button>
+        </div>
+      </div>
+    </nav>
 
   <div class="container">
     <div class="row">
@@ -664,20 +671,49 @@
     </div>
   </div>
 
-  <!-- Toast Notification System -->
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
-    <div id="adminToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="d-flex">
-        <div class="toast-body" id="toastMessage">
-          Action performed successfully!
+    <!-- Toast Notification System -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
+      <div id="adminToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body" id="toastMessage">
+            Action performed successfully!
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
+    </div>
+  </div>
+
+  <!-- Login Screen Overlay -->
+  <div id="login-container" class="d-flex align-items-center justify-content-center min-vh-100" style="display: none !important;">
+    <div class="glass-card text-center p-4 shadow login-card" style="max-width: 420px; width: 100%; margin: 15px; margin-bottom: 0;">
+      <div class="mb-4">
+        <i class="bi bi-shield-lock text-success" style="font-size: 3.5rem; filter: drop-shadow(0 0 10px rgba(18, 218, 52, 0.3));"></i>
+        <h3 class="mt-3 text-success fw-bold">Admin Console</h3>
+        <p class="text-muted small">Silakan log in untuk mengelola portofolio & analitik</p>
+      </div>
+      <form id="loginForm">
+        <div class="mb-3 text-start">
+          <label for="loginUsername" class="form-label"><i class="bi bi-person text-success"></i> Username</label>
+          <input type="text" id="loginUsername" class="form-control" placeholder="Masukkan username" required autocomplete="username">
+        </div>
+        <div class="mb-4 text-start">
+          <label for="loginPassword" class="form-label"><i class="bi bi-key text-success"></i> Password</label>
+          <input type="password" id="loginPassword" class="form-control" placeholder="Masukkan password" required autocomplete="current-password">
+        </div>
+        <div id="loginErrorMessage" class="alert alert-danger py-2 small d-none" role="alert" style="background-color: rgba(220, 53, 69, 0.1); color: #ea868f; border: 1px solid rgba(220, 53, 69, 0.2); border-radius: 10px;">
+          Username atau password salah!
+        </div>
+        <button type="submit" class="btn btn-accent w-100 py-2 fw-bold" id="btnLoginSubmit">
+          <i class="bi bi-box-arrow-in-right"></i> Log In
+        </button>
+      </form>
     </div>
   </div>
 
   <!-- Firebase SDKs & Chart.js -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -1097,8 +1133,89 @@
     const manageTabTrigger = document.querySelector('#manage-tab');
     manageTabTrigger.addEventListener('shown.bs.tab', renderManageList);
 
-    // Initial database triggers
-    loadInitialDatabase();
+    // --- Firebase Auth & Session Logic ---
+    // Login form submit handler
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const usernameInput = document.getElementById('loginUsername').value.trim();
+      const passwordInput = document.getElementById('loginPassword').value;
+      const errorMsg = document.getElementById('loginErrorMessage');
+      const submitBtn = document.getElementById('btnLoginSubmit');
+      
+      errorMsg.classList.add('d-none');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Logging in...';
+      
+      // Map username 'Muhirabazram' to virtual email
+      let email = usernameInput;
+      if (usernameInput.toLowerCase() === 'muhirabazram') {
+        email = 'muhirabazram@admin.local';
+      } else if (!usernameInput.includes('@')) {
+        email = usernameInput + '@invalid.local';
+      }
+      
+      firebase.auth().signInWithEmailAndPassword(email, passwordInput)
+        .then(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> Log In';
+          document.getElementById('loginForm').reset();
+        })
+        .catch(err => {
+          console.error("Login failed:", err);
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> Log In';
+          errorMsg.classList.remove('d-none');
+          
+          if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
+            errorMsg.textContent = "Username atau password salah!";
+          } else if (err.code === 'auth/too-many-requests') {
+            errorMsg.textContent = "Terlalu banyak percobaan masuk yang gagal. Silakan coba lagi nanti.";
+          } else {
+            errorMsg.textContent = "Gagal masuk: " + err.message;
+          }
+        });
+    });
+
+    // Logout button click handler
+    document.getElementById('btnLogout').addEventListener('click', function() {
+      if (confirm("Apakah Anda yakin ingin keluar dari halaman admin?")) {
+        firebase.auth().signOut().then(() => {
+          showToast("Berhasil logout!");
+        }).catch(err => {
+          alert("Gagal logout: " + err.message);
+        });
+      }
+    });
+
+    // Firebase Auth session listener
+    if (typeof firebase !== 'undefined') {
+      firebase.auth().onAuthStateChanged(user => {
+        const loginContainer = document.getElementById('login-container');
+        const adminContent = document.getElementById('admin-content');
+        
+        if (user) {
+          // User is signed in. Show admin pane and hide login screen
+          loginContainer.style.setProperty('display', 'none', 'important');
+          adminContent.style.display = 'block';
+          
+          // Load database and logs
+          loadInitialDatabase();
+          
+          // Re-trigger active tab load if it's analytics
+          const activeTab = document.querySelector('.nav-tabs .active');
+          if (activeTab && activeTab.id === 'analytics-tab') {
+            initAnalytics();
+          }
+        } else {
+          // User is signed out. Hide admin pane and show login screen
+          adminContent.style.display = 'none';
+          loginContainer.style.setProperty('display', 'flex', 'important');
+        }
+      });
+    } else {
+      console.error("Firebase SDK is not loaded.");
+    }
 
     // --- Visitor Analytics Dashboard Logic ---
     // Initialize Firebase in admin.html using config
