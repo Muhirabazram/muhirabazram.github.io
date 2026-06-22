@@ -323,17 +323,17 @@
   },
   {
     "id": "burger-ad-3d",
-    "title": "Blender, Mixamo",
-    "title_en": "Blender, Mixamo",
-    "title_id": "Blender, Mixamo",
+    "title": "3D Animated Commercial: Food Product Showcase",
+    "title_en": "3D Animated Commercial: Food Product Showcase",
+    "title_id": "3D Animated Commercial: Food Product Showcase",
     "categories": [
       "3ddesign",
       "video"
     ],
-    "desc_en": "3D Animation - Burger Ad",
-    "desc_id": "Animasi 3D - Iklan Burger",
-    "detailed_desc_en": "A short 3D animation advertisement for a burger product. The video shows a man typing on his computer, suddenly feeling hungry. He then grabs a burger from a suitcase beside him and starts eating it. The animation ends with a promotional message.",
-    "detailed_desc_id": "Iklan animasi 3D pendek untuk produk burger. Video ini menunjukkan seorang pria yang sedang mengetik di komputernya, tiba-tiba merasa lapar. Dia kemudian mengambil burger dari koper di sampingnya dan mulai memakannya. Animasi diakhiri dengan pesan promosi.",
+    "desc_en": "3D Narrative Animation Development and Character Integration Using Blender & Mixamo",
+    "desc_id": "Pengembangan Animasi Naratif 3D dan Integrasi Karakter Menggunakan Blender & Mixamo",
+    "detailed_desc_en": "This 3D animated commercial project was developed as part of a high school academic assignment to explore digital visual storytelling techniques. The project focuses on creating an interactive and engaging food product commercial through a structured narrative approach.\n\nThroughout the production pipeline, Blender was utilized to design the office environment, model custom prop assets, and manage the cinematography layout including lighting and camera angles. To optimize the animation workflow, I integrated character rigging with Mixamo motion assets, which were then manually refined to ensure natural character interaction while opening the briefcase and consuming the object. The project concludes with a \"breaking the fourth wall\" technique (character interacting with the camera) and a custom motion graphic frame at the end to showcase the product details systematically.",
+    "detailed_desc_id": "Proyek video komersial berbasis animasi 3D ini dikembangkan sebagai bagian dari tugas akademik di SMK untuk mengeksplorasi teknik penceritaan visual digital. Proyek ini berfokus pada pembuatan video promosi produk makanan (food commercial) dengan pendekatan naratif yang interaktif dan menarik.\n\nDalam proses produksinya, saya menggunakan Blender untuk merancang desain lingkungan kantor (environment design), pemodelan aset objek properti, serta pengaturan pencahayaan dan kamera (cinematography layout). Untuk efisiensi tata gerak, saya mengintegrasikan sistem rigging karakter dengan aset animasi dari Mixamo, yang kemudian disempurnakan secara manual agar interaksi karakter saat membuka koper dan memakan objek terlihat natural. Proyek ini diakhiri dengan implementasi teknik breaking the fourth wall (karakter berinteraksi dengan kamera) serta penambahan motion graphic frame di akhir video untuk menampilkan informasi produk secara informatif.",
     "thumbnail": "assets/img/portfolio/burger.jpg",
     "media_type": "drive_video",
     "media_url": "https://drive.google.com/file/d/101TJ2JcZYB8jWMSI43qyPQa8FxLfsVgG/preview",
@@ -341,7 +341,10 @@
     "date": "2024-12-18T12:00",
     "tools": [
       "Blender",
-      "Mixamo"
+      "Mixamo",
+      "3D Animation",
+      "Character Integration",
+      "Environment Design"
     ],
     "slider_images": []
   },
