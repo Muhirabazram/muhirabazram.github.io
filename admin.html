@@ -721,6 +721,22 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
+    // Initialize Firebase at the very beginning
+    const firebaseConfig = {
+      apiKey: "AIzaSyD-gRc1DYHYnnWezRKLJwDx3Oxdg3LMHYk",
+      authDomain: "muhirabazram-portfolio.firebaseapp.com",
+      projectId: "muhirabazram-portfolio",
+      storageBucket: "muhirabazram-portfolio.firebasestorage.app",
+      messagingSenderId: "920807391822",
+      appId: "1:920807391822:web:a358e5a1bd65a0bd27b91f"
+    };
+
+    let db = null;
+    if (typeof firebase !== 'undefined') {
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
+    }
+
     // Initial Default Data (19 items matched with database)
     let defaultProjects = [];
 
@@ -1218,22 +1234,6 @@
     }
 
     // --- Visitor Analytics Dashboard Logic ---
-    // Initialize Firebase in admin.html using config
-    const firebaseConfig = {
-      apiKey: "AIzaSyD-gRc1DYHYnnWezRKLJwDx3Oxdg3LMHYk",
-      authDomain: "muhirabazram-portfolio.firebaseapp.com",
-      projectId: "muhirabazram-portfolio",
-      storageBucket: "muhirabazram-portfolio.firebasestorage.app",
-      messagingSenderId: "920807391822",
-      appId: "1:920807391822:web:a358e5a1bd65a0bd27b91f"
-    };
-
-    let db = null;
-    if (typeof firebase !== 'undefined') {
-      firebase.initializeApp(firebaseConfig);
-      db = firebase.firestore();
-    }
-
     let myChart = null;
 
     function initAnalytics() {
