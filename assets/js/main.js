@@ -19,6 +19,87 @@
   let visibleLimit = 9;
   const lang = document.documentElement.lang || 'en';
 
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyD-gRc1DYHYnnWezRKLJwDx3Oxdg3LMHYk",
+    authDomain: "muhirabazram-portfolio.firebaseapp.com",
+    projectId: "muhirabazram-portfolio",
+    storageBucket: "muhirabazram-portfolio.firebasestorage.app",
+    messagingSenderId: "920807391822",
+    appId: "1:920807391822:web:a358e5a1bd65a0bd27b91f"
+  };
+
+  // Initialize Firebase (safely checks if SDK is loaded)
+  let db = null;
+  if (typeof firebase !== 'undefined') {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+  }
+
+  /**
+   * Browser Detection Helper
+   */
+  function getBrowserName() {
+    const userAgent = navigator.userAgent;
+    if (userAgent.includes("Firefox")) return "Mozilla Firefox";
+    if (userAgent.includes("SamsungBrowser")) return "Samsung Internet";
+    if (userAgent.includes("Opera") || userAgent.includes("OPR")) return "Opera";
+    if (userAgent.includes("Trident")) return "Internet Explorer";
+    if (userAgent.includes("Edge") || userAgent.includes("Edg")) return "Microsoft Edge";
+    if (userAgent.includes("Chrome")) return "Google Chrome";
+    if (userAgent.includes("Safari")) return "Safari";
+    return "Unknown Browser";
+  }
+
+  /**
+   * OS Detection Helper
+   */
+  function getOSName() {
+    const userAgent = navigator.userAgent;
+    const platform = navigator.platform || "";
+    
+    if (userAgent.includes("Android")) return "Android";
+    if (userAgent.includes("iPhone") || userAgent.includes("iPad") || userAgent.includes("iPod")) return "iOS";
+    
+    if (platform.startsWith("Win") || userAgent.includes("Windows")) return "Windows";
+    if (platform.startsWith("Mac") || userAgent.includes("Macintosh")) return "macOS";
+    if (platform.startsWith("Linux") || userAgent.includes("Linux")) return "Linux";
+    
+    return "Unknown OS";
+  }
+
+  /**
+   * Send Visitor Log to Firebase Firestore
+   */
+  function trackVisitor() {
+    if (!db) return;
+    
+    // Prevent tracking visits on admin dashboard
+    if (window.location.pathname.includes('admin.html')) return;
+    
+    // Avoid double tracking in the same session
+    const sessionKey = 'tracked_' + lang;
+    if (sessionStorage.getItem(sessionKey)) {
+      return; 
+    }
+    
+    try {
+      db.collection("visitor_logs").add({
+        page: lang === 'id' ? 'index-id.html' : 'index.html',
+        browser: getBrowserName(),
+        os: getOSName(),
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        userAgent: navigator.userAgent
+      }).then(() => {
+        sessionStorage.setItem(sessionKey, 'true');
+      }).catch(err => {
+        console.error("Error writing visitor log:", err);
+      });
+    } catch (e) {
+      console.error("Failed to track visitor:", e);
+    }
+  }
+
   /**
    * Header toggle
    */
@@ -965,6 +1046,7 @@
   // Fetch and populate portfolio once window load
   window.addEventListener('load', () => {
     fetchAndRenderPortfolio();
+    trackVisitor();
   });
 
   /**
