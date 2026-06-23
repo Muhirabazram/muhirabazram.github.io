@@ -434,21 +434,27 @@
   },
   {
     "id": "donor-darah",
-    "title": "Donor Darah",
+    "title": "BEM STMIK Bandung Blood Donation Aftermovie",
+    "title_en": "BEM STMIK Bandung Blood Donation Aftermovie",
+    "title_id": "BEM STMIK Bandung Blood Donation Aftermovie",
     "categories": [
       "video"
     ],
-    "desc_en": "Blood donation activity at STMIK Bandung",
-    "desc_id": "Kegiatan donor darah di STMIK Bandung",
-    "detailed_desc_en": "Documentation of blood donation activities carried out by the STMIK Bandung Student Executive Board.",
-    "detailed_desc_id": "Dokumentasi kegiatan donor darah yang dilakukan oleh Badan Eksekutif Mahasiswa STMIK Bandung.",
+    "desc_en": "Interview-Driven Interactive Event Documentary Video Editing",
+    "desc_id": "Penyuntingan Video Dokumentasi Interaktif Berbasis Wawancara Lapangan",
+    "detailed_desc_en": "This project involves the post-production work for the official aftermovie of the Blood Donation social event organized by the Student Executive Board (BEM) at STMIK Bandung. The video was crafted to serve as an informative visual report and engaging digital content for the campus social media platform.\n\nServing as the video editor using CapCut, I was responsible for processing live on-site footage and seamlessly integrating interactive interview segments featuring students, committee members, and faculty members. The core emphasis of this post-production workflow lay in audio balancing, dynamic clip pacing to maintain an engaging atmosphere, and precise subtitle overlay management. This project highlights my capability in managing after-event video production, where storytelling flow and clear message delivery are highly essential.",
+    "detailed_desc_id": "Proyek ini merupakan pembuatan video dokumentasi resmi (aftermovie) untuk kegiatan sosial Donor Darah yang diselenggarakan oleh Badan Eksekutif Mahasiswa (BEM) STMIK Bandung. Video ini dirancang sebagai laporan visual yang informatif sekaligus media publikasi kegiatan sosial kampus di platform digital.\n\nBertindak sebagai editor video menggunakan CapCut, saya bertanggung jawab mengolah cuplikan langsung di lokasi (on-site footage) serta mengintegrasikan segmen wawancara interaktif bersama para mahasiswa, panitia, hingga jajaran dosen. Fokus utama dalam proses pasca-produksi ini adalah menyelaraskan audio hasil wawancara, pemotongan klip yang dinamis agar suasana acara tetap terasa hidup, serta penambahan teks penjelas (subtitle/overlay text). Proyek ini membuktikan kapabilitas saya dalam manajemen konten video pasca-acara (after-event content) yang menuntut ketelitian alur cerita dan kualitas penyampaian pesan yang jelas.",
     "thumbnail": "assets/img/portfolio/donordarah.png",
     "media_type": "youtube",
     "media_url": "https://www.instagram.com/reel/DYJKCqrST8U/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     "project_url": "https://www.instagram.com/reel/DYJKCqrST8U/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    "date": "07 Mei 2026",
+    "date": "2026-05-07T12:00",
     "tools": [
-      "Capcut"
+      "CapCut",
+      "Video Editing",
+      "Event Aftermovie",
+      "Interview-Driven",
+      "Content Production"
     ],
     "slider_images": []
   },
