@@ -1,17 +1,13 @@
 [
   {
     "id": "web-dev",
-    "title_en": "Frontend & Web Dev",
-    "title_id": "Pengembangan Web & Frontend",
+    "title_en": "Frontend, Backend, & Web Dev",
+    "title_id": "Pengembangan Web, Frontend & Backend",
     "icon": "bi-code-slash",
     "items": [
       {
-        "name": "HTML",
+        "name": "HTML & CSS",
         "level": 80
-      },
-      {
-        "name": "CSS",
-        "level": 70
       },
       {
         "name": "JavaScript",
@@ -19,7 +15,11 @@
       },
       {
         "name": "PHP",
-        "level": 25
+        "level": 60
+      },
+      {
+        "name": "Laravel",
+        "level": 70
       }
     ]
   },
@@ -92,18 +92,6 @@
       {
         "name": "PixelLab",
         "level": 90
-      }
-    ]
-  },
-  {
-    "id": "tes",
-    "title_en": "test",
-    "title_id": "tes aja",
-    "icon": "bi bi-123",
-    "items": [
-      {
-        "name": "apa weh lah",
-        "level": 94
       }
     ]
   }
