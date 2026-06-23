@@ -5,10 +5,22 @@
     "title_id": "Pengembangan Web & Frontend",
     "icon": "bi-code-slash",
     "items": [
-      { "name": "HTML", "level": 80 },
-      { "name": "CSS", "level": 70 },
-      { "name": "JavaScript", "level": 65 },
-      { "name": "PHP", "level": 25 }
+      {
+        "name": "HTML",
+        "level": 80
+      },
+      {
+        "name": "CSS",
+        "level": 70
+      },
+      {
+        "name": "JavaScript",
+        "level": 65
+      },
+      {
+        "name": "PHP",
+        "level": 25
+      }
     ]
   },
   {
@@ -17,10 +29,22 @@
     "title_id": "Desain & Seni Vektor",
     "icon": "bi-bezier2",
     "items": [
-      { "name": "Photoshop", "level": 65 },
-      { "name": "Adobe Illustrator", "level": 65 },
-      { "name": "CorelDraw", "level": 75 },
-      { "name": "Canva", "level": 100 }
+      {
+        "name": "Photoshop",
+        "level": 65
+      },
+      {
+        "name": "Adobe Illustrator",
+        "level": 65
+      },
+      {
+        "name": "CorelDraw",
+        "level": 75
+      },
+      {
+        "name": "Canva",
+        "level": 100
+      }
     ]
   },
   {
@@ -29,10 +53,22 @@
     "title_id": "Produksi Media & Video",
     "icon": "bi-camera-reels",
     "items": [
-      { "name": "Adobe Lightroom", "level": 70 },
-      { "name": "Adobe Premiere", "level": 65 },
-      { "name": "After Effects", "level": 65 },
-      { "name": "Capcut", "level": 100 }
+      {
+        "name": "Adobe Lightroom",
+        "level": 70
+      },
+      {
+        "name": "Adobe Premiere",
+        "level": 65
+      },
+      {
+        "name": "After Effects",
+        "level": 65
+      },
+      {
+        "name": "Capcut",
+        "level": 100
+      }
     ]
   },
   {
@@ -41,10 +77,34 @@
     "title_id": "3D & Creative",
     "icon": "bi-vector-pen",
     "items": [
-      { "name": "Blender", "level": 80 },
-      { "name": "Adobe Animate", "level": 65 },
-      { "name": "IbisPaint", "level": 90 },
-      { "name": "PixelLab", "level": 90 }
+      {
+        "name": "Blender",
+        "level": 80
+      },
+      {
+        "name": "Adobe Animate",
+        "level": 65
+      },
+      {
+        "name": "IbisPaint",
+        "level": 90
+      },
+      {
+        "name": "PixelLab",
+        "level": 90
+      }
+    ]
+  },
+  {
+    "id": "tes",
+    "title_en": "test",
+    "title_id": "tes aja",
+    "icon": "bi bi-123",
+    "items": [
+      {
+        "name": "apa weh lah",
+        "level": 94
+      }
     ]
   }
 ]
