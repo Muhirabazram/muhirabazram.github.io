@@ -486,5 +486,27 @@
       "assets/img/portfolio/dasboardhrd.png",
       "assets/img/portfolio/dashboardpencari.png"
     ]
+  },
+  {
+    "id": "donor-darah-2",
+    "title": "Donor Darah 2",
+    "title_en": "Donor Darah 2",
+    "title_id": "Donor Darah 2",
+    "categories": [
+      "video"
+    ],
+    "desc_en": "Blood donation activity at STMIK Bandung",
+    "desc_id": "Kegiatan donor darah di STMIK Bandung",
+    "detailed_desc_en": "Documentation of blood donation activities carried out by the STMIK Bandung Student Executive Board.",
+    "detailed_desc_id": "Dokumentasi kegiatan donor darah yang dilakukan oleh Badan Eksekutif Mahasiswa STMIK Bandung.",
+    "thumbnail": "assets/img/portfolio/donordarah2.png",
+    "media_type": "youtube",
+    "media_url": "https://www.instagram.com/reel/DYJG70Hpbo8/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "project_url": "https://www.instagram.com/reel/DYJG70Hpbo8/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "date": "2026-05-07T12:00",
+    "tools": [
+      "Capcut"
+    ],
+    "slider_images": []
   }
 ]
