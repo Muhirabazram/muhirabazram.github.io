@@ -349,6 +349,11 @@
               <i class="bi bi-graph-up-arrow"></i> Visitor Analytics
             </button>
           </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="skills-tab" data-bs-toggle="tab" data-bs-target="#skills-pane" type="button" role="tab" aria-selected="false">
+              <i class="bi bi-person-workspace"></i> Manage Skills
+            </button>
+          </li>
         </ul>
 
         <div class="tab-content" id="adminTabsContent">
@@ -665,6 +670,47 @@
             </div>
           </div>
 
+          <!-- Pane 5: Manage Skills -->
+          <div class="tab-pane fade" id="skills-pane" role="tabpanel" tabindex="0">
+            <div class="glass-card mb-4">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div>
+                  <h3 class="mb-1 text-success"><i class="bi bi-person-workspace"></i> Skills Editor</h3>
+                  <p class="text-muted small mb-0">Kelola kategori dan item skill yang tampil pada halaman utama</p>
+                </div>
+                <div class="d-flex gap-2">
+                  <button id="btnNewCategory" class="btn btn-accent btn-sm">
+                    <i class="bi bi-plus-circle"></i> Tambah Kategori
+                  </button>
+                  <button id="btnCopySkillsJson" class="btn btn-outline-custom btn-sm">
+                    <i class="bi bi-copy"></i> Salin JSON
+                  </button>
+                  <button id="btnDownloadSkillsJson" class="btn btn-accent btn-sm">
+                    <i class="bi bi-download"></i> Unduh skills-data.json
+                  </button>
+                </div>
+              </div>
+
+              <div class="alert alert-info-custom mt-3 small mb-0 d-flex align-items-start gap-2">
+                <i class="bi bi-info-circle-fill text-success" style="font-size: 18px; margin-top:2px;"></i>
+                <div>
+                  <strong>Cara Menerapkan Pembaruan Skill:</strong><br>
+                  1. Klik tombol <strong>Unduh skills-data.json</strong> setelah melakukan perubahan.<br>
+                  2. Simpan berkas hasil unduh di folder proyek Anda pada: <strong><code>D:\Pribadi\web portofolio\muhirabazram2026\data\skills-data.json</code></strong> (gantikan berkas lama).<br>
+                  3. Segarkan halaman utama! Kategori dan tingkat keahlian baru akan langsung terupdate secara dinamis.
+                </div>
+              </div>
+            </div>
+
+            <!-- Skills Categories Grid -->
+            <div class="row g-4" id="skillsContainerAdmin">
+              <div class="col-12 text-center py-5 text-muted">
+                <div class="spinner-border text-success mb-3" role="status"></div>
+                <div>Memuat data keahlian...</div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -680,6 +726,77 @@
           </div>
           <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Modal -->
+  <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content glass-card p-4" style="background: rgba(18, 18, 18, 0.95); border: 1px solid var(--border-dark); border-radius: 15px;">
+        <div class="modal-header border-0 p-0 mb-4">
+          <h5 class="modal-title text-success fw-bold" id="categoryModalLabel"><i class="bi bi-folder-plus"></i> Kategori Keahlian</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="categoryForm">
+          <input type="hidden" id="categoryEditIndex" value="-1">
+          <div class="modal-body p-0">
+            <div class="mb-3">
+              <label for="catId" class="form-label">ID Kategori (Unique Slug)</label>
+              <input type="text" id="catId" class="form-control" placeholder="e.g. web-dev" required>
+            </div>
+            <div class="mb-3">
+              <label for="catTitleEn" class="form-label">Judul Kategori (English)</label>
+              <input type="text" id="catTitleEn" class="form-control" placeholder="e.g. Frontend & Web Dev" required>
+            </div>
+            <div class="mb-3">
+              <label for="catTitleId" class="form-label">Judul Kategori (Indonesian)</label>
+              <input type="text" id="catTitleId" class="form-control" placeholder="e.g. Pengembangan Web & Frontend" required>
+            </div>
+            <div class="mb-3">
+              <label for="catIcon" class="form-label">Icon Bootstrap (Class Name)</label>
+              <input type="text" id="catIcon" class="form-control" placeholder="e.g. bi-code-slash" required>
+              <div class="form-text text-muted small">Lihat ikon lengkap di <a href="https://icons.getbootstrap.com/" target="_blank" class="text-success">Bootstrap Icons</a></div>
+            </div>
+          </div>
+          <div class="modal-footer border-0 p-0 mt-4 d-flex gap-2">
+            <button type="button" class="btn btn-outline-custom flex-grow-1" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-accent flex-grow-1" id="btnSaveCategory">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skill Modal -->
+  <div class="modal fade" id="skillModal" tabindex="-1" aria-labelledby="skillModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content glass-card p-4" style="background: rgba(18, 18, 18, 0.95); border: 1px solid var(--border-dark); border-radius: 15px;">
+        <div class="modal-header border-0 p-0 mb-4">
+          <h5 class="modal-title text-success fw-bold" id="skillModalLabel"><i class="bi bi-journal-plus"></i> Detail Keahlian</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="skillForm">
+          <input type="hidden" id="skillCatIndex" value="-1">
+          <input type="hidden" id="skillEditIndex" value="-1">
+          <div class="modal-body p-0">
+            <div class="mb-3">
+              <label for="skillName" class="form-label">Nama Skill</label>
+              <input type="text" id="skillName" class="form-control" placeholder="e.g. React.js" required>
+            </div>
+            <div class="mb-3">
+              <label for="skillLevel" class="form-label">Tingkat Kemampuan / Persentase (%)</label>
+              <div class="d-flex align-items-center gap-3">
+                <input type="range" id="skillLevel" class="form-range flex-grow-1" min="0" max="100" value="80" oninput="this.nextElementSibling.value = this.value + '%'">
+                <output class="fw-bold text-success" style="min-width: 45px; text-align: right;">80%</output>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-0 p-0 mt-4 d-flex gap-2">
+            <button type="button" class="btn btn-outline-custom flex-grow-1" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-accent flex-grow-1" id="btnSaveSkill">Simpan</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -1149,6 +1266,283 @@
     const manageTabTrigger = document.querySelector('#manage-tab');
     manageTabTrigger.addEventListener('shown.bs.tab', renderManageList);
 
+    // ==========================================
+    // --- Skills Management Logic ---
+    // ==========================================
+    let skillsData = [];
+
+    // Load initial skills data from JSON
+    function loadInitialSkills() {
+      fetch('data/skills-data.json')
+        .then(res => {
+          if (!res.ok) throw new Error('File not found');
+          return res.json();
+        })
+        .then(data => {
+          skillsData = data;
+          renderSkillsAdmin();
+        })
+        .catch(err => {
+          console.error("Could not load skills-data.json. Starting with blank template.", err);
+          skillsData = [
+            {
+              "id": "web-dev",
+              "title_en": "Frontend & Web Dev",
+              "title_id": "Pengembangan Web & Frontend",
+              "icon": "bi-code-slash",
+              "items": []
+            }
+          ];
+          renderSkillsAdmin();
+        });
+    }
+
+    // Render skills editor categories and items
+    function renderSkillsAdmin() {
+      const container = document.getElementById('skillsContainerAdmin');
+      if (!container) return;
+
+      if (skillsData.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 text-center py-5 text-muted">
+            <i class="bi bi-folder-x" style="font-size: 3rem;"></i>
+            <div class="mt-2">Belum ada kategori skill. Silakan tambah kategori baru.</div>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      skillsData.forEach((category, catIdx) => {
+        html += `
+          <div class="col-xl-4 col-md-6">
+            <div class="glass-card h-100 d-flex flex-column mb-0" style="border: 1px solid var(--border-dark);">
+              
+              <!-- Card Header -->
+              <div class="d-flex justify-content-between align-items-start mb-3 pb-3" style="border-bottom: 1px solid var(--border-dark);">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="text-success" style="font-size: 1.5rem;"><i class="bi ${category.icon || 'bi-bookmark'}"></i></div>
+                  <div>
+                    <h5 class="mb-0 text-white">${category.title_en}</h5>
+                    <span class="text-muted small">${category.title_id || category.title_en}</span>
+                  </div>
+                </div>
+                <div class="d-flex gap-1">
+                  <button class="btn btn-outline-custom btn-sm p-1" onclick="editCategory(${catIdx})" title="Edit Kategori">
+                    <i class="bi bi-pencil-square" style="font-size: 0.9rem;"></i>
+                  </button>
+                  <button class="btn btn-outline-danger btn-sm p-1" onclick="deleteCategory(${catIdx})" style="border-color: rgba(220, 53, 69, 0.3); color: #ea868f;" title="Hapus Kategori">
+                    <i class="bi bi-trash" style="font-size: 0.9rem;"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card Body: Skills Items -->
+              <div class="flex-grow-1 mb-4">
+        `;
+
+        if (!category.items || category.items.length === 0) {
+          html += `
+            <div class="text-center py-4 text-muted small">
+              Tidak ada skill dalam kategori ini.
+            </div>
+          `;
+        } else {
+          category.items.forEach((skill, skillIdx) => {
+            html += `
+              <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="fw-bold text-white small">${skill.name}</span>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success-subtle text-success" style="font-size: 0.75rem; background-color: rgba(18, 218, 52, 0.1) !important;">${skill.level}%</span>
+                    <button class="btn btn-link text-muted p-0 lh-1" onclick="editSkill(${catIdx}, ${skillIdx})" title="Edit Skill"><i class="bi bi-pencil" style="font-size: 0.8rem;"></i></button>
+                    <button class="btn btn-link text-danger p-0 lh-1" onclick="deleteSkill(${catIdx}, ${skillIdx})" title="Hapus Skill"><i class="bi bi-x" style="font-size: 0.95rem;"></i></button>
+                  </div>
+                </div>
+                <div class="progress" style="height: 6px; background-color: rgba(255, 255, 255, 0.05); border-radius: 3px; overflow: hidden;">
+                  <div class="progress-bar" role="progressbar" style="width: ${skill.level}%; background-color: var(--accent-color);" aria-valuenow="${skill.level}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            `;
+          });
+        }
+
+        html += `
+              </div>
+
+              <!-- Card Footer: Add Skill Button -->
+              <div class="mt-auto">
+                <button class="btn btn-outline-custom btn-sm w-100 py-1.5" onclick="addNewSkill(${catIdx})">
+                  <i class="bi bi-plus-lg"></i> Tambah Skill
+                </button>
+              </div>
+
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    // Modal instances
+    let categoryModal = null;
+    let skillModal = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Instantiate Modals
+      categoryModal = new bootstrap.Modal(document.getElementById('categoryModal'));
+      skillModal = new bootstrap.Modal(document.getElementById('skillModal'));
+    });
+
+    // Add Category
+    document.getElementById('btnNewCategory').addEventListener('click', () => {
+      document.getElementById('categoryModalLabel').innerHTML = '<i class="bi bi-folder-plus"></i> Kategori Baru';
+      document.getElementById('categoryEditIndex').value = "-1";
+      document.getElementById('categoryForm').reset();
+      categoryModal.show();
+    });
+
+    // Edit Category
+    window.editCategory = function(index) {
+      const category = skillsData[index];
+      document.getElementById('categoryModalLabel').innerHTML = '<i class="bi bi-pencil-square"></i> Edit Kategori';
+      document.getElementById('categoryEditIndex').value = index;
+      document.getElementById('catId').value = category.id;
+      document.getElementById('catTitleEn').value = category.title_en;
+      document.getElementById('catTitleId').value = category.title_id || '';
+      document.getElementById('catIcon').value = category.icon || 'bi-bookmark';
+      categoryModal.show();
+    };
+
+    // Delete Category
+    window.deleteCategory = function(index) {
+      const category = skillsData[index];
+      if (confirm(`Apakah Anda yakin ingin menghapus kategori "${category.title_en}" beserta seluruh item skill di dalamnya?`)) {
+        skillsData.splice(index, 1);
+        renderSkillsAdmin();
+        showToast("Kategori berhasil dihapus!");
+      }
+    };
+
+    // Save Category Form Submit
+    document.getElementById('categoryForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const editIdx = parseInt(document.getElementById('categoryEditIndex').value);
+      const catIdValue = document.getElementById('catId').value.trim();
+      const catTitleEnValue = document.getElementById('catTitleEn').value.trim();
+      const catTitleIdValue = document.getElementById('catTitleId').value.trim();
+      const catIconValue = document.getElementById('catIcon').value.trim();
+
+      const newCat = {
+        id: catIdValue,
+        title_en: catTitleEnValue,
+        title_id: catTitleIdValue,
+        icon: catIconValue,
+        items: editIdx >= 0 ? (skillsData[editIdx].items || []) : []
+      };
+
+      if (editIdx >= 0) {
+        skillsData[editIdx] = newCat;
+        showToast("Kategori berhasil diperbarui!");
+      } else {
+        skillsData.push(newCat);
+        showToast("Kategori baru berhasil ditambahkan!");
+      }
+
+      categoryModal.hide();
+      renderSkillsAdmin();
+    });
+
+    // Add Skill Trigger
+    window.addNewSkill = function(catIdx) {
+      document.getElementById('skillModalLabel').innerHTML = `<i class="bi bi-journal-plus"></i> Tambah Keahlian ke "${skillsData[catIdx].title_en}"`;
+      document.getElementById('skillCatIndex').value = catIdx;
+      document.getElementById('skillEditIndex').value = "-1";
+      document.getElementById('skillForm').reset();
+      document.querySelector('#skillForm output').value = "80%";
+      skillModal.show();
+    };
+
+    // Edit Skill Trigger
+    window.editSkill = function(catIdx, skillIdx) {
+      const skill = skillsData[catIdx].items[skillIdx];
+      document.getElementById('skillModalLabel').innerHTML = `<i class="bi bi-pencil"></i> Edit Keahlian`;
+      document.getElementById('skillCatIndex').value = catIdx;
+      document.getElementById('skillEditIndex').value = skillIdx;
+      document.getElementById('skillName').value = skill.name;
+      document.getElementById('skillLevel').value = skill.level;
+      document.querySelector('#skillForm output').value = skill.level + "%";
+      skillModal.show();
+    };
+
+    // Delete Skill
+    window.deleteSkill = function(catIdx, skillIdx) {
+      const skill = skillsData[catIdx].items[skillIdx];
+      if (confirm(`Apakah Anda yakin ingin menghapus skill "${skill.name}"?`)) {
+        skillsData[catIdx].items.splice(skillIdx, 1);
+        renderSkillsAdmin();
+        showToast("Skill berhasil dihapus!");
+      }
+    };
+
+    // Save Skill Form Submit
+    document.getElementById('skillForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const catIdx = parseInt(document.getElementById('skillCatIndex').value);
+      const editIdx = parseInt(document.getElementById('skillEditIndex').value);
+      const skillNameValue = document.getElementById('skillName').value.trim();
+      const skillLevelValue = parseInt(document.getElementById('skillLevel').value);
+
+      const skillItem = {
+        name: skillNameValue,
+        level: skillLevelValue
+      };
+
+      if (editIdx >= 0) {
+        skillsData[catIdx].items[editIdx] = skillItem;
+        showToast("Skill berhasil diperbarui!");
+      } else {
+        if (!skillsData[catIdx].items) skillsData[catIdx].items = [];
+        skillsData[catIdx].items.push(skillItem);
+        showToast("Skill baru berhasil ditambahkan!");
+      }
+
+      skillModal.hide();
+      renderSkillsAdmin();
+    });
+
+    // Copy JSON Code
+    document.getElementById('btnCopySkillsJson').addEventListener('click', () => {
+      const jsonStr = JSON.stringify(skillsData, null, 2);
+      navigator.clipboard.writeText(jsonStr)
+        .then(() => showToast("JSON Keahlian disalin ke clipboard!"))
+        .catch(err => alert("Copy failed. Please manually select and copy."));
+    });
+
+    // Download JSON Code
+    document.getElementById('btnDownloadSkillsJson').addEventListener('click', () => {
+      const jsonStr = JSON.stringify(skillsData, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'skills-data.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast("Download triggered! Simpan sebagai 'skills-data.json' di dalam folder 'data/'.");
+    });
+
+    // Listen for tab focus changes to update skills view list
+    const skillsTabTrigger = document.querySelector('#skills-tab');
+    if (skillsTabTrigger) {
+      skillsTabTrigger.addEventListener('shown.bs.tab', renderSkillsAdmin);
+    }
+
     // --- Firebase Auth & Session Logic ---
     // Session Timeout configuration: 1 Hour (3,600,000 milliseconds)
     const SESSION_TIMEOUT_MS = 60 * 60 * 1000; 
@@ -1295,8 +1689,9 @@
           if (idleCheckInterval) clearInterval(idleCheckInterval);
           idleCheckInterval = setInterval(checkSessionTimeout, 10000); // Check every 10 seconds
           
-          // Load database and logs
+          // Load database, skills, and logs
           loadInitialDatabase();
+          loadInitialSkills();
           
           // Re-trigger active tab load if it's analytics
           const activeTab = document.querySelector('.nav-tabs .active');

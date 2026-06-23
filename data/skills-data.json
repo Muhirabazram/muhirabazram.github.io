@@ -1,0 +1,50 @@
+[
+  {
+    "id": "web-dev",
+    "title_en": "Frontend & Web Dev",
+    "title_id": "Pengembangan Web & Frontend",
+    "icon": "bi-code-slash",
+    "items": [
+      { "name": "HTML", "level": 80 },
+      { "name": "CSS", "level": 70 },
+      { "name": "JavaScript", "level": 65 },
+      { "name": "PHP", "level": 25 }
+    ]
+  },
+  {
+    "id": "design-art",
+    "title_en": "Design & Vector Art",
+    "title_id": "Desain & Seni Vektor",
+    "icon": "bi-bezier2",
+    "items": [
+      { "name": "Photoshop", "level": 65 },
+      { "name": "Adobe Illustrator", "level": 65 },
+      { "name": "CorelDraw", "level": 75 },
+      { "name": "Canva", "level": 100 }
+    ]
+  },
+  {
+    "id": "media-video",
+    "title_en": "Media & Video",
+    "title_id": "Produksi Media & Video",
+    "icon": "bi-camera-reels",
+    "items": [
+      { "name": "Adobe Lightroom", "level": 70 },
+      { "name": "Adobe Premiere", "level": 65 },
+      { "name": "After Effects", "level": 65 },
+      { "name": "Capcut", "level": 100 }
+    ]
+  },
+  {
+    "id": "three-d-creative",
+    "title_en": "3D & Creative",
+    "title_id": "3D & Creative",
+    "icon": "bi-vector-pen",
+    "items": [
+      { "name": "Blender", "level": 80 },
+      { "name": "Adobe Animate", "level": 65 },
+      { "name": "IbisPaint", "level": 90 },
+      { "name": "PixelLab", "level": 90 }
+    ]
+  }
+]

@@ -142,9 +142,43 @@
    * Preloader
    */
   const preloader = document.querySelector('#preloader');
+  const percentageEl = document.querySelector('#load-percentage');
   if (preloader) {
+    let currentPercent = 0;
+    let loaded = false;
+
+    // Simulate progress
+    const progressInterval = setInterval(() => {
+      if (!loaded) {
+        if (currentPercent < 90) {
+          // Increment progress randomly
+          currentPercent += Math.floor(Math.random() * 5) + 1;
+          if (currentPercent > 90) currentPercent = 90;
+          if (percentageEl) percentageEl.textContent = `${currentPercent}%`;
+        }
+      } else {
+        // When loaded, complete to 100%
+        clearInterval(progressInterval);
+        const completeInterval = setInterval(() => {
+          if (currentPercent < 100) {
+            currentPercent += 5;
+            if (currentPercent > 100) currentPercent = 100;
+            if (percentageEl) percentageEl.textContent = `${currentPercent}%`;
+          } else {
+            clearInterval(completeInterval);
+            setTimeout(() => {
+              preloader.style.opacity = '0';
+              setTimeout(() => {
+                preloader.remove();
+              }, 600);
+            }, 300);
+          }
+        }, 30);
+      }
+    }, 100);
+
     window.addEventListener('load', () => {
-      preloader.remove();
+      loaded = true;
     });
   }
 
@@ -209,21 +243,8 @@
   }
 
   /**
-   * Animate the skills items on reveal
+   * Animate the skills items on reveal (Registered inside fetchAndRenderSkills to avoid race conditions)
    */
-  let skillsAnimation = document.querySelectorAll('.skills-animation');
-  skillsAnimation.forEach((item) => {
-    new Waypoint({
-      element: item,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = item.querySelectorAll('.progress .progress-bar');
-        progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
-        });
-      }
-    });
-  });
 
   /**
    * Language Switcher Dropdown Handler
@@ -1043,8 +1064,80 @@
       });
   }
 
-  // Fetch and populate portfolio once window load
+  /**
+   * Fetch JSON & Dynamically Build Skills Items
+   */
+  function fetchAndRenderSkills() {
+    const skillsContainer = document.getElementById('skills-container');
+    if (!skillsContainer) return;
+
+    const lang = document.documentElement.lang || 'en';
+
+    fetch('data/skills-data.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch skills data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        let html = '';
+        data.forEach(category => {
+          const title = lang === 'id' ? (category.title_id || category.title_en) : category.title_en;
+          
+          html += `
+            <div class="col-xl-3 col-md-6">
+              <div class="skills-category-card h-100">
+                <div class="skills-category-header">
+                  <div class="skills-category-icon"><i class="bi ${category.icon}"></i></div>
+                  <h3 class="skills-category-title">${title}</h3>
+                </div>
+                <div class="skills-category-body">
+          `;
+
+          category.items.forEach(skill => {
+            html += `
+                  <div class="progress">
+                    <span class="skill"><span>${skill.name}</span> <i class="val">${skill.level}%</i></span>
+                    <div class="progress-bar-wrap">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="${skill.level}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+            `;
+          });
+
+          html += `
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        skillsContainer.innerHTML = html;
+
+        // Initialize Waypoints for progress animation dynamically
+        let skillsAnimation = document.querySelectorAll('.skills-animation');
+        skillsAnimation.forEach((item) => {
+          new Waypoint({
+            element: item,
+            offset: '80%',
+            handler: function(direction) {
+              let progress = item.querySelectorAll('.progress .progress-bar');
+              progress.forEach(el => {
+                el.style.width = el.getAttribute('aria-valuenow') + '%';
+              });
+            }
+          });
+        });
+      })
+      .catch(err => {
+        console.error('Error loading skills:', err);
+      });
+  }
+
+  // Fetch and populate portfolio and skills once window load
   window.addEventListener('load', () => {
+    fetchAndRenderSkills();
     fetchAndRenderPortfolio();
     trackVisitor();
   });
