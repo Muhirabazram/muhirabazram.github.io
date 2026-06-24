@@ -648,5 +648,31 @@
       "Social Media Production"
     ],
     "slider_images": []
+  },
+  {
+    "id": "babakaran-sate",
+    "title": "Casual Gathering Aftermovie: Backyard BBQ Cinematic",
+    "title_en": "Casual Gathering Aftermovie: Backyard BBQ Cinematic",
+    "title_id": "Casual Gathering Aftermovie: Backyard BBQ Cinematic",
+    "categories": [
+      "video"
+    ],
+    "desc_en": "Casual Video Editing Featuring Audio Beats-Sync Techniques and Creative Transitions",
+    "desc_id": "Penyuntingan Video Kasual dengan Teknik Audio Beats-Sync dan Transisi Kreatif",
+    "detailed_desc_en": "This video project is a casual aftermovie documenting a barbecue gathering with friends at a home backyard. The creative core of this piece focuses on exploring dynamic, high-energy visuals that align perfectly with modern social media content trends.\n\nUtilizing CapCut as the primary editing platform, the post-production workflow heavily emphasizes precise audio beats-syncing and the implementation of diverse, unique video transitions throughout the entire timeline. The creative direction was inspired by analyzing popular reference videos, which I then independently adapted and modified to craft a fresh, original editing style that effectively maximizes viewer engagement.",
+    "detailed_desc_id": "Proyek video ini merupakan sebuah aftermovie kasual yang mendokumentasikan momen kebersamaan dan aktivitas membakar sate bersama teman-teman di area rumah. Fokus utama dari proyek ini adalah mengeksplorasi estetika visual yang dinamis, seru, dan adaptif terhadap tren konten media sosial masa kini.\n\nMenggunakan CapCut sebagai alat penyuntingan utama, alur kerja pasca-produksi ditekankan pada ketepatan sinkronisasi antara potongan klip dengan ketukan musik (audio beats-sync), serta penerapan berbagai transisi video yang unik dan variatif dari awal hingga akhir acara. Proses kreatif proyek ini terinspirasi dari hasil analisis video referensi populer yang kemudian saya kembangkan dan modifikasi secara mandiri guna menciptakan gaya penyuntingan yang orisinal, segar, dan mampu mempertahankan ketertarikan audiens.",
+    "thumbnail": "assets/img/portfolio/babakaransate.png",
+    "media_type": "drive_video",
+    "media_url": "https://drive.google.com/file/d/1_8YYp42L6TafsSOyicpycQH1EcgoE7uk/view?usp=drive_link",
+    "project_url": "https://drive.google.com/file/d/1_8YYp42L6TafsSOyicpycQH1EcgoE7uk/view?usp=drive_link",
+    "date": "2026-06-06T21:00",
+    "tools": [
+      "CapCut",
+      "Video Editing",
+      "Beats-Sync",
+      "Creative Transitions",
+      "Cinematic Aftermovie"
+    ],
+    "slider_images": []
   }
 ]
