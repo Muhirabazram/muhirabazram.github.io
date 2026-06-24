@@ -626,7 +626,7 @@
               <!-- Distribution Lists (Browser & OS) -->
               <div class="col-lg-4 mb-4">
                 <div class="glass-card h-100 mb-0">
-                  <h5 class="mb-3"><i class="bi bi-laptop-fill text-success"></i> Demografi Perangkat</h5>
+                  <h5 class="mb-3"><i class="bi bi-laptop-fill text-success"></i> Demografi Pengunjung</h5>
                   
                   <h6 class="text-muted small mb-2">Browser Terbanyak</h6>
                   <div id="browserDistribution" class="mb-4">
@@ -634,8 +634,13 @@
                   </div>
 
                   <h6 class="text-muted small mb-2">Sistem Operasi</h6>
-                  <div id="osDistribution">
+                  <div id="osDistribution" class="mb-4">
                     <div class="text-center py-4 text-muted small">Loading OS stats...</div>
+                  </div>
+
+                  <h6 class="text-muted small mb-2">Lokasi Terbanyak (Negara)</h6>
+                  <div id="locationDistribution">
+                    <div class="text-center py-4 text-muted small">Loading location stats...</div>
                   </div>
                 </div>
               </div>
@@ -655,14 +660,15 @@
                     <tr>
                       <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Waktu</th>
                       <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Halaman</th>
+                      <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Lokasi</th>
                       <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Browser</th>
                       <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Sistem Operasi</th>
-                      <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted); width: 35%;">User Agent</th>
+                      <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted); width: 25%;">User Agent</th>
                     </tr>
                   </thead>
                   <tbody id="visitorLogsTableBody">
                     <tr>
-                      <td colspan="5" class="text-center text-muted py-4">Memuat log kunjungan...</td>
+                      <td colspan="6" class="text-center text-muted py-4">Memuat log kunjungan...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1736,12 +1742,14 @@
       const logsTableBody = document.getElementById('visitorLogsTableBody');
       const browserDiv = document.getElementById('browserDistribution');
       const osDiv = document.getElementById('osDistribution');
+      const locationDiv = document.getElementById('locationDistribution');
       
       if (logsTableBody) {
-        logsTableBody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-4"><span class="spinner-border spinner-border-sm me-2"></span>Memuat data analitik...</td></tr>`;
+        logsTableBody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-4"><span class="spinner-border spinner-border-sm me-2"></span>Memuat data analitik...</td></tr>`;
       }
       if (browserDiv) browserDiv.innerHTML = `<div class="text-center py-4 text-muted small"><span class="spinner-border spinner-border-sm me-2"></span>Memuat...</div>`;
       if (osDiv) osDiv.innerHTML = `<div class="text-center py-4 text-muted small"><span class="spinner-border spinner-border-sm me-2"></span>Memuat...</div>`;
+      if (locationDiv) locationDiv.innerHTML = `<div class="text-center py-4 text-muted small"><span class="spinner-border spinner-border-sm me-2"></span>Memuat...</div>`;
 
       try {
         const snapshot = await db.collection("visitor_logs")
@@ -1762,7 +1770,9 @@
             browser: data.browser || 'Unknown',
             os: data.os || 'Unknown',
             timestamp: dateObj,
-            userAgent: data.userAgent || '-'
+            userAgent: data.userAgent || '-',
+            city: data.city || '',
+            country: data.country || ''
           });
         });
 
@@ -1770,7 +1780,7 @@
       } catch (err) {
         console.error("Error loading analytics data:", err);
         if (logsTableBody) {
-          logsTableBody.innerHTML = `<tr><td colspan="5" class="text-center text-danger py-4"><i class="bi bi-exclamation-triangle"></i> Gagal mengambil data: ${err.message}</td></tr>`;
+          logsTableBody.innerHTML = `<tr><td colspan="6" class="text-center text-danger py-4"><i class="bi bi-exclamation-triangle"></i> Gagal mengambil data: ${err.message}</td></tr>`;
         }
       }
     }
@@ -1810,7 +1820,7 @@
       const logsTableBody = document.getElementById('visitorLogsTableBody');
       if (logsTableBody) {
         if (logs.length === 0) {
-          logsTableBody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-4">Belum ada kunjungan yang tercatat.</td></tr>`;
+          logsTableBody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-4">Belum ada kunjungan yang tercatat.</td></tr>`;
         } else {
           logsTableBody.innerHTML = logs.map(log => {
             const timeStr = log.timestamp 
@@ -1820,13 +1830,24 @@
               ? '<span class="badge bg-primary-subtle text-primary border border-primary-subtle">ID</span>' 
               : '<span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">EN</span>';
             
+            let locationStr = '-';
+            if (log.city || log.country) {
+              locationStr = `<i class="bi bi-geo-alt-fill text-danger me-1"></i> `;
+              if (log.city && log.country) {
+                locationStr += `${log.city}, ${log.country}`;
+              } else {
+                locationStr += `${log.city || log.country}`;
+              }
+            }
+
             return `
               <tr>
                 <td>${timeStr}</td>
                 <td>${pageBadge} ${log.page}</td>
+                <td class="small text-white">${locationStr}</td>
                 <td><i class="bi bi-browser-chrome me-1 text-success"></i> ${log.browser}</td>
                 <td><i class="bi bi-laptop me-1 text-info"></i> ${log.os}</td>
-                <td class="text-truncate small text-muted" style="max-width: 250px;" title="${log.userAgent}">${log.userAgent}</td>
+                <td class="text-truncate small text-muted" style="max-width: 200px;" title="${log.userAgent}">${log.userAgent}</td>
               </tr>
             `;
           }).join('');
@@ -1835,14 +1856,19 @@
 
       const browserCounts = {};
       const osCounts = {};
+      const locationCounts = {};
 
       logs.forEach(log => {
         browserCounts[log.browser] = (browserCounts[log.browser] || 0) + 1;
         osCounts[log.os] = (osCounts[log.os] || 0) + 1;
+        
+        const country = log.country || 'Unknown';
+        locationCounts[country] = (locationCounts[country] || 0) + 1;
       });
 
       renderDistributionList('browserDistribution', browserCounts, totalVisits, 'bi-browser-chrome');
       renderDistributionList('osDistribution', osCounts, totalVisits, 'bi-laptop');
+      renderDistributionList('locationDistribution', locationCounts, totalVisits, 'bi-geo-alt-fill');
 
       drawTrendsChart(logs);
       
@@ -1975,16 +2001,18 @@
       }
 
       let csvContent = "data:text/csv;charset=utf-8,";
-      csvContent += "ID Dokumen,Waktu Kunjungan,Halaman,Browser,Sistem Operasi,User Agent\r\n";
+      csvContent += "ID Dokumen,Waktu Kunjungan,Halaman,Kota,Negara,Browser,Sistem Operasi,User Agent\r\n";
 
       logs.forEach(log => {
         const id = log.id;
         const time = log.timestamp ? log.timestamp.toISOString() : '';
         const page = log.page;
+        const city = (log.city || '').replace(/"/g, '""');
+        const country = (log.country || '').replace(/"/g, '""');
         const browser = log.browser;
         const os = log.os;
         const ua = log.userAgent.replace(/"/g, '""');
-        csvContent += `"${id}","${time}","${page}","${browser}","${os}","${ua}"\r\n`;
+        csvContent += `"${id}","${time}","${page}","${city}","${country}","${browser}","${os}","${ua}"\r\n`;
       });
 
       const encodedUri = encodeURI(csvContent);

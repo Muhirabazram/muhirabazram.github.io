@@ -69,7 +69,7 @@
   }
 
   /**
-   * Send Visitor Log to Firebase Firestore
+   * Send Visitor Log to Firebase Firestore with Geolocation
    */
   function trackVisitor() {
     if (!db) return;
@@ -82,22 +82,46 @@
     if (sessionStorage.getItem(sessionKey)) {
       return; 
     }
-    
-    try {
-      db.collection("visitor_logs").add({
-        page: lang === 'id' ? 'index-id.html' : 'index.html',
-        browser: getBrowserName(),
-        os: getOSName(),
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        userAgent: navigator.userAgent
-      }).then(() => {
-        sessionStorage.setItem(sessionKey, 'true');
-      }).catch(err => {
-        console.error("Error writing visitor log:", err);
-      });
-    } catch (e) {
-      console.error("Failed to track visitor:", e);
+
+    // Sub-function to write data to Firestore
+    function saveVisitorLog(city, country) {
+      try {
+        db.collection("visitor_logs").add({
+          page: lang === 'id' ? 'index-id.html' : 'index.html',
+          browser: getBrowserName(),
+          os: getOSName(),
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          userAgent: navigator.userAgent,
+          city: city || '',
+          country: country || ''
+        }).then(() => {
+          sessionStorage.setItem(sessionKey, 'true');
+        }).catch(err => {
+          console.error("Error writing visitor log:", err);
+        });
+      } catch (e) {
+        console.error("Failed to track visitor:", e);
+      }
     }
+
+    // Fetch location with a 4-second timeout
+    const fetchPromise = fetch('https://ipapi.co/json/');
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Timeout fetching location')), 4000)
+    );
+
+    Promise.race([fetchPromise, timeoutPromise])
+      .then(res => {
+        if (!res.ok) throw new Error('Location API responded with error');
+        return res.json();
+      })
+      .then(locData => {
+        saveVisitorLog(locData.city, locData.country_name);
+      })
+      .catch(err => {
+        console.warn("Could not retrieve IP location, logging visitor without location:", err);
+        saveVisitorLog('', '');
+      });
   }
 
   /**
