@@ -69,7 +69,7 @@
   }
 
   /**
-   * Send Visitor Log to Firebase Firestore with Geolocation
+   * Send Visitor Log to Firebase Firestore with Advanced Geolocation & Analytics
    */
   function trackVisitor() {
     if (!db) return;
@@ -83,6 +83,42 @@
       return; 
     }
 
+    // Parse referrer source
+    function getReferrerSource() {
+      const ref = document.referrer;
+      if (!ref) return 'Direct Link';
+      try {
+        const url = new URL(ref);
+        const host = url.hostname.toLowerCase();
+        if (host.includes('linkedin.com') || host.includes('lnkd.in')) return 'LinkedIn';
+        if (host.includes('github.com')) return 'GitHub';
+        if (host.includes('google.')) return 'Google Search';
+        if (host.includes('t.co') || host.includes('twitter.com') || host.includes('x.com')) return 'Twitter/X';
+        if (host.includes('facebook.com') || host.includes('fb.me')) return 'Facebook';
+        if (host.includes('instagram.com')) return 'Instagram';
+        if (host.includes('youtube.com') || host.includes('youtu.be')) return 'YouTube';
+        return host.startsWith('www.') ? host.slice(4) : host;
+      } catch (e) {
+        return 'External Link';
+      }
+    }
+
+    // Track New vs Returning Visitor
+    function getVisitorStatus() {
+      let isNew = false;
+      let uuid = localStorage.getItem('visitor_uuid');
+      if (!uuid) {
+        isNew = true;
+        uuid = 'v_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem('visitor_uuid', uuid);
+      }
+      return isNew;
+    }
+
+    const isNewVisitor = getVisitorStatus();
+    const referrerSource = getReferrerSource();
+    const timezoneVal = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unknown';
+
     // Sub-function to write data to Firestore
     function saveVisitorLog(city, country) {
       try {
@@ -93,7 +129,10 @@
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           userAgent: navigator.userAgent,
           city: city || '',
-          country: country || ''
+          country: country || '',
+          referrer: referrerSource,
+          timezone: timezoneVal,
+          isNew: isNewVisitor
         }).then(() => {
           sessionStorage.setItem(sessionKey, 'true');
         }).catch(err => {

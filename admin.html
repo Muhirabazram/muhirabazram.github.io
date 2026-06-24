@@ -639,8 +639,13 @@
                   </div>
 
                   <h6 class="text-muted small mb-2">Lokasi Terbanyak (Negara)</h6>
-                  <div id="locationDistribution">
+                  <div id="locationDistribution" class="mb-4">
                     <div class="text-center py-4 text-muted small">Loading location stats...</div>
+                  </div>
+
+                  <h6 class="text-muted small mb-2">Sumber Terbanyak</h6>
+                  <div id="referrerDistribution">
+                    <div class="text-center py-4 text-muted small">Loading source stats...</div>
                   </div>
                 </div>
               </div>
@@ -658,17 +663,18 @@
                 <table class="table table-dark table-hover align-middle mb-0" style="border: 1px solid var(--border-dark);">
                   <thead>
                     <tr>
-                      <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Waktu</th>
+                      <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted); width: 180px;">Waktu</th>
                       <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Halaman</th>
                       <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Lokasi</th>
+                      <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Sumber</th>
                       <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Browser</th>
                       <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted);">Sistem Operasi</th>
-                      <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted); width: 25%;">User Agent</th>
+                      <th scope="col" style="border-bottom: 2px solid var(--border-dark); color: var(--text-muted); width: 20%;">User Agent</th>
                     </tr>
                   </thead>
                   <tbody id="visitorLogsTableBody">
                     <tr>
-                      <td colspan="6" class="text-center text-muted py-4">Memuat log kunjungan...</td>
+                      <td colspan="7" class="text-center text-muted py-4">Memuat log kunjungan...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1743,13 +1749,15 @@
       const browserDiv = document.getElementById('browserDistribution');
       const osDiv = document.getElementById('osDistribution');
       const locationDiv = document.getElementById('locationDistribution');
+      const referrerDiv = document.getElementById('referrerDistribution');
       
       if (logsTableBody) {
-        logsTableBody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-4"><span class="spinner-border spinner-border-sm me-2"></span>Memuat data analitik...</td></tr>`;
+        logsTableBody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-4"><span class="spinner-border spinner-border-sm me-2"></span>Memuat data analitik...</td></tr>`;
       }
       if (browserDiv) browserDiv.innerHTML = `<div class="text-center py-4 text-muted small"><span class="spinner-border spinner-border-sm me-2"></span>Memuat...</div>`;
       if (osDiv) osDiv.innerHTML = `<div class="text-center py-4 text-muted small"><span class="spinner-border spinner-border-sm me-2"></span>Memuat...</div>`;
       if (locationDiv) locationDiv.innerHTML = `<div class="text-center py-4 text-muted small"><span class="spinner-border spinner-border-sm me-2"></span>Memuat...</div>`;
+      if (referrerDiv) referrerDiv.innerHTML = `<div class="text-center py-4 text-muted small"><span class="spinner-border spinner-border-sm me-2"></span>Memuat...</div>`;
 
       try {
         const snapshot = await db.collection("visitor_logs")
@@ -1772,7 +1780,10 @@
             timestamp: dateObj,
             userAgent: data.userAgent || '-',
             city: data.city || '',
-            country: data.country || ''
+            country: data.country || '',
+            referrer: data.referrer || 'Direct Link',
+            timezone: data.timezone || 'Unknown',
+            isNew: data.isNew !== undefined ? data.isNew : true
           });
         });
 
@@ -1780,7 +1791,7 @@
       } catch (err) {
         console.error("Error loading analytics data:", err);
         if (logsTableBody) {
-          logsTableBody.innerHTML = `<tr><td colspan="6" class="text-center text-danger py-4"><i class="bi bi-exclamation-triangle"></i> Gagal mengambil data: ${err.message}</td></tr>`;
+          logsTableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger py-4"><i class="bi bi-exclamation-triangle"></i> Gagal mengambil data: ${err.message}</td></tr>`;
         }
       }
     }
@@ -1820,7 +1831,7 @@
       const logsTableBody = document.getElementById('visitorLogsTableBody');
       if (logsTableBody) {
         if (logs.length === 0) {
-          logsTableBody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-4">Belum ada kunjungan yang tercatat.</td></tr>`;
+          logsTableBody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-4">Belum ada kunjungan yang tercatat.</td></tr>`;
         } else {
           logsTableBody.innerHTML = logs.map(log => {
             const timeStr = log.timestamp 
@@ -1830,6 +1841,9 @@
               ? '<span class="badge bg-primary-subtle text-primary border border-primary-subtle">ID</span>' 
               : '<span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">EN</span>';
             
+            const isNewLog = log.isNew !== undefined ? log.isNew : true;
+            const statusBadge = `<span class="badge ${isNewLog ? 'bg-success-subtle text-success' : 'bg-primary-subtle text-primary'} border" style="font-size: 0.7rem; padding: 1px 5px; margin-top: 3px; display: inline-block;">${isNewLog ? 'Baru' : 'Lama'}</span>`;
+
             let locationStr = '-';
             if (log.city || log.country) {
               locationStr = `<i class="bi bi-geo-alt-fill text-danger me-1"></i> `;
@@ -1838,16 +1852,35 @@
               } else {
                 locationStr += `${log.city || log.country}`;
               }
+            } else if (log.timezone && log.timezone !== 'Unknown') {
+              locationStr = `<i class="bi bi-globe2 text-warning me-1"></i> <span class="text-muted small">${log.timezone}</span>`;
             }
+
+            const referrerIcons = {
+              'LinkedIn': 'bi-linkedin text-info',
+              'GitHub': 'bi-github text-light',
+              'Google Search': 'bi-google text-danger',
+              'Twitter/X': 'bi-twitter-x text-light',
+              'Facebook': 'bi-facebook text-primary',
+              'Instagram': 'bi-instagram text-danger',
+              'YouTube': 'bi-youtube text-danger',
+              'Direct Link': 'bi-link-45deg text-success'
+            };
+            const refIcon = referrerIcons[log.referrer] || 'bi-box-arrow-up-right text-muted';
+            const refHtml = `<i class="bi ${refIcon} me-1"></i> ${log.referrer || 'Direct Link'}`;
 
             return `
               <tr>
-                <td>${timeStr}</td>
+                <td>
+                  <div>${timeStr}</div>
+                  ${statusBadge}
+                </td>
                 <td>${pageBadge} ${log.page}</td>
                 <td class="small text-white">${locationStr}</td>
+                <td class="small text-white">${refHtml}</td>
                 <td><i class="bi bi-browser-chrome me-1 text-success"></i> ${log.browser}</td>
                 <td><i class="bi bi-laptop me-1 text-info"></i> ${log.os}</td>
-                <td class="text-truncate small text-muted" style="max-width: 200px;" title="${log.userAgent}">${log.userAgent}</td>
+                <td class="text-truncate small text-muted" style="max-width: 150px;" title="${log.userAgent}">${log.userAgent}</td>
               </tr>
             `;
           }).join('');
@@ -1857,6 +1890,7 @@
       const browserCounts = {};
       const osCounts = {};
       const locationCounts = {};
+      const referrerCounts = {};
 
       logs.forEach(log => {
         browserCounts[log.browser] = (browserCounts[log.browser] || 0) + 1;
@@ -1864,11 +1898,15 @@
         
         const country = log.country || 'Unknown';
         locationCounts[country] = (locationCounts[country] || 0) + 1;
+
+        const ref = log.referrer || 'Direct Link';
+        referrerCounts[ref] = (referrerCounts[ref] || 0) + 1;
       });
 
       renderDistributionList('browserDistribution', browserCounts, totalVisits, 'bi-browser-chrome');
       renderDistributionList('osDistribution', osCounts, totalVisits, 'bi-laptop');
       renderDistributionList('locationDistribution', locationCounts, totalVisits, 'bi-geo-alt-fill');
+      renderDistributionList('referrerDistribution', referrerCounts, totalVisits, 'bi-link-45deg');
 
       drawTrendsChart(logs);
       
@@ -2001,7 +2039,7 @@
       }
 
       let csvContent = "data:text/csv;charset=utf-8,";
-      csvContent += "ID Dokumen,Waktu Kunjungan,Halaman,Kota,Negara,Browser,Sistem Operasi,User Agent\r\n";
+      csvContent += "ID Dokumen,Waktu Kunjungan,Halaman,Kota,Negara,Zona Waktu,Sumber Kunjungan,Status Pengunjung,Browser,Sistem Operasi,User Agent\r\n";
 
       logs.forEach(log => {
         const id = log.id;
@@ -2009,10 +2047,14 @@
         const page = log.page;
         const city = (log.city || '').replace(/"/g, '""');
         const country = (log.country || '').replace(/"/g, '""');
+        const tz = (log.timezone || 'Unknown').replace(/"/g, '""');
+        const ref = (log.referrer || 'Direct Link').replace(/"/g, '""');
+        const isNewLog = log.isNew !== undefined ? log.isNew : true;
+        const status = isNewLog ? "Baru" : "Lama";
         const browser = log.browser;
         const os = log.os;
         const ua = log.userAgent.replace(/"/g, '""');
-        csvContent += `"${id}","${time}","${page}","${city}","${country}","${browser}","${os}","${ua}"\r\n`;
+        csvContent += `"${id}","${time}","${page}","${city}","${country}","${tz}","${ref}","${status}","${browser}","${os}","${ua}"\r\n`;
       });
 
       const encodedUri = encodeURI(csvContent);
