@@ -93,21 +93,27 @@
   },
   {
     "id": "hima-if-banner",
-    "title": "Canva",
+    "title": "HIMA IF Campus Gathering Banner Design",
+    "title_en": "HIMA IF Campus Gathering Banner Design",
+    "title_id": "HIMA IF Campus Gathering Banner Design",
     "categories": [
       "design"
     ],
-    "desc_en": "Banner for the Gathering Night Event of the Informatics Student Association (HIMA IF)",
-    "desc_id": "Spanduk untuk Acara Malam Keakraban Himpunan Mahasiswa Informatika (HIMA IF)",
-    "detailed_desc_en": "Official promotional banner designed with Canva for the Informatics Student Association (HIMA IF) Gathering Night event.",
-    "detailed_desc_id": "Spanduk promosi resmi yang dirancang dengan Canva untuk acara Malam Keakraban Himpunan Mahasiswa Informatika (HIMA IF).",
+    "desc_en": "Large-Scale Print Banner Design for Student Gathering Event",
+    "desc_id": "Perancangan Spanduk Cetak Skala Besar untuk Malam Keakraban Mahasiswa",
+    "detailed_desc_en": "This graphic design project involves the creation of the official printed banner used as the primary visual element for the Informatics Student Association (HIMA IF) Gathering Event in 2025. This large-scale print media was crafted to cultivate a strong event atmosphere while reinforcing the organization's communal identity.\n\nDeveloped utilizing Canva, the creative process focused on print layout management, integrating official institutional logos, and aligning the collective group photography of the association members. By combining dynamic typography with a textured background design, the banner was precisely engineered to ensure high text readability and aesthetic appeal when deployed as an on-site physical backdrop.",
+    "detailed_desc_id": "Proyek desain grafis ini merupakan perancangan spanduk (banner) resmi yang digunakan sebagai elemen visual utama pada acara Malam Keakraban Himpunan Mahasiswa Informatika (HIMA IF) periode 2025. Media cetak skala besar ini berfungsi untuk membangun atmosfer acara yang solid sekaligus memperkuat identitas komunal organisasi.\n\nMenggunakan Canva sebagai platform eksekusi utama, proses kreatif difokuskan pada manajemen layout cetak, pengintegrasian elemen logo resmi institusi, serta penyelarasan komposisi foto bersama anggota himpunan. Dengan mengombinasikan tipografi yang dinamis dan penataan latar belakang yang bertekstur, spanduk ini dirancang secara presisi untuk memastikan keterbacaan teks yang tinggi serta visual yang estetik saat diimplementasikan langsung di lokasi acara (on-site print media).",
     "thumbnail": "assets/img/portfolio/hima2.jpeg",
     "media_type": "image",
     "media_url": "assets/img/portfolio/hima2.jpeg",
-    "project_url": "",
-    "date": "18 November 2024",
+    "project_url": "https://drive.google.com/file/d/1ScmN7wXr198Q2asMvgUAqlLfdDrwoFbZ/view?usp=drive_link",
+    "date": "2024-11-18T12:00",
     "tools": [
-      "Canva"
+      "Canva",
+      "Graphic Design",
+      "Print Media Design",
+      "Layout Management",
+      "Branding Identity"
     ],
     "slider_images": []
   },
