@@ -377,21 +377,27 @@
   },
   {
     "id": "mental-health-poster",
-    "title": "Mental Health Poster",
+    "title": "Workplace Mental Health Awareness Poster",
+    "title_en": "Workplace Mental Health Awareness Poster",
+    "title_id": "Workplace Mental Health Awareness Poster",
     "categories": [
       "design"
     ],
-    "desc_en": "Mental Health Poster Design Competition",
-    "desc_id": "Lomba Desain Poster Kesehatan Mental",
-    "detailed_desc_en": "An educational poster design highlighting the importance of mental health and self-care, designed in Canva for a poster design competition.",
-    "detailed_desc_id": "Desain poster edukasi yang menyoroti pentingnya kesehatan mental dan kepedulian diri, dirancang di Canva untuk lomba desain poster.",
+    "desc_en": "Collaborative Graphic Design and Corporate Mental Health Campaign Production",
+    "desc_id": "Kolaborasi Desain Grafis Tim dan Perancangan Kampanye Kesehatan Mental Korporat",
+    "detailed_desc_en": "This educational poster design project was crafted collaboratively within a 4-person team for a vocational high school social media design competition. From the various thematic options provided, our team strategically selected \"Maintaining Mental Health in the Workplace\" due to its high relevance in the modern professional landscape.\n\nThroughout this project, the team and I actively engaged in conceptual brainstorming to translate the abstract concept of well-being into communicative and persuasive visual elements. The design execution focused heavily on layout balance, empathetic supporting illustrations, and precise typographic alignment to deliver corporate mental health awareness messages effectively to digital audiences. This project strongly highlights my capability to operate productively within a creative team and successfully synthesize shared ideas into a unified artwork.",
+    "detailed_desc_id": "Proyek desain poster edukasi ini dirancang secara kolaboratif dalam sebuah tim beranggotakan 4 orang untuk mengikuti kompetisi desain media sosial tingkat SMK. Dari berbagai opsi tema yang disediakan penyelenggara, tim kami secara strategis memilih tema \"Menjaga Kesehatan Mental di Tempat Kerja\" karena relevansinya yang tinggi dengan dunia profesional modern.\n\nDalam proyek ini, saya bersama tim aktif melakukan brainstorming untuk menerjemahkan konsep abstrak mengenai well-being menjadi elemen visual yang komunikatif dan persuasif. Proses eksekusi ditekankan pada keseimbangan tata letak (layouting), ilustrasi pendukung yang empatik, serta penyelarasan tipografi agar pesan edukasi mengenai kesadaran kesehatan mental korporat dapat tersampaikan secara instan dan menarik kepada audiens digital. Proyek ini menjadi pembuktian kapabilitas saya dalam bekerja di dalam tim kreatif dan menyelaraskan ide konseptual bersama.",
     "thumbnail": "assets/img/portfolio/poster_kesehatan_mental.jpeg",
     "media_type": "image",
     "media_url": "assets/img/portfolio/poster_kesehatan_mental.jpeg",
     "project_url": "https://www.instagram.com/p/C7DwhRUpNAT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    "date": "17 Mei 2024",
+    "date": "2024-05-17T12:00",
     "tools": [
-      "Canva"
+      "Canva",
+      "Graphic Design",
+      "Collaborative Project",
+      "Team Brainstorming",
+      "Workplace Well-being"
     ],
     "slider_images": []
   },
