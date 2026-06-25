@@ -123,22 +123,27 @@
   },
   {
     "id": "house-night-3d",
-    "title": "Blender, IbisPaint",
+    "title": "3D Night Scene: Low-Poly House Environment",
+    "title_en": "3D Night Scene: Low-Poly House Environment",
+    "title_id": "3D Night Scene: Low-Poly House Environment",
     "categories": [
       "3ddesign"
     ],
-    "desc_en": "3D Render of a House at Night",
-    "desc_id": "Render 3D Rumah di Malam Hari",
-    "detailed_desc_en": "A highly detailed 3D environment modeling of a cozy house under night atmosphere. Textured and rendered in Blender, with color adjustment post-processing in IbisPaint.",
-    "detailed_desc_id": "Pemodelan lingkungan 3D detail tinggi dari rumah yang nyaman di bawah atmosfer malam hari. Tekstur dan render di Blender, dengan penyesuaian warna pasca-pemrosesan di IbisPaint.",
+    "desc_en": "3D Modeling and 2D Digital Compositing Integration Using Blender & IbisPaint",
+    "desc_id": "Integrasi Pemodelan 3D dan Digital Compositing 2D Menggunakan Blender & IbisPaint",
+    "detailed_desc_en": "This personal project was developed as an independent exploration of low-poly environment modeling. The primary focus of this piece is to visualize a residential exterior mockup set under a calm, nocturnal atmosphere.\n\nThe production pipeline utilizes a creative mixed-media approach, seamlessly combining 3D and 2D workflows. All 3D assets—encompassing the house structure, stylized trees, and terrain layout—were fully modeled and lit in Blender. The pipeline then integrates a digital compositing phase in IbisPaint to craft a custom starry sky background and execute post-processing color grading, enhancing the overall visual harmony and atmospheric contrast of the night scene.",
+    "detailed_desc_id": "Proyek personal ini dikembangkan sebagai sarana eksplorasi mandiri dalam pemodelan lingkungan (environment modeling) bergaya low-poly. Fokus utama dari proyek ini adalah menciptakan visualisasi eksterior sebuah rumah tinggal yang nyaman di bawah atmosfer malam hari yang tenang.\n\nProses produksinya menerapkan pendekatan arsitektur campuran (mixed-media approach). Seluruh elemen arsitektur 3D—mencakup struktur bangunan rumah, tata vegetasi pohon, dan kontur tanah—dimodelkan serta diberi pencahayaan penuh di Blender. Tahap selanjutnya melibatkan teknik digital compositing menggunakan IbisPaint untuk merancang latar belakang langit berbintang secara kustom, sekaligus melakukan penyesuaian warna (color grading) pasca-render guna menghasilkan kontras visual malam hari yang estetik dan harmonis.",
     "thumbnail": "assets/img/portfolio/house.png",
     "media_type": "image",
     "media_url": "assets/img/portfolio/house.png",
-    "project_url": "",
-    "date": "22 Juni 2024",
+    "project_url": "https://www.instagram.com/p/Cm-0Fxqrbfz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "date": "2024-06-22T12:00",
     "tools": [
       "Blender",
-      "IbisPaint"
+      "IbisPaint",
+      "3D Low-Poly",
+      "Environment Design",
+      "Digital Compositing"
     ],
     "slider_images": []
   },
