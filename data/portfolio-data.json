@@ -69,17 +69,17 @@
   },
   {
     "id": "zombies-3d-animation",
-    "title": "Blender, Mixamo",
-    "title_en": "Blender, Mixamo",
-    "title_id": "Blender, Mixamo",
+    "title": "3D Cinematic Sequence: Zombie Outbreak",
+    "title_en": "3D Cinematic Sequence: Zombie Outbreak",
+    "title_id": "3D Cinematic Sequence: Zombie Outbreak",
     "categories": [
       "3ddesign",
       "video"
     ],
-    "desc_en": "3D Animation - Zombies",
-    "desc_id": "Animasi 3D - Zombi",
-    "detailed_desc_en": "A short 3D animation about a zombie attack, featuring character animation, environment design, and dramatic lighting effects.",
-    "detailed_desc_id": "Animasi 3D pendek tentang serangan zombi, menampilkan animasi karakter, desain lingkungan, dan efek pencahayaan dramatis.",
+    "desc_en": "Multi-Character Animation Development and Dramatic Mood Lighting Design",
+    "desc_id": "Pengembangan Animasi Karakter Multi-Objek dan Pengaturan Mood Lighting Dramatis",
+    "detailed_desc_en": "This short 3D animation project was developed to explore the creation of action-horror cinematic sequences. The core objective of this piece is to visualize the atmospheric panic of a zombie outbreak through dynamic and sequential character movements.\n\nThroughout the production pipeline, Mixamo was utilized for the characters' foundational motion systems, which were then seamlessly integrated and manually refined in Blender to ensure natural transitions. The main technical highlight of this project lies in engineering the grim environment design and implementing low-key, dramatic lighting techniques to emphasize stark shadow contrasts, effectively building tension and a suspenseful mood across the scene changes.",
+    "detailed_desc_id": "Proyek animasi 3D pendek ini dikembangkan untuk mengeksplorasi pembuatan sekuens sinematik bertema horor dan aksi (thriller sequence). Fokus utama proyek ini adalah memvisualisasikan atmosfer kepanikan saat serangan zombi terjadi melalui pergerakan karakter yang dinamis dan berkesinambungan.\n\nDalam proses produksinya, saya memanfaatkan Mixamo untuk sistem gerak dasar karakter zombi dan manusia, yang kemudian diintegrasikan dan disempurnakan secara manual di Blender agar transisi antar-gerakan terlihat natural. Tantangan teknis terbesar proyek ini terletak pada perancangan desain lingkungan (environment design) yang suram serta penerapan teknik pencahayaan dramatis (low-key & dramatic lighting) untuk mempertegas kontras bayangan, guna membangun eskalasi ketegangan dan mood mencekam di setiap pergantian scene.",
     "thumbnail": "assets/img/portfolio/zombies.jpg",
     "media_type": "drive_video",
     "media_url": "https://drive.google.com/file/d/10RMkEq5tgudvmxpK5pqfI-aoGWl3jWGn/preview",
@@ -87,7 +87,11 @@
     "date": "2024-12-05T12:00",
     "tools": [
       "Blender",
-      "Mixamo"
+      "Mixamo",
+      "3D Animation",
+      "Cinematic Sequence",
+      "Dramatic Lighting",
+      "Character Motion"
     ],
     "slider_images": []
   },
