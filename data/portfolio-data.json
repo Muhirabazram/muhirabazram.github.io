@@ -149,23 +149,28 @@
   },
   {
     "id": "mybioskop-website",
-    "title": "Website",
+    "title": "MyBioskop: Front-End Movie Ticket Booking Platform",
+    "title_en": "MyBioskop: Front-End Movie Ticket Booking Platform",
+    "title_id": "MyBioskop: Front-End Movie Ticket Booking Platform",
     "categories": [
       "web"
     ],
-    "desc_en": "MyBioskop Website",
-    "desc_id": "Situs Web MyBioskop",
-    "detailed_desc_en": "A fully responsive, elegant cinema web interface featuring schedules, trailers, and seating layout. Focuses on intuitive UI and smooth user experience.",
-    "detailed_desc_id": "Antarmuka web bioskop yang sepenuhnya responsif dan elegan menampilkan jadwal film, trailer, dan tata letak kursi. Berfokus pada UI yang intuitif dan pengalaman pengguna yang lancar.",
+    "desc_en": "Responsive Interface Design and Cinema Ticket Reservation Simulation",
+    "desc_id": "Perancangan Antarmuka Responsif dan Simulasi Alur Reservasi Tiket Bioskop",
+    "detailed_desc_en": "This web application project was developed as an early academic assignment to implement the core fundamentals of modern front-end web development. The project was executed within a 3-person team, where I served as the lead developer, driving the entire coding lifecycle and functionality from conception to completion.\n\n\"MyBioskop\" operates entirely on a front-end architecture leveraging HTML5, CSS3, and Vanilla JavaScript without any backend or database dependencies. The core programming logic heavily focuses on interactive DOM manipulation to deliver client-side features, including movie directory browsing, trailer video embeds, synopsis views, and dynamic seat-selection or ticket-booking simulations. The complete codebase is systematically managed and deployed via GitHub, showcasing a solid early foundation in clean, functional, and user-centric interface engineering.",
+    "detailed_desc_id": "Proyek aplikasi web ini dikembangkan sebagai bagian dari tugas akademik dasar untuk mengimplementasikan fundamental pengembangan front-end web modern. Proyek ini dieksekusi secara kolaboratif dalam tim beranggotakan 3 orang, di mana saya mengambil peran utama (lead developer) dalam merancang struktur kode dan logika fungsional sistem dari awal hingga selesai.\n\n\"MyBioskop\" dibangun sepenuhnya mengandalkan arsitektur front-end menggunakan HTML5, CSS3, dan JavaScript Vanilla tanpa ketergantungan database. Logika pemrograman difokuskan pada manipulasi DOM secara interaktif untuk menyajikan fitur penjelajahan jadwal film, pemutaran trailer, detail sinopsis, hingga simulasi pemilihan kursi (seat selection) dan kalkulasi harga tiket secara dinamis di sisi klien (client-side). Seluruh repositori proyek ini dikelola dan dipublikasikan secara publik melalui GitHub sebagai representasi kapabilitas awal saya dalam membangun antarmuka web yang fungsional dan intuitif.",
     "thumbnail": "assets/img/portfolio/beranda.jpg",
     "media_type": "image",
     "media_url": "assets/img/portfolio/beranda.jpg",
     "project_url": "https://github.com/Muhirabazram/MyBioskop/tree/main",
-    "date": "14 Oktober 2024",
+    "date": "2024-10-14T12:00",
     "tools": [
-      "HTML",
-      "CSS",
-      "JavaScript"
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Front-End Development",
+      "DOM Manipulation",
+      "GitHub"
     ],
     "slider_images": []
   },
