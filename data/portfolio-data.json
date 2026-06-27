@@ -322,22 +322,28 @@
   },
   {
     "id": "makima-cosplay",
-    "title": "Photography, IbisPaint",
+    "title": "Makima Cosplay: Conceptual Poster Design",
+    "title_en": "Makima Cosplay: Conceptual Poster Design",
+    "title_id": "Makima Cosplay: Conceptual Poster Design",
     "categories": [
       "photo"
     ],
-    "desc_en": "Makima Cosplayer - @srniln",
-    "desc_id": "Cosplayer Makima - @srniln",
-    "detailed_desc_en": "A conceptual cosplay photography shoot of Makima from Chainsaw Man, featuring deep red cinematic grading and aesthetic photo manipulations in IbisPaint.",
-    "detailed_desc_id": "Sesi pemotretan cosplay konseptual Makima dari Chainsaw Man, menampilkan grading sinematik merah tua dan manipulasi foto estetis di IbisPaint.",
+    "desc_en": "Integration of On-Site Event Photography and Cinematic Digital Graphic Artwork",
+    "desc_id": "Integrasi Event Photography dan Digital Graphic Artwork Bertema Sinematik",
+    "detailed_desc_en": "This creative project seamlessly integrates on-site event photography with post-production digital graphic design. Captured live at a Japanese pop culture event, the project focuses on visualising the character Makima from Chainsaw Man into a high-impact, dramatic conceptual poster.\n\nUtilizing a mirrorless camera to capture the primary photographic asset, the production pipeline advanced into a digital compositing and manipulation phase using IbisPaint. The creative workflow heavily emphasized implementing a low-key, dark red cinematic color grading, constructing a customized grunge-themed background layout, and structuring stylized typography akin to official promotional prints. This project strongly demonstrates my capability to transform raw event photography into a polished, thematic, and high-fidelity visual asset.",
+    "detailed_desc_id": "Proyek kreatif ini memadukan disiplin ilmu fotografi lapangan (event photography) dengan seni desain grafis pasca-produksi (post-processing artwork). Diambil langsung pada sebuah acara pop kultur Jepang, proyek ini berfokus pada visualisasi karakter Makima dari Chainsaw Man ke dalam sebuah poster konseptual yang dramatis.\n\nMenggunakan kamera mirrorless untuk menangkap aset foto utama, proses pasca-produksi kemudian dieksekusi menggunakan IbisPaint untuk melakukan manipulasi gambar secara menyeluruh. Proses kreatif difokuskan pada penerapan teknik cinematic color grading bernuansa merah tua dan hitam, pembuatan latar belakang grafis bertema grunge, serta penyusunan tipografi bergaya poster promosi resmi. Proyek ini membuktikan kapabilitas saya dalam mengolah dokumentasi mentah menjadi sebuah produk desain visual yang matang, tematik, dan memiliki nilai estetika tinggi.",
     "thumbnail": "assets/img/portfolio/makima.png",
     "media_type": "image",
     "media_url": "assets/img/portfolio/makima.png",
-    "project_url": "",
-    "date": "02 November 2024",
+    "project_url": "https://www.instagram.com/p/C2Uv5Z9JFKX/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "date": "2024-01-20T12:00",
     "tools": [
       "Photography",
-      "IbisPaint"
+      "IbisPaint",
+      "Digital Manipulation",
+      "Conceptual Poster",
+      "Event Photography",
+      "Color Grading"
     ],
     "slider_images": []
   },
