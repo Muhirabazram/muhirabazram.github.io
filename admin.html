@@ -1419,7 +1419,7 @@
       try {
         const res = await fetch(url, {
           headers: {
-            'Authorization': `token ${token}`,
+            'Authorization': `Bearer ${token}`,
             'Accept': 'application/vnd.github.v3+json',
             'Cache-Control': 'no-cache'
           }
@@ -1447,7 +1447,7 @@
       const putRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
         method: 'PUT',
         headers: {
-          'Authorization': `token ${token}`,
+          'Authorization': `Bearer ${token}`,
           'Accept': 'application/vnd.github.v3+json',
           'Content-Type': 'application/json'
         },
