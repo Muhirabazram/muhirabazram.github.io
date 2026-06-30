@@ -611,11 +611,18 @@
               <!-- Line Chart for Trends -->
               <div class="col-lg-8 mb-4">
                 <div class="glass-card h-100 mb-0">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
+                  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                     <h5 class="mb-0"><i class="bi bi-graph-up text-success"></i> Grafik Kunjungan (7 Hari Terakhir)</h5>
-                    <button id="btnRefreshAnalytics" class="btn btn-outline-custom btn-sm">
-                      <i class="bi bi-arrow-clockwise"></i> Refresh
-                    </button>
+                    <div class="d-flex align-items-center gap-2">
+                      <select id="chartPeriodSelect" class="form-select form-select-sm bg-dark text-white border-secondary" style="width: auto; border-radius: 8px; border-color: var(--border-dark); cursor: pointer;">
+                        <option value="7">7 Hari Terakhir</option>
+                        <option value="30">30 Hari Terakhir</option>
+                        <option value="all">Total Keseluruhan</option>
+                      </select>
+                      <button id="btnRefreshAnalytics" class="btn btn-outline-custom btn-sm">
+                        <i class="bi bi-arrow-clockwise"></i> Refresh
+                      </button>
+                    </div>
                   </div>
                   <div class="chart-container" style="position: relative; height:280px; width:100%">
                     <canvas id="visitorChart"></canvas>
@@ -1908,7 +1915,9 @@
       renderDistributionList('locationDistribution', locationCounts, totalVisits, 'bi-geo-alt-fill');
       renderDistributionList('referrerDistribution', referrerCounts, totalVisits, 'bi-link-45deg');
 
-      drawTrendsChart(logs);
+      const periodSelect = document.getElementById('chartPeriodSelect');
+      const currentPeriod = periodSelect ? periodSelect.value : '7';
+      drawTrendsChart(logs, currentPeriod);
       
       window.loadedVisitorLogs = logs;
     }
@@ -1942,22 +1951,78 @@
       }).join('');
     }
 
-    function drawTrendsChart(logs) {
+    function drawTrendsChart(logs, period = '7') {
       const ctx = document.getElementById('visitorChart');
       if (!ctx) return;
 
-      const days = [];
-      const counts = [];
+      let days = [];
+      let counts = [];
       const localeOption = { month: 'short', day: 'numeric' };
-      
-      for (let i = 6; i >= 0; i--) {
-        const d = new Date();
-        d.setDate(d.getDate() - i);
-        days.push(d.toLocaleDateString('id-ID', localeOption));
-        
-        const dateStr = d.toDateString();
-        const dailyCount = logs.filter(log => log.timestamp && log.timestamp.toDateString() === dateStr).length;
-        counts.push(dailyCount);
+      let diffDays = 7;
+
+      if (period === '7' || period === '30') {
+        const numDays = period === '7' ? 7 : 30;
+        diffDays = numDays;
+        for (let i = numDays - 1; i >= 0; i--) {
+          const d = new Date();
+          d.setDate(d.getDate() - i);
+          days.push(d.toLocaleDateString('id-ID', localeOption));
+          
+          const dateStr = d.toDateString();
+          const dailyCount = logs.filter(log => log.timestamp && log.timestamp.toDateString() === dateStr).length;
+          counts.push(dailyCount);
+        }
+      } else if (period === 'all') {
+        if (logs.length === 0) {
+          days = [new Date().toLocaleDateString('id-ID', localeOption)];
+          counts = [0];
+        } else {
+          // Find the oldest log timestamp
+          let minDate = new Date();
+          logs.forEach(log => {
+            if (log.timestamp && log.timestamp < minDate) {
+              minDate = new Date(log.timestamp);
+            }
+          });
+          
+          minDate.setHours(0,0,0,0);
+          const today = new Date();
+          today.setHours(0,0,0,0);
+          
+          const diffTime = Math.abs(today - minDate);
+          diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+          
+          if (diffDays <= 45) {
+            for (let i = diffDays - 1; i >= 0; i--) {
+              const d = new Date();
+              d.setDate(d.getDate() - i);
+              days.push(d.toLocaleDateString('id-ID', localeOption));
+              
+              const dateStr = d.toDateString();
+              const dailyCount = logs.filter(log => log.timestamp && log.timestamp.toDateString() === dateStr).length;
+              counts.push(dailyCount);
+            }
+          } else {
+            // Group by month
+            let current = new Date(minDate.getFullYear(), minDate.getMonth(), 1);
+            const end = new Date(today.getFullYear(), today.getMonth(), 1);
+            
+            while (current <= end) {
+              const label = current.toLocaleDateString('id-ID', { year: 'numeric', month: 'short' });
+              days.push(label);
+              
+              const m = current.getMonth();
+              const y = current.getFullYear();
+              const monthlyCount = logs.filter(log => {
+                if (!log.timestamp) return false;
+                return log.timestamp.getMonth() === m && log.timestamp.getFullYear() === y;
+              }).length;
+              counts.push(monthlyCount);
+              
+              current.setMonth(current.getMonth() + 1);
+            }
+          }
+        }
       }
 
       if (myChart) {
@@ -1979,7 +2044,7 @@
             pointBackgroundColor: '#12da34',
             pointBorderColor: '#030712',
             pointBorderWidth: 2,
-            pointRadius: 5,
+            pointRadius: days.length > 15 ? 3 : 5,
             pointHoverRadius: 7
           }]
         },
@@ -2009,7 +2074,8 @@
                 color: '#94a3b8',
                 font: {
                   family: 'Plus Jakarta Sans'
-                }
+                },
+                maxTicksLimit: days.length > 15 ? 10 : 7
               }
             },
             y: {
@@ -2076,6 +2142,23 @@
     const btnRefresh = document.getElementById('btnRefreshAnalytics');
     if (btnRefresh) {
       btnRefresh.addEventListener('click', loadAnalyticsData);
+    }
+
+    const chartPeriodSelect = document.getElementById('chartPeriodSelect');
+    if (chartPeriodSelect) {
+      chartPeriodSelect.addEventListener('change', function(e) {
+        const period = e.target.value;
+        const titleEl = document.querySelector('#analytics-pane h5.mb-0');
+        if (titleEl) {
+          let periodText = '7 Hari Terakhir';
+          if (period === '30') periodText = '30 Hari Terakhir';
+          if (period === 'all') periodText = 'Total Keseluruhan';
+          titleEl.innerHTML = `<i class="bi bi-graph-up text-success"></i> Grafik Kunjungan (${periodText})`;
+        }
+        if (window.loadedVisitorLogs) {
+          drawTrendsChart(window.loadedVisitorLogs, period);
+        }
+      });
     }
 
     const btnExport = document.getElementById('btnExportCsv');
