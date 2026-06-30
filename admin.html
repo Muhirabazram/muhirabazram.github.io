@@ -300,19 +300,62 @@
       <!-- Instructions & Load panel -->
       <div class="col-lg-12">
         <div class="glass-card">
-          <h4><i class="bi bi-folder2-open text-warning"></i> Load Current Portfolio Database</h4>
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h4 class="mb-0"><i class="bi bi-cloud-check-fill text-success"></i> Database & Sinkronisasi GitHub</h4>
+            <button class="btn btn-outline-custom btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#githubSettingsCollapse" aria-expanded="false" aria-controls="githubSettingsCollapse">
+              <i class="bi bi-gear-fill"></i> Pengaturan GitHub
+            </button>
+          </div>
+          
+          <!-- Collapse GitHub settings -->
+          <div class="collapse mb-3" id="githubSettingsCollapse">
+            <div class="p-3 rounded bg-dark border border-secondary">
+              <h6 class="mb-3 text-success"><i class="bi bi-github"></i> Konfigurasi API GitHub (Hanya Disimpan di Browser Anda)</h6>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label for="githubUsername" class="form-label small">Username GitHub</label>
+                  <input type="text" id="githubUsername" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Username GitHub" value="Muhirabazram">
+                </div>
+                <div class="col-md-4">
+                  <label for="githubRepo" class="form-label small">Nama Repositori</label>
+                  <input type="text" id="githubRepo" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Nama Repositori" value="muhirabazram.github.io">
+                </div>
+                <div class="col-md-4">
+                  <label for="githubBranch" class="form-label small">Branch</label>
+                  <input type="text" id="githubBranch" class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="main" value="main">
+                </div>
+                <div class="col-12">
+                  <label for="githubToken" class="form-label small">GitHub Personal Access Token (PAT)</label>
+                  <div class="input-group input-group-sm">
+                    <input type="password" id="githubToken" class="form-control bg-dark text-white border-secondary" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxx">
+                    <button class="btn btn-outline-secondary" type="button" id="btnToggleTokenVisibility">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                  </div>
+                  <div class="form-text text-muted small mt-1">
+                    Buat token dengan akses tulis file pada repositori Anda. Token disimpan secara lokal di browser Anda.
+                  </div>
+                </div>
+                <div class="col-12 text-end">
+                  <button id="btnSaveGithubSettings" class="btn btn-success btn-sm px-3">
+                    <i class="bi bi-save"></i> Simpan Konfigurasi
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <p class="text-muted small">
-            To add, edit, or delete items, upload your current <code>portfolio-data.json</code> file located in the <code>data/</code> folder. 
-            If you don't load one, you will start with the live default items fetched from your repository.
+            Gunakan panel ini untuk mengunggah berkas basis data dari perangkat lokal Anda, mengambil data aktif dari GitHub, atau mereset basis data ke template bawaan.
           </p>
-          <div class="row align-items-center gy-3 mt-2">
+          <div class="row align-items-center gy-3 mt-1">
             <div class="col-md-6">
-              <label for="jsonFileInput" class="form-label"><i class="bi bi-file-earmark-code"></i> Upload portfolio-data.json</label>
+              <label for="jsonFileInput" class="form-label"><i class="bi bi-file-earmark-code"></i> Unggah portfolio-data.json lokal</label>
               <input type="file" id="jsonFileInput" class="form-control" accept=".json">
             </div>
             <div class="col-md-6 text-md-end">
               <button id="btnFetchLive" class="btn btn-outline-custom me-2">
-                <i class="bi bi-cloud-arrow-down"></i> Load Live From Repository
+                <i class="bi bi-cloud-arrow-down"></i> Load Live Dari Repositori
               </button>
               <button id="btnReset" class="btn btn-outline-danger btn-sm text-white border-0 bg-transparent">
                 <i class="bi bi-arrow-counterclockwise"></i> Reset Database
@@ -321,10 +364,8 @@
           </div>
           <div id="dbStatusAlert" class="alert alert-info-custom mt-3 mb-0 d-flex align-items-center gap-2">
             <i class="bi bi-info-circle-fill"></i>
-            <span>No custom database loaded. Currently displaying template items (19 projects).</span>
+            <span>Tidak ada database kustom yang dimuat. Menampilkan item template (19 proyek).</span>
           </div>
-        </div>
-      </div>
 
       <!-- Navigation Tabs -->
       <div class="col-lg-12">
@@ -550,14 +591,17 @@
           <!-- Pane 3: JSON Output & Code -->
           <div class="tab-pane fade" id="preview-pane" role="tabpanel" tabindex="0">
             <div class="glass-card">
-              <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3><i class="bi bi-filetype-json text-success"></i> Compiled portfolio-data.json File</h3>
+              <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <h3><i class="bi bi-filetype-json text-success"></i> Berkas portfolio-data.json Hasil Kompilasi</h3>
                 <div>
+                  <button id="btnSyncGithub" class="btn btn-success btn-sm me-2">
+                    <i class="bi bi-cloud-arrow-up-fill"></i> Sinkronkan ke GitHub
+                  </button>
                   <button id="btnCopyJson" class="btn btn-outline-custom btn-sm me-2">
-                    <i class="bi bi-copy"></i> Copy JSON Code
+                    <i class="bi bi-copy"></i> Salin Kode JSON
                   </button>
                   <button id="btnDownloadJson" class="btn btn-accent btn-sm">
-                    <i class="bi bi-download"></i> Generate & Download portfolio-data.json
+                    <i class="bi bi-download"></i> Unduh portfolio-data.json
                   </button>
                 </div>
               </div>
@@ -565,10 +609,9 @@
               <div class="alert alert-info-custom mb-3 small d-flex align-items-start gap-2">
                 <i class="bi bi-check2-all" style="font-size: 18px; margin-top:2px;"></i>
                 <div>
-                  <strong>How to deploy updates:</strong><br>
-                  1. Press the <strong>Generate & Download</strong> button to get the updated database file.<br>
-                  2. Put this file in your project directory at <strong><code>D:\Pribadi\web portofolio\muhirabazram2026\data\portfolio-data.json</code></strong> (replace the old file).<br>
-                  3. Refresh your portfolio page! The new projects will instantly render without any code adjustments.
+                  <strong>Cara Menerapkan Pembaruan:</strong><br>
+                  1. <strong>Metode Otomatis (Rekomendasi)</strong>: Konfigurasikan Token PAT Anda di bagian atas halaman ini, lalu klik tombol <strong>Sinkronkan ke GitHub</strong> untuk langsung menyimpan perubahan.<br>
+                  2. <strong>Metode Manual</strong>: Klik tombol <strong>Unduh portfolio-data.json</strong>, simpan di folder proyek Anda pada <code>D:\Pribadi\web portofolio\muhirabazram2026\data\portfolio-data.json</code> (gantikan berkas lama), lalu commit & push manual via Git.
                 </div>
               </div>
 
@@ -697,9 +740,12 @@
                   <h3 class="mb-1 text-success"><i class="bi bi-person-workspace"></i> Skills Editor</h3>
                   <p class="text-muted small mb-0">Kelola kategori dan item skill yang tampil pada halaman utama</p>
                 </div>
-                <div class="d-flex gap-2">
+                <div class="d-flex gap-2 flex-wrap">
                   <button id="btnNewCategory" class="btn btn-accent btn-sm">
                     <i class="bi bi-plus-circle"></i> Tambah Kategori
+                  </button>
+                  <button id="btnSyncSkillsGithub" class="btn btn-success btn-sm">
+                    <i class="bi bi-cloud-arrow-up-fill"></i> Sinkronkan ke GitHub
                   </button>
                   <button id="btnCopySkillsJson" class="btn btn-outline-custom btn-sm">
                     <i class="bi bi-copy"></i> Salin JSON
@@ -714,9 +760,8 @@
                 <i class="bi bi-info-circle-fill text-success" style="font-size: 18px; margin-top:2px;"></i>
                 <div>
                   <strong>Cara Menerapkan Pembaruan Skill:</strong><br>
-                  1. Klik tombol <strong>Unduh skills-data.json</strong> setelah melakukan perubahan.<br>
-                  2. Simpan berkas hasil unduh di folder proyek Anda pada: <strong><code>D:\Pribadi\web portofolio\muhirabazram2026\data\skills-data.json</code></strong> (gantikan berkas lama).<br>
-                  3. Segarkan halaman utama! Kategori dan tingkat keahlian baru akan langsung terupdate secara dinamis.
+                  1. <strong>Metode Otomatis (Rekomendasi)</strong>: Konfigurasikan Token PAT Anda di bagian atas halaman ini, lalu klik tombol <strong>Sinkronkan ke GitHub</strong> untuk langsung menyimpan perubahan.<br>
+                  2. <strong>Metode Manual</strong>: Klik tombol <strong>Unduh skills-data.json</strong>, simpan di folder proyek Anda pada: <code>D:\Pribadi\web portofolio\muhirabazram2026\data\skills-data.json</code> (gantikan berkas lama), lalu commit & push manual via Git.
                 </div>
               </div>
             </div>
@@ -1286,11 +1331,211 @@
     manageTabTrigger.addEventListener('shown.bs.tab', renderManageList);
 
     // ==========================================
+    // --- GitHub API Sync Integration ---
+    // ==========================================
+    
+    // Load config from localStorage on startup
+    document.addEventListener('DOMContentLoaded', function() {
+      const storedUser = localStorage.getItem('github_username') || 'Muhirabazram';
+      const storedRepo = localStorage.getItem('github_repo') || 'muhirabazram.github.io';
+      const storedBranch = localStorage.getItem('github_branch') || 'main';
+      const storedToken = localStorage.getItem('github_token') || '';
+
+      const uEl = document.getElementById('githubUsername');
+      const rEl = document.getElementById('githubRepo');
+      const bEl = document.getElementById('githubBranch');
+      const tEl = document.getElementById('githubToken');
+
+      if (uEl) uEl.value = storedUser;
+      if (rEl) rEl.value = storedRepo;
+      if (bEl) bEl.value = storedBranch;
+      if (tEl) tEl.value = storedToken;
+    });
+
+    // Save settings handler
+    const btnSaveGithub = document.getElementById('btnSaveGithubSettings');
+    if (btnSaveGithub) {
+      btnSaveGithub.addEventListener('click', function() {
+        const user = document.getElementById('githubUsername').value.trim();
+        const repo = document.getElementById('githubRepo').value.trim();
+        const branch = document.getElementById('githubBranch').value.trim();
+        const token = document.getElementById('githubToken').value.trim();
+
+        localStorage.setItem('github_username', user);
+        localStorage.setItem('github_repo', repo);
+        localStorage.setItem('github_branch', branch);
+        localStorage.setItem('github_token', token);
+
+        showToast("Konfigurasi GitHub berhasil disimpan!");
+        
+        // Hide collapse
+        const collapseEl = document.getElementById('githubSettingsCollapse');
+        if (collapseEl) {
+          const bsCollapse = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl);
+          bsCollapse.hide();
+        }
+      });
+    }
+
+    // Toggle token visibility
+    const btnToggleVis = document.getElementById('btnToggleTokenVisibility');
+    if (btnToggleVis) {
+      btnToggleVis.addEventListener('click', function() {
+        const tokenInput = document.getElementById('githubToken');
+        const icon = this.querySelector('i');
+        if (tokenInput) {
+          if (tokenInput.type === 'password') {
+            tokenInput.type = 'text';
+            icon.classList.replace('bi-eye', 'bi-eye-slash');
+          } else {
+            tokenInput.type = 'password';
+            icon.classList.replace('bi-eye-slash', 'bi-eye');
+          }
+        }
+      });
+    }
+
+    // Helper: Safe Base64 Encoding for UTF-8
+    function safeBtoa(str) {
+      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+        return String.fromCharCode('0x' + p1);
+      }));
+    }
+
+    // Main function to push file to GitHub REST API
+    async function pushFileToGithub(path, contentString, commitMessage) {
+      const username = document.getElementById('githubUsername').value.trim();
+      const repo = document.getElementById('githubRepo').value.trim();
+      const branch = document.getElementById('githubBranch').value.trim();
+      const token = document.getElementById('githubToken').value.trim();
+
+      if (!username || !repo || !token) {
+        throw new Error('Konfigurasi GitHub belum lengkap. Buka "Pengaturan GitHub" di atas dan lengkapi username, repo, dan token PAT.');
+      }
+
+      const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}?ref=${branch}`;
+      
+      let sha = null;
+      try {
+        const res = await fetch(url, {
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Cache-Control': 'no-cache'
+          }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          sha = data.sha;
+        } else if (res.status !== 404) {
+          throw new Error(`Gagal mendapatkan SHA file dari GitHub (Status: ${res.status})`);
+        }
+      } catch (err) {
+        console.error(`Error fetching SHA for ${path}:`, err);
+        throw err;
+      }
+
+      const payload = {
+        message: commitMessage,
+        content: safeBtoa(contentString),
+        branch: branch
+      };
+      if (sha) {
+        payload.sha = sha;
+      }
+
+      const putRes = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${token}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!putRes.ok) {
+        const errorData = await putRes.json();
+        throw new Error(errorData.message || `Gagal mengunggah file ke GitHub (Status: ${putRes.status})`);
+      }
+
+      return await putRes.json();
+    }
+
+    // Trigger sync for both data files or individual target
+    async function syncDataToGithub(targetType) {
+      const btnSyncPort = document.getElementById('btnSyncGithub');
+      const btnSyncSkill = document.getElementById('btnSyncSkillsGithub');
+
+      const originalPortHtml = btnSyncPort ? btnSyncPort.innerHTML : '';
+      const originalSkillHtml = btnSyncSkill ? btnSyncSkill.innerHTML : '';
+
+      // Disable buttons and show loading
+      const setSpinner = (btn, text) => {
+        if (btn) {
+          btn.disabled = true;
+          btn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> ${text}`;
+        }
+      };
+
+      setSpinner(btnSyncPort, 'Menyinkronkan...');
+      setSpinner(btnSyncSkill, 'Menyinkronkan...');
+
+      try {
+        if (targetType === 'portfolio' || targetType === 'all') {
+          const jsonCode = JSON.stringify(projects, null, 2);
+          await pushFileToGithub('data/portfolio-data.json', jsonCode, 'update: portfolio data via admin panel');
+        }
+        if (targetType === 'skills' || targetType === 'all') {
+          const jsonCode = JSON.stringify(skillsData, null, 2);
+          await pushFileToGithub('data/skills-data.json', jsonCode, 'update: skills data via admin panel');
+        }
+
+        showToast("Data berhasil disinkronkan ke GitHub secara instan!");
+        
+        // Update database alert status
+        updateUIState("Database berhasil disinkronkan dan aktif di GitHub!");
+      } catch (err) {
+        console.error("Sync to GitHub failed:", err);
+        alert(`Gagal sinkronisasi ke GitHub: ${err.message}`);
+      } finally {
+        // Restore buttons
+        if (btnSyncPort) {
+          btnSyncPort.disabled = false;
+          btnSyncPort.innerHTML = originalPortHtml;
+        }
+        if (btnSyncSkill) {
+          btnSyncSkill.disabled = false;
+          btnSyncSkill.innerHTML = originalSkillHtml;
+        }
+      }
+    }
+
+    // Hook buttons to sync function
+    const btnSyncPort = document.getElementById('btnSyncGithub');
+    if (btnSyncPort) {
+      btnSyncPort.addEventListener('click', () => {
+        if (confirm("Apakah Anda yakin ingin menyimpan dan menyinkronkan seluruh data proyek portofolio langsung ke GitHub?")) {
+          syncDataToGithub('portfolio');
+        }
+      });
+    }
+
+    const btnSyncSkill = document.getElementById('btnSyncSkillsGithub');
+    if (btnSyncSkill) {
+      btnSyncSkill.addEventListener('click', () => {
+        if (confirm("Apakah Anda yakin ingin menyimpan dan menyinkronkan data kategori & tingkat keahlian langsung ke GitHub?")) {
+          syncDataToGithub('skills');
+        }
+      });
+    }
+
+    // ==========================================
     // --- Skills Management Logic ---
     // ==========================================
     let skillsData = [];
 
-    // Load initial skills data from JSON
+    // Load initial skills data from JSON with remote URL fallback
     function loadInitialSkills() {
       fetch('data/skills-data.json')
         .then(res => {
@@ -1302,17 +1547,26 @@
           renderSkillsAdmin();
         })
         .catch(err => {
-          console.error("Could not load skills-data.json. Starting with blank template.", err);
-          skillsData = [
-            {
-              "id": "web-dev",
-              "title_en": "Frontend & Web Dev",
-              "title_id": "Pengembangan Web & Frontend",
-              "icon": "bi-code-slash",
-              "items": []
-            }
-          ];
-          renderSkillsAdmin();
+          console.warn("Could not load skills-data.json locally. Fetching remote live fallback...", err);
+          fetch('https://muhirabazram.github.io/data/skills-data.json')
+            .then(res => res.json())
+            .then(data => {
+              skillsData = data;
+              renderSkillsAdmin();
+            })
+            .catch(error => {
+              console.error("Fatal: failed to load skills-data.json from remote fallback too.", error);
+              skillsData = [
+                {
+                  "id": "web-dev",
+                  "title_en": "Frontend & Web Dev",
+                  "title_id": "Pengembangan Web & Frontend",
+                  "icon": "bi-code-slash",
+                  "items": []
+                }
+              ];
+              renderSkillsAdmin();
+            });
         });
     }
 
