@@ -1413,15 +1413,14 @@
         throw new Error('Konfigurasi GitHub belum lengkap. Buka "Pengaturan GitHub" di atas dan lengkapi username, repo, dan token PAT.');
       }
 
-      const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}?ref=${branch}`;
+      const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}?ref=${branch}&_=${Date.now()}`;
       
       let sha = null;
       try {
         const res = await fetch(url, {
           headers: {
             'Authorization': `Bearer ${token}`,
-            'Accept': 'application/vnd.github.v3+json',
-            'Cache-Control': 'no-cache'
+            'Accept': 'application/vnd.github.v3+json'
           }
         });
         if (res.ok) {
