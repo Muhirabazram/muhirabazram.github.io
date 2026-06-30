@@ -706,27 +706,5 @@
       "Cinematic Aftermovie"
     ],
     "slider_images": []
-  },
-  {
-    "id": "tes",
-    "title": "tes",
-    "title_en": "tes",
-    "title_id": "tes",
-    "categories": [
-      "web"
-    ],
-    "desc_en": "tes",
-    "desc_id": "tes",
-    "detailed_desc_en": "tes",
-    "detailed_desc_id": "tes",
-    "thumbnail": "assets/img/portfolio/donordarah.png",
-    "media_type": "image",
-    "media_url": "assets/img/portfolio/red_gaming_room.jpg",
-    "project_url": "",
-    "date": "2026-06-30T17:30",
-    "tools": [
-      "tes"
-    ],
-    "slider_images": []
   }
 ]
