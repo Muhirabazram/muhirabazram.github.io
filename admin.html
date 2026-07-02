@@ -865,8 +865,10 @@
     </div>
   </div>
 
+  </div> <!-- End of #admin-content wrapper to prevent nesting login-container inside it -->
+
   <!-- Login Screen Overlay -->
-  <div id="login-container" class="d-flex align-items-center justify-content-center min-vh-100" style="display: none !important;">
+  <div id="login-container" class="d-flex align-items-center justify-content-center min-vh-100" style="display: none;">
     <div class="glass-card text-center p-4 shadow login-card" style="max-width: 420px; width: 100%; margin: 15px; margin-bottom: 0;">
       <div class="mb-4">
         <i class="bi bi-shield-lock text-success" style="font-size: 3.5rem; filter: drop-shadow(0 0 10px rgba(18, 218, 52, 0.3));"></i>
@@ -1951,7 +1953,7 @@
           }
 
           // User is signed in. Show admin pane and hide login screen
-          loginContainer.style.setProperty('display', 'none', 'important');
+          loginContainer.style.display = 'none';
           adminContent.style.display = 'block';
           
           // Setup rolling session activity listeners and timers
@@ -1973,7 +1975,7 @@
         } else {
           // User is signed out. Hide admin pane and show login screen
           adminContent.style.display = 'none';
-          loginContainer.style.setProperty('display', 'flex', 'important');
+          loginContainer.style.display = 'flex';
           
           // Clean up activity listeners and intervals
           removeActivityListeners();
