@@ -895,9 +895,9 @@
   </div>
 
   <!-- Firebase SDKs & Chart.js -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore-compat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <!-- Bootstrap JS Bundle -->
@@ -1896,9 +1896,19 @@
       } else if (!usernameInput.includes('@')) {
         email = usernameInput + '@invalid.local';
       }
+
+      // Safety timeout: reset button after 15 seconds if Firebase never responds
+      const loginTimeout = setTimeout(function() {
+        console.warn('Login request timed out after 15 seconds.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> Log In';
+        errorMsg.classList.remove('d-none');
+        errorMsg.textContent = 'Koneksi ke server autentikasi timeout. Periksa koneksi internet Anda dan coba lagi.';
+      }, 15000);
       
       firebase.auth().signInWithEmailAndPassword(email, passwordInput)
         .then(() => {
+          clearTimeout(loginTimeout);
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> Log In';
           document.getElementById('loginForm').reset();
@@ -1906,17 +1916,20 @@
           updateLastActivity();
         })
         .catch(err => {
-          console.error("Login failed:", err);
+          clearTimeout(loginTimeout);
+          console.error('Login failed:', err.code, err.message);
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> Log In';
           errorMsg.classList.remove('d-none');
           
           if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
-            errorMsg.textContent = "Username atau password salah!";
+            errorMsg.textContent = 'Username atau password salah!';
           } else if (err.code === 'auth/too-many-requests') {
-            errorMsg.textContent = "Terlalu banyak percobaan masuk yang gagal. Silakan coba lagi nanti.";
+            errorMsg.textContent = 'Terlalu banyak percobaan masuk yang gagal. Silakan coba lagi nanti.';
+          } else if (err.code === 'auth/network-request-failed') {
+            errorMsg.textContent = 'Gagal terhubung ke server. Periksa koneksi internet Anda.';
           } else {
-            errorMsg.textContent = "Gagal masuk: " + err.message;
+            errorMsg.textContent = 'Gagal masuk: ' + (err.message || err.code || 'Unknown error');
           }
         });
     });
